@@ -1,0 +1,142 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openset.dev/schema/v1/exercise-library.schema.json",
+  "title": "OpenSet Exercise Library",
+  "description": "Schema for validating OpenSet exercise library documents",
+  "type": "object",
+  "required": ["openset_version", "type", "id", "name", "version", "provider", "license", "exercises"],
+  "properties": {
+    "openset_version": { "type": "string", "const": "1.0" },
+    "type": { "type": "string", "const": "exercise_library" },
+    "id": { "type": "string" },
+    "name": { "type": "string" },
+    "version": { "type": "string" },
+    "provider": { "type": "string" },
+    "license": { "type": "string" },
+    "exercises": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Exercise" }
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "Exercise": {
+      "type": "object",
+      "required": ["id", "name", "execution_types"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*(_[a-z0-9]+)*$",
+          "description": "Unique snake_case identifier within the library"
+        },
+        "name": { "type": "string" },
+        "aliases": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "description": { "type": "string" },
+        "body_part": {
+          "type": "string",
+          "enum": ["upper_body", "lower_body", "core", "full_body", "cardio"]
+        },
+        "category": {
+          "type": "string",
+          "enum": ["push", "pull", "hinge", "squat", "carry", "rotation", "gait"]
+        },
+        "mechanic": {
+          "type": "string",
+          "enum": ["compound", "isolation"]
+        },
+        "laterality": {
+          "type": "string",
+          "enum": ["bilateral", "unilateral", "alternating"]
+        },
+        "level": {
+          "type": "string",
+          "enum": ["beginner", "intermediate", "advanced", "elite"]
+        },
+        "equipment": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "target_muscles": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "synergist_muscles": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "progressions": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "exercise_id refs to harder variations within the same library"
+        },
+        "regressions": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "exercise_id refs to easier variations within the same library"
+        },
+        "variations": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "exercise_id refs to lateral variations within the same library"
+        },
+        "sport_relevance": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "execution_types": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "reps_only", "reps_load", "reps_per_side", "reps_height",
+              "duration_only", "duration_load", "duration_per_side", "duration_power",
+              "distance_only", "distance_time", "distance_load",
+              "power_duration", "power_distance",
+              "calories_only", "distance_calories", "rounds_time"
+            ]
+          },
+          "minItems": 1
+        },
+        "media": {
+          "$ref": "#/$defs/Media"
+        },
+        "note": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "Media": {
+      "type": "object",
+      "properties": {
+        "videos": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["url", "label"],
+            "properties": {
+              "url": { "type": "string", "format": "uri" },
+              "label": { "type": "string" },
+              "language": { "type": "string" }
+            },
+            "additionalProperties": false
+          }
+        },
+        "photos": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["url", "label"],
+            "properties": {
+              "url": { "type": "string", "format": "uri" },
+              "label": { "type": "string" }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

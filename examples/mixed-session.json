@@ -1,0 +1,85 @@
+{
+  "openset_version": "1.0",
+  "type": "session",
+  "name": "Mixed Modal — Strength + Conditioning",
+  "date": "2026-02-21",
+  "sport": "crossfit",
+  "blocks": [
+    {
+      "name": "Strength",
+      "series": [
+        {
+          "execution_mode": "SEQUENTIAL",
+          "exercises": [
+            {
+              "exercise_id": "deadlift",
+              "sets": [
+                { "execution_type": "reps_load", "reps": { "type": "fixed", "value": 5 }, "load": { "type": "fixed", "value": 140, "unit": "kg" }, "rpe": { "type": "fixed", "value": 7 }, "rest_after": { "type": "fixed", "value": 180, "unit": "s" } },
+                { "execution_type": "reps_load", "reps": { "type": "fixed", "value": 3 }, "load": { "type": "fixed", "value": 160, "unit": "kg" }, "rpe": { "type": "fixed", "value": 8 }, "rest_after": { "type": "fixed", "value": 240, "unit": "s" } },
+                { "execution_type": "reps_load", "reps": { "type": "fixed", "value": 1 }, "load": { "type": "max" }, "note": "Test 1RM" }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "EMOM Conditioning",
+      "series": [
+        {
+          "execution_mode": "EMOM",
+          "rounds": { "type": "fixed", "value": 10 },
+          "note": "Alternating minutes — odd = work, even = recovery",
+          "exercises": [
+            {
+              "exercise_id": "row_ergometer",
+              "note": "Odd minutes — row hard",
+              "sets": [
+                { "execution_type": "distance_only", "distance": { "type": "fixed", "value": 200, "unit": "m" } },
+                { "execution_type": "distance_only", "distance": { "type": "fixed", "value": 200, "unit": "m" } },
+                { "execution_type": "distance_only", "distance": { "type": "fixed", "value": 200, "unit": "m" } },
+                { "execution_type": "distance_only", "distance": { "type": "fixed", "value": 200, "unit": "m" } },
+                { "execution_type": "distance_only", "distance": { "type": "fixed", "value": 200, "unit": "m" } }
+              ]
+            },
+            {
+              "exercise_id": "jump_rope",
+              "note": "Even minutes — easy pace, full minute",
+              "sets": [
+                { "execution_type": "duration_only", "duration": { "type": "fixed", "value": 60, "unit": "s" }, "rpe": { "type": "fixed", "value": 3 } },
+                { "execution_type": "duration_only", "duration": { "type": "fixed", "value": 60, "unit": "s" }, "rpe": { "type": "fixed", "value": 3 } },
+                { "execution_type": "duration_only", "duration": { "type": "fixed", "value": 60, "unit": "s" }, "rpe": { "type": "fixed", "value": 3 } },
+                { "execution_type": "duration_only", "duration": { "type": "fixed", "value": 60, "unit": "s" }, "rpe": { "type": "fixed", "value": 3 } },
+                { "execution_type": "duration_only", "duration": { "type": "fixed", "value": 60, "unit": "s" }, "rpe": { "type": "fixed", "value": 3 } }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Ladder Finisher",
+      "series": [
+        {
+          "execution_mode": "LADDER",
+          "rest_after": { "type": "fixed", "value": 60, "unit": "s" },
+          "exercises": [
+            {
+              "exercise_id": "push_up",
+              "note": "Ascending then descending ladder",
+              "sets": [
+                { "execution_type": "reps_only", "reps": { "type": "fixed", "value": 5 } },
+                { "execution_type": "reps_only", "reps": { "type": "fixed", "value": 10 } },
+                { "execution_type": "reps_only", "reps": { "type": "fixed", "value": 15 } },
+                { "execution_type": "reps_only", "reps": { "type": "fixed", "value": 20 } },
+                { "execution_type": "reps_only", "reps": { "type": "fixed", "value": 15 } },
+                { "execution_type": "reps_only", "reps": { "type": "fixed", "value": 10 } },
+                { "execution_type": "reps_only", "reps": { "type": "fixed", "value": 5 } }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

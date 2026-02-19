@@ -1,0 +1,122 @@
+{
+  "openset_version": "1.0",
+  "type": "session",
+  "name": "Upper Body — Push/Pull",
+  "date": "2026-02-17",
+  "sport": "strength",
+  "blocks": [
+    {
+      "name": "Block A",
+      "series": [
+        {
+          "execution_mode": "CIRCUIT",
+          "rounds": { "type": "fixed", "value": 3 },
+          "exercises": [
+            {
+              "exercise_id": "incline_bench_press",
+              "sets": [
+                {
+                  "execution_type": "reps_load",
+                  "reps": { "type": "fixed", "value": 15 },
+                  "load": { "type": "fixed", "value": 20, "unit": "kg" },
+                  "note": "add barbell weight to load"
+                },
+                {
+                  "execution_type": "reps_load",
+                  "reps": { "type": "fixed", "value": 12 },
+                  "load": { "type": "fixed", "value": 25, "unit": "kg" },
+                  "note": "add barbell weight to load"
+                },
+                {
+                  "execution_type": "reps_load",
+                  "reps": { "type": "range", "min": 8, "max": 10 },
+                  "load": { "type": "fixed", "value": 25, "unit": "kg" },
+                  "note": "add barbell weight to load"
+                }
+              ]
+            },
+            {
+              "exercise_id": "pull_up",
+              "sets": [
+                { "execution_type": "reps_only", "reps": { "type": "fixed", "value": 10 } },
+                { "execution_type": "reps_only", "reps": { "type": "fixed", "value": 10 } },
+                { "execution_type": "reps_only", "reps": { "type": "fixed", "value": 10 } }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Block B",
+      "series": [
+        {
+          "execution_mode": "CLUSTER",
+          "rounds": { "type": "fixed", "value": 3 },
+          "note": "Pair A back to back, then 30s, then Pair B, then 120s",
+          "exercises": [
+            {
+              "exercise_id": "pull_up",
+              "group": "pair_a",
+              "sets": [
+                { "execution_type": "reps_only", "reps": { "type": "fixed", "value": 15 } },
+                { "execution_type": "reps_only", "reps": { "type": "fixed", "value": 12 } },
+                { "execution_type": "reps_only", "reps": { "type": "fixed", "value": 8 } }
+              ]
+            },
+            {
+              "exercise_id": "decline_push_up",
+              "group": "pair_a",
+              "sets": [
+                { "execution_type": "reps_only", "reps": { "type": "fixed", "value": 32 }, "rest_after": { "type": "fixed", "value": 30, "unit": "s" } },
+                { "execution_type": "reps_only", "reps": { "type": "fixed", "value": 26 }, "rest_after": { "type": "fixed", "value": 30, "unit": "s" } },
+                { "execution_type": "reps_only", "reps": { "type": "fixed", "value": 19 }, "rest_after": { "type": "fixed", "value": 30, "unit": "s" } }
+              ]
+            },
+            {
+              "exercise_id": "pull_up",
+              "group": "pair_b",
+              "sets": [
+                { "execution_type": "reps_only", "reps": { "type": "fixed", "value": 7 } },
+                { "execution_type": "reps_only", "reps": { "type": "fixed", "value": 7 } },
+                { "execution_type": "reps_only", "reps": { "type": "fixed", "value": 5 } }
+              ]
+            },
+            {
+              "exercise_id": "decline_push_up",
+              "group": "pair_b",
+              "sets": [
+                { "execution_type": "reps_only", "reps": { "type": "fixed", "value": 14 }, "rest_after": { "type": "fixed", "value": 120, "unit": "s" } },
+                { "execution_type": "reps_only", "reps": { "type": "fixed", "value": 14 }, "rest_after": { "type": "fixed", "value": 120, "unit": "s" } },
+                { "execution_type": "reps_only", "reps": { "type": "fixed", "value": 11 }, "rest_after": { "type": "fixed", "value": 120, "unit": "s" } }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Core",
+      "series": [
+        {
+          "execution_mode": "CIRCUIT",
+          "rounds": { "type": "fixed", "value": 1 },
+          "exercises": [
+            {
+              "exercise_id": "leg_raise",
+              "sets": [{ "execution_type": "reps_only", "reps": { "type": "fixed", "value": 20 } }]
+            },
+            {
+              "exercise_id": "crunch",
+              "sets": [{ "execution_type": "reps_only", "reps": { "type": "fixed", "value": 20 } }]
+            },
+            {
+              "exercise_id": "sit_up",
+              "sets": [{ "execution_type": "reps_only", "reps": { "type": "fixed", "value": 20 } }]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

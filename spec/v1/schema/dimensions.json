@@ -1,0 +1,83 @@
+{
+  "$comment": "OpenSet v1.0 — Canonical dimension vocabulary",
+  "dimensions": {
+    "reps": {
+      "allowedTypes": ["fixed", "range", "min", "amrap"]
+    },
+    "sides": {
+      "allowedTypes": ["fixed"]
+    },
+    "rounds": {
+      "allowedTypes": ["fixed", "amrap"]
+    },
+    "load": {
+      "allowedTypes": ["fixed", "range", "max"]
+    },
+    "duration": {
+      "unit": "s",
+      "allowedTypes": ["fixed", "range", "min"]
+    },
+    "duration_per_side": {
+      "unit": "s",
+      "allowedTypes": ["fixed", "range"]
+    },
+    "rest_between_sides": {
+      "unit": "s",
+      "allowedTypes": ["fixed"]
+    },
+    "rest_after": {
+      "unit": "s",
+      "allowedTypes": ["fixed", "range"],
+      "precedence": "SET overrides SERIES"
+    },
+    "tempo": {
+      "description": "e.g. 3-1-1-0",
+      "allowedTypes": ["fixed"]
+    },
+    "distance": {
+      "allowedTypes": ["fixed", "range", "min", "amrap"]
+    },
+    "height": {
+      "unit": "cm",
+      "allowedTypes": ["fixed", "range"]
+    },
+    "incline": {
+      "description": "Gradient as percentage (%) — treadmill, outdoor running, cycling",
+      "unit": "%",
+      "allowedTypes": ["fixed", "range"]
+    },
+    "pace": {
+      "allowedTypes": ["fixed", "range"]
+    },
+    "speed": {
+      "allowedTypes": ["fixed", "range"]
+    },
+    "power": {
+      "unit": "W",
+      "allowedTypes": ["fixed", "range"]
+    },
+    "heart_rate": {
+      "unit": "bpm",
+      "allowedTypes": ["fixed", "range", "max"]
+    },
+    "heart_rate_zone": {
+      "description": "1–5",
+      "allowedTypes": ["fixed", "range"]
+    },
+    "rpe": {
+      "description": "1–10",
+      "allowedTypes": ["fixed", "range", "max"]
+    },
+    "velocity": {
+      "description": "Barbell/implement velocity (m/s) — for velocity-based training",
+      "allowedTypes": ["fixed", "range"]
+    },
+    "calories": {
+      "allowedTypes": ["fixed", "min", "amrap"]
+    }
+  },
+  "dimension_conflicts": [
+    ["pace", "speed"],
+    ["heart_rate", "heart_rate_zone"]
+  ]
+}

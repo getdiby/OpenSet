@@ -1,0 +1,100 @@
+{
+  "openset_version": "1.0",
+  "type": "session",
+  "name": "Lower Body — Squat & Hinge",
+  "date": "2026-02-18",
+  "sport": "strength",
+  "blocks": [
+    {
+      "name": "Warm-up",
+      "series": [
+        {
+          "execution_mode": "SEQUENTIAL",
+          "exercises": [
+            {
+              "exercise_id": "wall_sit",
+              "sets": [
+                { "execution_type": "duration_only", "duration": { "type": "fixed", "value": 30, "unit": "s" } },
+                { "execution_type": "duration_only", "duration": { "type": "fixed", "value": 45, "unit": "s" } }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Main Lifts",
+      "series": [
+        {
+          "execution_mode": "SEQUENTIAL",
+          "exercises": [
+            {
+              "exercise_id": "back_squat",
+              "sets": [
+                { "execution_type": "reps_load", "reps": { "type": "fixed", "value": 5 }, "load": { "type": "fixed", "value": 100, "unit": "kg" }, "rpe": { "type": "fixed", "value": 7 }, "rest_after": { "type": "fixed", "value": 180, "unit": "s" } },
+                { "execution_type": "reps_load", "reps": { "type": "fixed", "value": 5 }, "load": { "type": "fixed", "value": 110, "unit": "kg" }, "rpe": { "type": "fixed", "value": 8 }, "rest_after": { "type": "fixed", "value": 180, "unit": "s" } },
+                { "execution_type": "reps_load", "reps": { "type": "fixed", "value": 3 }, "load": { "type": "fixed", "value": 120, "unit": "kg" }, "rpe": { "type": "fixed", "value": 9 }, "rest_after": { "type": "fixed", "value": 240, "unit": "s" } },
+                { "execution_type": "reps_load", "reps": { "type": "fixed", "value": 3 }, "load": { "type": "fixed", "value": 125, "unit": "kg" }, "rpe": { "type": "fixed", "value": 9 }, "rest_after": { "type": "fixed", "value": 240, "unit": "s" } },
+                { "execution_type": "reps_load", "reps": { "type": "fixed", "value": 3 }, "load": { "type": "fixed", "value": 130, "unit": "kg" }, "rpe": { "type": "max" } }
+              ]
+            }
+          ]
+        },
+        {
+          "execution_mode": "SEQUENTIAL",
+          "exercises": [
+            {
+              "exercise_id": "romanian_deadlift",
+              "sets": [
+                { "execution_type": "reps_load", "reps": { "type": "range", "min": 8, "max": 12 }, "load": { "type": "fixed", "value": 80, "unit": "kg" }, "rpe": { "type": "fixed", "value": 7 }, "rest_after": { "type": "fixed", "value": 120, "unit": "s" } },
+                { "execution_type": "reps_load", "reps": { "type": "range", "min": 8, "max": 12 }, "load": { "type": "fixed", "value": 80, "unit": "kg" }, "rpe": { "type": "fixed", "value": 8 }, "rest_after": { "type": "fixed", "value": 120, "unit": "s" } },
+                { "execution_type": "reps_load", "reps": { "type": "range", "min": 8, "max": 12 }, "load": { "type": "fixed", "value": 80, "unit": "kg" }, "rpe": { "type": "fixed", "value": 8 } }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Accessories",
+      "series": [
+        {
+          "execution_mode": "SUPERSET",
+          "rounds": { "type": "fixed", "value": 3 },
+          "rest_after": { "type": "fixed", "value": 90, "unit": "s" },
+          "exercises": [
+            {
+              "exercise_id": "bulgarian_split_squat",
+              "sets": [
+                { "execution_type": "reps_per_side", "reps": { "type": "fixed", "value": 10 }, "sides": { "type": "fixed", "value": 2 }, "load": { "type": "fixed", "value": 16, "unit": "kg" } },
+                { "execution_type": "reps_per_side", "reps": { "type": "fixed", "value": 10 }, "sides": { "type": "fixed", "value": 2 }, "load": { "type": "fixed", "value": 16, "unit": "kg" } },
+                { "execution_type": "reps_per_side", "reps": { "type": "fixed", "value": 10 }, "sides": { "type": "fixed", "value": 2 }, "load": { "type": "fixed", "value": 16, "unit": "kg" } }
+              ]
+            },
+            {
+              "exercise_id": "leg_curl",
+              "sets": [
+                { "execution_type": "reps_load", "reps": { "type": "range", "min": 10, "max": 15 }, "load": { "type": "fixed", "value": 40, "unit": "kg" } },
+                { "execution_type": "reps_load", "reps": { "type": "range", "min": 10, "max": 15 }, "load": { "type": "fixed", "value": 40, "unit": "kg" } },
+                { "execution_type": "reps_load", "reps": { "type": "range", "min": 10, "max": 15 }, "load": { "type": "fixed", "value": 40, "unit": "kg" } }
+              ]
+            }
+          ]
+        },
+        {
+          "execution_mode": "SEQUENTIAL",
+          "exercises": [
+            {
+              "exercise_id": "single_leg_calf_raise_elevated",
+              "sets": [
+                { "execution_type": "reps_per_side", "reps": { "type": "fixed", "value": 15 }, "sides": { "type": "fixed", "value": 2 }, "rest_after": { "type": "fixed", "value": 60, "unit": "s" } },
+                { "execution_type": "reps_per_side", "reps": { "type": "fixed", "value": 15 }, "sides": { "type": "fixed", "value": 2 }, "rest_after": { "type": "fixed", "value": 60, "unit": "s" } },
+                { "execution_type": "reps_per_side", "reps": { "type": "fixed", "value": 15 }, "sides": { "type": "fixed", "value": 2 } }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

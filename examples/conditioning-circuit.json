@@ -1,0 +1,100 @@
+{
+  "openset_version": "1.0",
+  "type": "session",
+  "name": "Full Body Conditioning Circuit",
+  "date": "2026-02-19",
+  "sport": "general_fitness",
+  "blocks": [
+    {
+      "name": "AMRAP Block",
+      "series": [
+        {
+          "execution_mode": "AMRAP",
+          "rounds": { "type": "amrap" },
+          "note": "12 minute AMRAP — as many rounds as possible",
+          "exercises": [
+            {
+              "exercise_id": "push_up",
+              "sets": [
+                { "execution_type": "reps_only", "reps": { "type": "fixed", "value": 15 } }
+              ]
+            },
+            {
+              "exercise_id": "back_squat",
+              "note": "Use empty barbell or light load",
+              "sets": [
+                { "execution_type": "reps_load", "reps": { "type": "fixed", "value": 15 }, "load": { "type": "fixed", "value": 20, "unit": "kg" } }
+              ]
+            },
+            {
+              "exercise_id": "row_ergometer",
+              "sets": [
+                { "execution_type": "calories_only", "calories": { "type": "fixed", "value": 15 } }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "For Time",
+      "series": [
+        {
+          "execution_mode": "FOR_TIME",
+          "rounds": { "type": "fixed", "value": 3 },
+          "note": "Complete 3 rounds as fast as possible",
+          "exercises": [
+            {
+              "exercise_id": "run",
+              "sets": [
+                { "execution_type": "distance_only", "distance": { "type": "fixed", "value": 400, "unit": "m" } },
+                { "execution_type": "distance_only", "distance": { "type": "fixed", "value": 400, "unit": "m" } },
+                { "execution_type": "distance_only", "distance": { "type": "fixed", "value": 400, "unit": "m" } }
+              ]
+            },
+            {
+              "exercise_id": "box_jump",
+              "sets": [
+                { "execution_type": "reps_height", "reps": { "type": "fixed", "value": 15 }, "height": { "type": "fixed", "value": 60, "unit": "cm" } },
+                { "execution_type": "reps_height", "reps": { "type": "fixed", "value": 15 }, "height": { "type": "fixed", "value": 60, "unit": "cm" } },
+                { "execution_type": "reps_height", "reps": { "type": "fixed", "value": 15 }, "height": { "type": "fixed", "value": 60, "unit": "cm" } }
+              ]
+            },
+            {
+              "exercise_id": "pull_up",
+              "sets": [
+                { "execution_type": "reps_only", "reps": { "type": "fixed", "value": 10 } },
+                { "execution_type": "reps_only", "reps": { "type": "fixed", "value": 10 } },
+                { "execution_type": "reps_only", "reps": { "type": "fixed", "value": 10 } }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Tabata Finisher",
+      "series": [
+        {
+          "execution_mode": "TABATA",
+          "rounds": { "type": "fixed", "value": 8 },
+          "exercises": [
+            {
+              "exercise_id": "assault_bike",
+              "sets": [
+                { "execution_type": "duration_only", "duration": { "type": "fixed", "value": 20, "unit": "s" }, "rpe": { "type": "max" } },
+                { "execution_type": "duration_only", "duration": { "type": "fixed", "value": 20, "unit": "s" }, "rpe": { "type": "max" } },
+                { "execution_type": "duration_only", "duration": { "type": "fixed", "value": 20, "unit": "s" }, "rpe": { "type": "max" } },
+                { "execution_type": "duration_only", "duration": { "type": "fixed", "value": 20, "unit": "s" }, "rpe": { "type": "max" } },
+                { "execution_type": "duration_only", "duration": { "type": "fixed", "value": 20, "unit": "s" }, "rpe": { "type": "max" } },
+                { "execution_type": "duration_only", "duration": { "type": "fixed", "value": 20, "unit": "s" }, "rpe": { "type": "max" } },
+                { "execution_type": "duration_only", "duration": { "type": "fixed", "value": 20, "unit": "s" }, "rpe": { "type": "max" } },
+                { "execution_type": "duration_only", "duration": { "type": "fixed", "value": 20, "unit": "s" }, "rpe": { "type": "max" } }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

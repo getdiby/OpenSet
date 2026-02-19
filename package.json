@@ -1,0 +1,16 @@
+{
+  "name": "openset",
+  "private": true,
+  "description": "An open, sport-agnostic standard for representing structured training sessions as machine-readable data",
+  "scripts": {
+    "build": "pnpm -r build",
+    "test": "pnpm -r test",
+    "lint": "pnpm -r lint"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": ["esbuild"]
+  }
+}

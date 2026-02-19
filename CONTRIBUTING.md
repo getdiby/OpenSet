@@ -1,0 +1,89 @@
+# Contributing to OpenSet
+
+Thank you for considering contributing to OpenSet. This guide covers how to set up the project, run tests, and propose changes to the spec.
+
+## Development Setup
+
+```bash
+git clone https://github.com/openset/openset.git
+cd openset
+pnpm install
+pnpm build
+pnpm test
+```
+
+**Requirements:** Node.js >= 20, pnpm >= 9
+
+## Project Structure
+
+- `spec/v1/` — Specification files (schemas, vocabulary, exercise library)
+- `packages/typescript-types/` — `@openset/types` npm package
+- `packages/validator/` — `@openset/validator` npm package
+- `examples/` — Example OpenSet documents
+- `tools/convert/` — LLM conversion prompt
+- `website/` — Documentation website (Docusaurus)
+
+## Running Tests
+
+```bash
+# Run all tests
+pnpm test
+
+# Run validator tests in watch mode
+pnpm --filter @openset/validator test:watch
+
+# Validate example files
+node packages/validator/dist/cli.js validate examples/*.json --summary
+```
+
+## Adding an Exercise to the Library
+
+1. Edit `spec/v1/libraries/openset-default.json`
+2. Add a new exercise object with:
+   - A unique `snake_case` `id`
+   - A human-readable `name`
+   - At least one valid `execution_types` entry
+   - As many optional fields as applicable (`body_part`, `category`, `mechanic`, `laterality`, `level`, `equipment`, `target_muscles`, etc.)
+3. Update the exercise map in `packages/validator/src/index.ts`
+4. Run tests to verify: `pnpm test`
+5. Open a PR
+
+**Bar for inclusion:** The exercise must appear across multiple sports or coaching contexts. Sport-specific or equipment-specific variants belong in application-level extensions.
+
+## Proposing a New Execution Type
+
+Open an issue with:
+
+- The proposed `id` (snake_case)
+- Required and optional dimensions
+- At least 3 real-world examples from different sports that need this type and cannot be expressed with existing types
+
+## Proposing a New Dimension
+
+Open an issue with:
+
+- The proposed dimension name
+- Unit(s)
+- Allowed value types
+- Which execution types it belongs in
+- Examples from at least 2 different sports
+
+## Proposing a New Execution Mode
+
+Open an issue with:
+
+- The proposed mode name (UPPER_CASE)
+- How it differs semantically from existing modes
+- Examples and the rendering expectation for a client
+
+## Pull Request Guidelines
+
+- One logical change per PR
+- Include tests for any new validation rules
+- Ensure `pnpm test` passes
+- Update relevant documentation
+- Follow existing code style (2-space indentation, no trailing whitespace)
+
+## Code of Conduct
+
+Be respectful and constructive. We follow a standard contributor code of conduct.

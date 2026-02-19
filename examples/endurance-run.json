@@ -1,0 +1,109 @@
+{
+  "openset_version": "1.0",
+  "type": "session",
+  "name": "Threshold Intervals — 6×1km",
+  "date": "2026-02-20",
+  "sport": "running",
+  "blocks": [
+    {
+      "name": "Warm-up",
+      "series": [
+        {
+          "execution_mode": "SEQUENTIAL",
+          "exercises": [
+            {
+              "exercise_id": "run",
+              "note": "Easy jog to warm up",
+              "sets": [
+                {
+                  "execution_type": "duration_only",
+                  "duration": { "type": "fixed", "value": 600, "unit": "s" },
+                  "heart_rate_zone": { "type": "fixed", "value": 2 }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Intervals",
+      "series": [
+        {
+          "execution_mode": "INTERVAL",
+          "rounds": { "type": "fixed", "value": 6 },
+          "exercises": [
+            {
+              "exercise_id": "run",
+              "note": "6 × 1km at threshold pace. HR ceiling 175bpm — if exceeded, reduce pace.",
+              "sets": [
+                {
+                  "execution_type": "distance_only",
+                  "distance": { "type": "fixed", "value": 1, "unit": "km" },
+                  "pace": { "type": "range", "min": 3.8, "max": 4.0, "unit": "min/km" },
+                  "heart_rate": { "type": "max" },
+                  "rest_after": { "type": "fixed", "value": 90, "unit": "s" }
+                },
+                {
+                  "execution_type": "distance_only",
+                  "distance": { "type": "fixed", "value": 1, "unit": "km" },
+                  "pace": { "type": "range", "min": 3.8, "max": 4.0, "unit": "min/km" },
+                  "heart_rate": { "type": "max" },
+                  "rest_after": { "type": "fixed", "value": 90, "unit": "s" }
+                },
+                {
+                  "execution_type": "distance_only",
+                  "distance": { "type": "fixed", "value": 1, "unit": "km" },
+                  "pace": { "type": "range", "min": 3.8, "max": 4.0, "unit": "min/km" },
+                  "heart_rate": { "type": "max" },
+                  "rest_after": { "type": "fixed", "value": 90, "unit": "s" }
+                },
+                {
+                  "execution_type": "distance_only",
+                  "distance": { "type": "fixed", "value": 1, "unit": "km" },
+                  "pace": { "type": "range", "min": 3.8, "max": 4.0, "unit": "min/km" },
+                  "heart_rate": { "type": "max" },
+                  "rest_after": { "type": "fixed", "value": 90, "unit": "s" }
+                },
+                {
+                  "execution_type": "distance_only",
+                  "distance": { "type": "fixed", "value": 1, "unit": "km" },
+                  "pace": { "type": "range", "min": 3.8, "max": 4.0, "unit": "min/km" },
+                  "heart_rate": { "type": "max" },
+                  "rest_after": { "type": "fixed", "value": 90, "unit": "s" }
+                },
+                {
+                  "execution_type": "distance_only",
+                  "distance": { "type": "fixed", "value": 1, "unit": "km" },
+                  "pace": { "type": "range", "min": 3.8, "max": 4.0, "unit": "min/km" },
+                  "heart_rate": { "type": "max" }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Cool-down",
+      "series": [
+        {
+          "execution_mode": "SEQUENTIAL",
+          "exercises": [
+            {
+              "exercise_id": "run",
+              "note": "Easy jog cool-down",
+              "sets": [
+                {
+                  "execution_type": "duration_only",
+                  "duration": { "type": "fixed", "value": 600, "unit": "s" },
+                  "heart_rate_zone": { "type": "fixed", "value": 1 }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
