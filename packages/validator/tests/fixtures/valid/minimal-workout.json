@@ -1,7 +1,7 @@
 {
   "openset_version": "1.0",
-  "type": "session",
-  "name": "Minimal Session",
+  "type": "workout",
+  "name": "Minimal Workout",
   "date": "2026-02-19",
   "blocks": [
     {
@@ -14,7 +14,7 @@
               "exercise_id": "back_squat",
               "sets": [
                 {
-                  "execution_type": "reps_load",
+                  "dimensions": ["reps", "load"],
                   "reps": { "type": "fixed", "value": 5 },
                   "load": { "type": "fixed", "value": 100, "unit": "kg" }
                 }

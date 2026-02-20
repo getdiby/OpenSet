@@ -24,7 +24,7 @@
       "regressions": ["trap_bar_squat"],
       "variations": ["front_squat", "trap_bar_squat"],
       "sport_relevance": ["strength", "powerlifting", "football", "rugby"],
-      "execution_types": ["reps_load", "reps_only"],
+      "common_dimensions": [["reps", "load"], ["reps"]],
       "note": "Keep chest tall and knees tracking over toes throughout the movement."
     },
     {
@@ -44,7 +44,7 @@
       "regressions": ["back_squat"],
       "variations": ["back_squat", "trap_bar_squat"],
       "sport_relevance": ["strength", "olympic_weightlifting", "crossfit"],
-      "execution_types": ["reps_load", "reps_only"]
+      "common_dimensions": [["reps", "load"], ["reps"]]
     },
     {
       "id": "trap_bar_squat",
@@ -63,7 +63,7 @@
       "regressions": [],
       "variations": ["back_squat", "front_squat"],
       "sport_relevance": ["strength", "general_fitness"],
-      "execution_types": ["reps_load", "reps_only"]
+      "common_dimensions": [["reps", "load"], ["reps"]]
     },
     {
       "id": "deadlift",
@@ -82,7 +82,7 @@
       "regressions": ["romanian_deadlift"],
       "variations": ["romanian_deadlift"],
       "sport_relevance": ["strength", "powerlifting", "football", "rugby"],
-      "execution_types": ["reps_load", "reps_only"]
+      "common_dimensions": [["reps", "load"], ["reps"]]
     },
     {
       "id": "romanian_deadlift",
@@ -101,7 +101,7 @@
       "regressions": [],
       "variations": ["deadlift"],
       "sport_relevance": ["strength", "sprinting", "football"],
-      "execution_types": ["reps_load", "reps_only"]
+      "common_dimensions": [["reps", "load"], ["reps"]]
     },
     {
       "id": "bench_press",
@@ -120,7 +120,7 @@
       "regressions": ["push_up"],
       "variations": ["incline_bench_press"],
       "sport_relevance": ["strength", "powerlifting", "football"],
-      "execution_types": ["reps_load", "reps_only"]
+      "common_dimensions": [["reps", "load"], ["reps"]]
     },
     {
       "id": "incline_bench_press",
@@ -139,7 +139,7 @@
       "regressions": ["bench_press"],
       "variations": ["bench_press"],
       "sport_relevance": ["strength", "bodybuilding"],
-      "execution_types": ["reps_load", "reps_only"]
+      "common_dimensions": [["reps", "load"], ["reps"]]
     },
     {
       "id": "overhead_press",
@@ -158,7 +158,7 @@
       "regressions": ["push_up"],
       "variations": [],
       "sport_relevance": ["strength", "strongman", "crossfit"],
-      "execution_types": ["reps_load", "reps_only"]
+      "common_dimensions": [["reps", "load"], ["reps"]]
     },
     {
       "id": "hip_thrust",
@@ -177,7 +177,7 @@
       "regressions": [],
       "variations": [],
       "sport_relevance": ["strength", "sprinting", "general_fitness"],
-      "execution_types": ["reps_load", "reps_only"]
+      "common_dimensions": [["reps", "load"], ["reps"]]
     },
     {
       "id": "dip",
@@ -196,7 +196,7 @@
       "regressions": ["push_up"],
       "variations": [],
       "sport_relevance": ["strength", "calisthenics", "gymnastics"],
-      "execution_types": ["reps_only", "reps_load"]
+      "common_dimensions": [["reps"], ["reps", "load"]]
     },
     {
       "id": "pull_up",
@@ -215,7 +215,7 @@
       "regressions": ["chin_up", "australian_pull_up", "lat_pulldown"],
       "variations": ["chin_up"],
       "sport_relevance": ["strength", "calisthenics", "climbing", "martial_arts"],
-      "execution_types": ["reps_only", "reps_load"]
+      "common_dimensions": [["reps"], ["reps", "load"]]
     },
     {
       "id": "chin_up",
@@ -234,7 +234,7 @@
       "regressions": ["australian_pull_up", "lat_pulldown"],
       "variations": ["pull_up"],
       "sport_relevance": ["strength", "calisthenics"],
-      "execution_types": ["reps_only", "reps_load"]
+      "common_dimensions": [["reps"], ["reps", "load"]]
     },
     {
       "id": "australian_pull_up",
@@ -253,7 +253,7 @@
       "regressions": [],
       "variations": ["trx_inverted_row"],
       "sport_relevance": ["strength", "calisthenics", "general_fitness"],
-      "execution_types": ["reps_only"]
+      "common_dimensions": [["reps"]]
     },
     {
       "id": "push_up",
@@ -272,7 +272,7 @@
       "regressions": [],
       "variations": ["decline_push_up"],
       "sport_relevance": ["general_fitness", "calisthenics", "martial_arts"],
-      "execution_types": ["reps_only"]
+      "common_dimensions": [["reps"]]
     },
     {
       "id": "decline_push_up",
@@ -291,7 +291,7 @@
       "regressions": ["push_up"],
       "variations": ["push_up"],
       "sport_relevance": ["general_fitness", "calisthenics"],
-      "execution_types": ["reps_only"]
+      "common_dimensions": [["reps"]]
     },
     {
       "id": "lunge",
@@ -310,7 +310,7 @@
       "regressions": [],
       "variations": ["bulgarian_split_squat", "step_up"],
       "sport_relevance": ["general_fitness", "running", "football"],
-      "execution_types": ["reps_only", "reps_load", "reps_per_side"]
+      "common_dimensions": [["reps"], ["reps", "load"], ["reps", "sides"]]
     },
     {
       "id": "bulgarian_split_squat",
@@ -329,7 +329,7 @@
       "regressions": ["lunge"],
       "variations": ["lunge", "step_up"],
       "sport_relevance": ["strength", "running", "team_sports"],
-      "execution_types": ["reps_only", "reps_load", "reps_per_side"]
+      "common_dimensions": [["reps"], ["reps", "load"], ["reps", "sides"]]
     },
     {
       "id": "step_up",
@@ -348,7 +348,7 @@
       "regressions": ["lunge"],
       "variations": ["lunge", "bulgarian_split_squat"],
       "sport_relevance": ["general_fitness", "rehabilitation"],
-      "execution_types": ["reps_only", "reps_load", "reps_per_side", "reps_height"]
+      "common_dimensions": [["reps"], ["reps", "load"], ["reps", "sides"], ["reps", "height"]]
     },
     {
       "id": "box_jump",
@@ -367,7 +367,7 @@
       "regressions": ["step_up"],
       "variations": [],
       "sport_relevance": ["crossfit", "athletics", "basketball"],
-      "execution_types": ["reps_only", "reps_height"]
+      "common_dimensions": [["reps"], ["reps", "height"]]
     },
     {
       "id": "wall_sit",
@@ -386,7 +386,7 @@
       "regressions": [],
       "variations": [],
       "sport_relevance": ["general_fitness", "rehabilitation", "skiing"],
-      "execution_types": ["duration_only"]
+      "common_dimensions": [["duration"]]
     },
     {
       "id": "plank",
@@ -405,7 +405,7 @@
       "regressions": [],
       "variations": ["copenhagen_plank"],
       "sport_relevance": ["general_fitness", "martial_arts", "running"],
-      "execution_types": ["duration_only"]
+      "common_dimensions": [["duration"]]
     },
     {
       "id": "copenhagen_plank",
@@ -424,7 +424,7 @@
       "regressions": ["plank"],
       "variations": ["plank"],
       "sport_relevance": ["football", "rugby", "running", "rehabilitation"],
-      "execution_types": ["duration_only", "duration_per_side"]
+      "common_dimensions": [["duration"], ["duration", "sides"]]
     },
     {
       "id": "single_leg_calf_raise_elevated",
@@ -443,7 +443,7 @@
       "regressions": [],
       "variations": [],
       "sport_relevance": ["running", "basketball", "rehabilitation"],
-      "execution_types": ["reps_only", "reps_load", "reps_per_side"]
+      "common_dimensions": [["reps"], ["reps", "load"], ["reps", "sides"]]
     },
     {
       "id": "leg_curl",
@@ -462,7 +462,7 @@
       "regressions": [],
       "variations": [],
       "sport_relevance": ["bodybuilding", "general_fitness", "sprinting"],
-      "execution_types": ["reps_load"]
+      "common_dimensions": [["reps", "load"]]
     },
     {
       "id": "leg_extension",
@@ -481,7 +481,7 @@
       "regressions": [],
       "variations": [],
       "sport_relevance": ["bodybuilding", "general_fitness", "rehabilitation"],
-      "execution_types": ["reps_load"]
+      "common_dimensions": [["reps", "load"]]
     },
     {
       "id": "lat_pulldown",
@@ -500,7 +500,7 @@
       "regressions": [],
       "variations": ["seated_row"],
       "sport_relevance": ["bodybuilding", "general_fitness", "climbing"],
-      "execution_types": ["reps_load"]
+      "common_dimensions": [["reps", "load"]]
     },
     {
       "id": "seated_row",
@@ -519,7 +519,7 @@
       "regressions": ["australian_pull_up"],
       "variations": ["lat_pulldown"],
       "sport_relevance": ["bodybuilding", "rowing", "general_fitness"],
-      "execution_types": ["reps_load"]
+      "common_dimensions": [["reps", "load"]]
     },
     {
       "id": "chest_pass",
@@ -538,7 +538,7 @@
       "regressions": [],
       "variations": [],
       "sport_relevance": ["basketball", "handball", "general_fitness"],
-      "execution_types": ["reps_only"]
+      "common_dimensions": [["reps"]]
     },
     {
       "id": "triceps_cable_pushdown",
@@ -557,7 +557,7 @@
       "regressions": [],
       "variations": [],
       "sport_relevance": ["bodybuilding", "general_fitness"],
-      "execution_types": ["reps_load"]
+      "common_dimensions": [["reps", "load"]]
     },
     {
       "id": "bicep_curl",
@@ -576,7 +576,7 @@
       "regressions": [],
       "variations": [],
       "sport_relevance": ["bodybuilding", "general_fitness"],
-      "execution_types": ["reps_load", "reps_per_side"]
+      "common_dimensions": [["reps", "load"], ["reps", "sides"]]
     },
     {
       "id": "leg_raise",
@@ -595,7 +595,7 @@
       "regressions": ["crunch"],
       "variations": ["crunch", "sit_up"],
       "sport_relevance": ["general_fitness", "calisthenics", "martial_arts"],
-      "execution_types": ["reps_only"]
+      "common_dimensions": [["reps"]]
     },
     {
       "id": "crunch",
@@ -614,7 +614,7 @@
       "regressions": [],
       "variations": ["sit_up", "leg_raise"],
       "sport_relevance": ["general_fitness"],
-      "execution_types": ["reps_only"]
+      "common_dimensions": [["reps"]]
     },
     {
       "id": "sit_up",
@@ -633,7 +633,7 @@
       "regressions": ["crunch"],
       "variations": ["crunch", "leg_raise"],
       "sport_relevance": ["general_fitness", "martial_arts", "military"],
-      "execution_types": ["reps_only"]
+      "common_dimensions": [["reps"]]
     },
     {
       "id": "sprint",
@@ -652,7 +652,7 @@
       "regressions": ["run"],
       "variations": ["run"],
       "sport_relevance": ["athletics", "football", "rugby", "sprinting"],
-      "execution_types": ["distance_only", "distance_time"]
+      "common_dimensions": [["distance"], ["distance", "duration"]]
     },
     {
       "id": "run",
@@ -671,7 +671,7 @@
       "regressions": [],
       "variations": ["sprint"],
       "sport_relevance": ["running", "triathlon", "general_fitness"],
-      "execution_types": ["distance_only", "distance_time", "duration_only", "calories_only"]
+      "common_dimensions": [["distance"], ["distance", "duration"], ["duration"], ["calories"], ["duration", "cadence"]]
     },
     {
       "id": "row_ergometer",
@@ -690,7 +690,7 @@
       "regressions": [],
       "variations": [],
       "sport_relevance": ["rowing", "crossfit", "general_fitness"],
-      "execution_types": ["distance_only", "distance_time", "duration_only", "calories_only", "power_duration"]
+      "common_dimensions": [["distance"], ["distance", "duration"], ["duration"], ["calories"], ["power", "duration"], ["duration", "cadence"]]
     },
     {
       "id": "assault_bike",
@@ -709,7 +709,7 @@
       "regressions": ["cycling"],
       "variations": ["cycling"],
       "sport_relevance": ["crossfit", "general_fitness", "combat_sports"],
-      "execution_types": ["distance_only", "duration_only", "calories_only"]
+      "common_dimensions": [["distance"], ["duration"], ["calories"], ["duration", "cadence"]]
     },
     {
       "id": "cycling",
@@ -728,7 +728,7 @@
       "regressions": [],
       "variations": ["assault_bike"],
       "sport_relevance": ["cycling", "triathlon", "general_fitness"],
-      "execution_types": ["distance_only", "distance_time", "duration_only", "calories_only", "power_duration", "power_distance"]
+      "common_dimensions": [["distance"], ["distance", "duration"], ["duration"], ["calories"], ["power", "duration"], ["power", "distance"], ["duration", "cadence"], ["duration", "resistance"]]
     },
     {
       "id": "sled_push",
@@ -747,7 +747,7 @@
       "regressions": [],
       "variations": [],
       "sport_relevance": ["football", "rugby", "crossfit", "strongman"],
-      "execution_types": ["distance_only", "distance_load", "duration_only"]
+      "common_dimensions": [["distance"], ["distance", "load"], ["duration"]]
     },
     {
       "id": "farmer_carry",
@@ -766,7 +766,7 @@
       "regressions": [],
       "variations": [],
       "sport_relevance": ["strongman", "crossfit", "general_fitness"],
-      "execution_types": ["distance_load", "duration_load"]
+      "common_dimensions": [["distance", "load"], ["duration", "load"]]
     },
     {
       "id": "jump_rope",
@@ -785,7 +785,7 @@
       "regressions": [],
       "variations": [],
       "sport_relevance": ["boxing", "martial_arts", "crossfit", "general_fitness"],
-      "execution_types": ["duration_only", "reps_only", "calories_only"]
+      "common_dimensions": [["duration"], ["reps"], ["calories"]]
     },
     {
       "id": "swimming",
@@ -804,7 +804,7 @@
       "regressions": [],
       "variations": [],
       "sport_relevance": ["swimming", "triathlon", "water_polo"],
-      "execution_types": ["distance_only", "distance_time", "duration_only", "calories_only"]
+      "common_dimensions": [["distance"], ["distance", "duration"], ["duration"], ["calories"], ["distance", "cadence"]]
     },
     {
       "id": "trx_inverted_row",
@@ -823,7 +823,7 @@
       "regressions": [],
       "variations": ["australian_pull_up"],
       "sport_relevance": ["general_fitness", "rehabilitation"],
-      "execution_types": ["reps_only"]
+      "common_dimensions": [["reps"]]
     }
   ]
 }

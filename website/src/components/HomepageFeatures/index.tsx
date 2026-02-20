@@ -5,22 +5,25 @@ import styles from './styles.module.css';
 
 type FeatureItem = {
   title: string;
+  emoji: string;
   description: ReactNode;
 };
 
 const FeatureList: FeatureItem[] = [
   {
     title: 'Sport-Agnostic',
+    emoji: '\u{1F3CB}',
     description: (
       <>
         Works for strength training, endurance, conditioning, and hybrid
-        programs. 10 execution modes and 16 execution types cover any
+        programs. 10 execution modes and 21 composable dimensions cover any
         training methodology.
       </>
     ),
   },
   {
     title: 'Machine-Readable',
+    emoji: '\u{2699}',
     description: (
       <>
         Valid JSON with a formal JSON Schema (2020-12). Includes a TypeScript
@@ -30,21 +33,23 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: 'Extensible',
+    emoji: '\u{1F9E9}',
     description: (
       <>
-        Namespaced extension mechanism for custom dimensions, execution types,
+        Namespaced extension mechanism for custom dimensions
         and fields. Add app-specific data without breaking compatibility.
       </>
     ),
   },
 ];
 
-function Feature({title, description}: FeatureItem) {
+function Feature({title, emoji, description}: FeatureItem) {
   return (
     <div className={clsx('col col--4')}>
-      <div className="text--center padding-horiz--md">
-        <Heading as="h3">{title}</Heading>
-        <p>{description}</p>
+      <div className={styles.featureCard}>
+        <div className={styles.featureEmoji}>{emoji}</div>
+        <Heading as="h3" className={styles.featureTitle}>{title}</Heading>
+        <p className={styles.featureDescription}>{description}</p>
       </div>
     </div>
   );

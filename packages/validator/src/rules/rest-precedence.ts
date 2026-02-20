@@ -9,7 +9,7 @@ export function restPrecedenceRules(
   errors: ValidationMessage[],
   warnings: ValidationMessage[],
 ): void {
-  const blocks = doc.blocks ?? doc.phases?.flatMap((p: any) => p.sessions?.flatMap((s: any) => s.blocks ?? []) ?? []) ?? [];
+  const blocks = doc.blocks ?? doc.phases?.flatMap((p: any) => p.workouts?.flatMap((s: any) => s.blocks ?? []) ?? []) ?? [];
 
   for (const [bi, block] of blocks.entries()) {
     for (const [si, series] of (block.series ?? []).entries()) {

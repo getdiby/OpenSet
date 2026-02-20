@@ -74,6 +74,14 @@
     },
     "calories": {
       "allowedTypes": ["fixed", "min", "amrap"]
+    },
+    "cadence": {
+      "description": "Repetition rate — rpm, spm, strokes/min",
+      "allowedTypes": ["fixed", "range"]
+    },
+    "resistance": {
+      "description": "Machine resistance level or percentage",
+      "allowedTypes": ["fixed", "range"]
     }
   },
   "dimension_conflicts": [

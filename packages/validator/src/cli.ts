@@ -7,7 +7,7 @@ const program = new Command();
 
 program
   .name('openset')
-  .description('OpenSet CLI — validate training session and program documents')
+  .description('OpenSet CLI — validate training workout and program documents')
   .version('1.0.0');
 
 program

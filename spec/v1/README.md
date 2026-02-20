@@ -11,14 +11,14 @@ OpenSet models **what should be done, how it should feel, and under what constra
 ```
 PROGRAM
   PHASE
-    SESSION          <-- minimum valid standalone document
+    WORKOUT          <-- minimum valid standalone document
       BLOCK
         SERIES
           EXERCISE
             SET
 ```
 
-A valid OpenSet document is either a standalone **session** or a **program** containing phases and sessions.
+A valid OpenSet document is either a standalone **workout**, a **program** containing phases and workouts, or a **workout_library** containing reusable workout definitions.
 
 ## Execution Modes
 
@@ -37,11 +37,11 @@ Series-level field that defines how exercises flow:
 | `LADDER` | Ascending, descending, or pyramid scheme |
 | `CLUSTER` | Sub-groups of exercises with internal rest |
 
-## Execution Types
+## Set Dimensions
 
-Set-level field that defines the prescription shape. 16 types covering combinations of reps, load, duration, distance, power, calories, and rounds.
+Each set declares a `dimensions` array listing the dimension names that define the set's prescription shape. Any combination of dimensions is valid — no fixed enum of types.
 
-See `spec/v1/schema/execution-types.json` for the full list with required and optional dimensions.
+See `spec/v1/schema/dimensions.json` for the complete dimension vocabulary with allowed value types.
 
 ## Value Types
 
@@ -60,11 +60,11 @@ Every prescribed dimension uses one of six types:
 
 Measurable axes of a set. See `spec/v1/schema/dimensions.json` for the complete list with allowed value types per dimension.
 
-Key dimensions: `reps`, `load`, `duration`, `distance`, `height`, `pace`, `speed`, `power`, `heart_rate`, `heart_rate_zone`, `rpe`, `calories`, `tempo`, `velocity`, `incline`, `sides`, `rounds`, `rest_after`.
+Key dimensions: `reps`, `load`, `duration`, `distance`, `height`, `pace`, `speed`, `power`, `heart_rate`, `heart_rate_zone`, `rpe`, `calories`, `tempo`, `velocity`, `incline`, `sides`, `rounds`, `cadence`, `resistance`, `rest_after`.
 
 ## Extension Mechanism
 
-Custom dimensions, execution types, and exercises are supported via namespacing:
+Custom dimensions and exercises are supported via namespacing:
 
 | Prefix | Usage |
 |--------|-------|

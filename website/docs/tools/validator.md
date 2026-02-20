@@ -1,5 +1,4 @@
 ---
-sidebar_position: 1
 title: Validator
 ---
 
@@ -31,12 +30,12 @@ npx openset validate <file> [options]
 
 ```
 openset_version: 1.0
-type: session
+type: workout
 2 blocks, 4 series, 12 exercises, 31 sets
 
 ERRORS (1):
   E003  blocks[0].series[1].exercises[0].sets[2]
-        execution_type "reps_load" requires "reps" - field missing
+        dimensions declares "reps" but field is missing from set
 
 WARNINGS (2):
   W003  blocks[1].series[0].exercises[2]
@@ -52,7 +51,7 @@ import { validate } from '@openset/validator';
 
 const document = {
   openset_version: '1.0',
-  type: 'session',
+  type: 'workout',
   blocks: [/* ... */]
 };
 
@@ -77,30 +76,54 @@ const result = validate(document, {
 
 | Code | Description |
 |------|-------------|
-| E001 | Unknown execution_type |
-| E002 | Execution type not compatible with exercise |
-| E003 | Required dimension missing for execution type |
-| E004 | Dimension not allowed for execution type |
+| E001 | Unknown dimension name in dimensions array |
+| ~~E002~~ | _Removed_ |
+| E003 | Dimension declared in dimensions array but missing from set |
+| ~~E004~~ | _Removed_ |
 | E005 | Invalid value type for dimension |
-| E006 | Range min > max |
+| E006 | Range min must be less than max |
 | E007 | Invalid value type used on dimension |
-| E008 | Missing unit on dimensional value |
-| E009 | Invalid tempo format |
-| E010 | Fixed value must be positive |
-| E011 | Multiple execution types on same set |
-| E012 | Conflicting dimensions on same set |
-| E013 | Unknown field without extension prefix |
+| E008 | sides value must be 1 or 2 |
+| E009 | heart_rate_zone must be 1-5 |
+| E010 | rpe must be 1-10 |
+| E011 | group only valid in CLUSTER execution mode |
+| E012 | Conflicting dimensions on same set (e.g. pace + speed) |
+| E013 | Unknown dimension without a valid namespace prefix |
+| E014 | Unsupported major version |
+| E015 | Extension field has invalid value (must be a ValueObject) |
 
 ### Warnings
 
 | Code | Description |
 |------|-------------|
 | W001 | Set rest_after overrides series rest |
-| W002 | Series rest_after present on last series |
+| W002 | rest_after on non-last exercise in a CLUSTER group |
 | W003 | exercise_id not found in library |
-| W004 | No exercise library referenced |
-| W005 | Extension execution type used |
-| W006 | Exercise missing recommended metadata |
-| W007 | Unusual dimension value |
-| W008 | Duplicate exercise_id in session |
+| W004 | Exercise has no exercise_id and no name |
+| W005 | CLUSTER mode but no group fields |
+| W006 | Workout has no date field |
+| W007 | Load is a range but rpe is absent |
+| W008 | Uneven set counts in non-SEQUENTIAL series |
 | W009 | Extension field detected |
+| W010 | Document minor version newer than validator minor version |
+
+## Version Handling
+
+The validator checks `openset_version` on every document:
+
+- **Same major, same or older minor** (e.g. `1.0`) — validates normally
+- **Same major, newer minor** (e.g. `1.1`) — validates with **W010** warning, continues checking all rules
+- **Different major** (e.g. `2.0`) — **E014** error, stops validation immediately
+
+This ensures forward compatibility: a v1.0 validator can still validate v1.1 documents (with a warning about potentially unvalidated features), while rejecting incompatible major versions.
+
+## Supported Document Types
+
+The validator supports all four OpenSet document types:
+
+- `workout` — Standalone workout documents
+- `program` — Multi-phase training programs
+- `exercise_library` — Exercise definition collections
+- `workout_library` — Reusable workout template collections
+
+For workout library documents, inner workouts are validated using the same rules as standalone workouts. W006 ("Workout has no date") is suppressed for library workouts since they are templates without a scheduled date.

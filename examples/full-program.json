@@ -3,7 +3,7 @@
   "type": "program",
   "name": "4-Week Strength Foundation",
   "description": "A beginner-friendly 4-week program focusing on compound movements with progressive overload.",
-  "sport": "strength",
+  "sports": ["strength"],
   "duration_weeks": 4,
   "author": "OpenSet",
   "phases": [
@@ -12,7 +12,7 @@
       "week_start": 1,
       "week_end": 2,
       "goal": "Build movement quality and work capacity with moderate loads",
-      "sessions": [
+      "workouts": [
         {
           "name": "Day 1 — Upper Body",
           "blocks": [
@@ -25,17 +25,17 @@
                     {
                       "exercise_id": "bench_press",
                       "sets": [
-                        { "execution_type": "reps_load", "reps": { "type": "fixed", "value": 8 }, "load": { "type": "fixed", "value": 60, "unit": "kg" }, "rpe": { "type": "fixed", "value": 7 }, "rest_after": { "type": "fixed", "value": 120, "unit": "s" } },
-                        { "execution_type": "reps_load", "reps": { "type": "fixed", "value": 8 }, "load": { "type": "fixed", "value": 60, "unit": "kg" }, "rpe": { "type": "fixed", "value": 7 }, "rest_after": { "type": "fixed", "value": 120, "unit": "s" } },
-                        { "execution_type": "reps_load", "reps": { "type": "fixed", "value": 8 }, "load": { "type": "fixed", "value": 60, "unit": "kg" }, "rpe": { "type": "fixed", "value": 7 } }
+                        { "dimensions": ["reps", "load"], "reps": { "type": "fixed", "value": 8 }, "load": { "type": "fixed", "value": 60, "unit": "kg" }, "rpe": { "type": "fixed", "value": 7 }, "rest_after": { "type": "fixed", "value": 120, "unit": "s" } },
+                        { "dimensions": ["reps", "load"], "reps": { "type": "fixed", "value": 8 }, "load": { "type": "fixed", "value": 60, "unit": "kg" }, "rpe": { "type": "fixed", "value": 7 }, "rest_after": { "type": "fixed", "value": 120, "unit": "s" } },
+                        { "dimensions": ["reps", "load"], "reps": { "type": "fixed", "value": 8 }, "load": { "type": "fixed", "value": 60, "unit": "kg" }, "rpe": { "type": "fixed", "value": 7 } }
                       ]
                     },
                     {
                       "exercise_id": "seated_row",
                       "sets": [
-                        { "execution_type": "reps_load", "reps": { "type": "fixed", "value": 10 }, "load": { "type": "fixed", "value": 50, "unit": "kg" }, "rest_after": { "type": "fixed", "value": 90, "unit": "s" } },
-                        { "execution_type": "reps_load", "reps": { "type": "fixed", "value": 10 }, "load": { "type": "fixed", "value": 50, "unit": "kg" }, "rest_after": { "type": "fixed", "value": 90, "unit": "s" } },
-                        { "execution_type": "reps_load", "reps": { "type": "fixed", "value": 10 }, "load": { "type": "fixed", "value": 50, "unit": "kg" } }
+                        { "dimensions": ["reps", "load"], "reps": { "type": "fixed", "value": 10 }, "load": { "type": "fixed", "value": 50, "unit": "kg" }, "rest_after": { "type": "fixed", "value": 90, "unit": "s" } },
+                        { "dimensions": ["reps", "load"], "reps": { "type": "fixed", "value": 10 }, "load": { "type": "fixed", "value": 50, "unit": "kg" }, "rest_after": { "type": "fixed", "value": 90, "unit": "s" } },
+                        { "dimensions": ["reps", "load"], "reps": { "type": "fixed", "value": 10 }, "load": { "type": "fixed", "value": 50, "unit": "kg" } }
                       ]
                     }
                   ]
@@ -53,17 +53,17 @@
                     {
                       "exercise_id": "triceps_cable_pushdown",
                       "sets": [
-                        { "execution_type": "reps_load", "reps": { "type": "range", "min": 12, "max": 15 }, "load": { "type": "fixed", "value": 20, "unit": "kg" } },
-                        { "execution_type": "reps_load", "reps": { "type": "range", "min": 12, "max": 15 }, "load": { "type": "fixed", "value": 20, "unit": "kg" } },
-                        { "execution_type": "reps_load", "reps": { "type": "range", "min": 12, "max": 15 }, "load": { "type": "fixed", "value": 20, "unit": "kg" } }
+                        { "dimensions": ["reps", "load"], "reps": { "type": "range", "min": 12, "max": 15 }, "load": { "type": "fixed", "value": 20, "unit": "kg" } },
+                        { "dimensions": ["reps", "load"], "reps": { "type": "range", "min": 12, "max": 15 }, "load": { "type": "fixed", "value": 20, "unit": "kg" } },
+                        { "dimensions": ["reps", "load"], "reps": { "type": "range", "min": 12, "max": 15 }, "load": { "type": "fixed", "value": 20, "unit": "kg" } }
                       ]
                     },
                     {
                       "exercise_id": "bicep_curl",
                       "sets": [
-                        { "execution_type": "reps_load", "reps": { "type": "range", "min": 12, "max": 15 }, "load": { "type": "fixed", "value": 10, "unit": "kg" } },
-                        { "execution_type": "reps_load", "reps": { "type": "range", "min": 12, "max": 15 }, "load": { "type": "fixed", "value": 10, "unit": "kg" } },
-                        { "execution_type": "reps_load", "reps": { "type": "range", "min": 12, "max": 15 }, "load": { "type": "fixed", "value": 10, "unit": "kg" } }
+                        { "dimensions": ["reps", "load"], "reps": { "type": "range", "min": 12, "max": 15 }, "load": { "type": "fixed", "value": 10, "unit": "kg" } },
+                        { "dimensions": ["reps", "load"], "reps": { "type": "range", "min": 12, "max": 15 }, "load": { "type": "fixed", "value": 10, "unit": "kg" } },
+                        { "dimensions": ["reps", "load"], "reps": { "type": "range", "min": 12, "max": 15 }, "load": { "type": "fixed", "value": 10, "unit": "kg" } }
                       ]
                     }
                   ]
@@ -84,17 +84,17 @@
                     {
                       "exercise_id": "back_squat",
                       "sets": [
-                        { "execution_type": "reps_load", "reps": { "type": "fixed", "value": 8 }, "load": { "type": "fixed", "value": 80, "unit": "kg" }, "rpe": { "type": "fixed", "value": 7 }, "rest_after": { "type": "fixed", "value": 150, "unit": "s" } },
-                        { "execution_type": "reps_load", "reps": { "type": "fixed", "value": 8 }, "load": { "type": "fixed", "value": 80, "unit": "kg" }, "rpe": { "type": "fixed", "value": 7 }, "rest_after": { "type": "fixed", "value": 150, "unit": "s" } },
-                        { "execution_type": "reps_load", "reps": { "type": "fixed", "value": 8 }, "load": { "type": "fixed", "value": 80, "unit": "kg" }, "rpe": { "type": "fixed", "value": 7 } }
+                        { "dimensions": ["reps", "load"], "reps": { "type": "fixed", "value": 8 }, "load": { "type": "fixed", "value": 80, "unit": "kg" }, "rpe": { "type": "fixed", "value": 7 }, "rest_after": { "type": "fixed", "value": 150, "unit": "s" } },
+                        { "dimensions": ["reps", "load"], "reps": { "type": "fixed", "value": 8 }, "load": { "type": "fixed", "value": 80, "unit": "kg" }, "rpe": { "type": "fixed", "value": 7 }, "rest_after": { "type": "fixed", "value": 150, "unit": "s" } },
+                        { "dimensions": ["reps", "load"], "reps": { "type": "fixed", "value": 8 }, "load": { "type": "fixed", "value": 80, "unit": "kg" }, "rpe": { "type": "fixed", "value": 7 } }
                       ]
                     },
                     {
                       "exercise_id": "hip_thrust",
                       "sets": [
-                        { "execution_type": "reps_load", "reps": { "type": "fixed", "value": 10 }, "load": { "type": "fixed", "value": 60, "unit": "kg" }, "rest_after": { "type": "fixed", "value": 90, "unit": "s" } },
-                        { "execution_type": "reps_load", "reps": { "type": "fixed", "value": 10 }, "load": { "type": "fixed", "value": 60, "unit": "kg" }, "rest_after": { "type": "fixed", "value": 90, "unit": "s" } },
-                        { "execution_type": "reps_load", "reps": { "type": "fixed", "value": 10 }, "load": { "type": "fixed", "value": 60, "unit": "kg" } }
+                        { "dimensions": ["reps", "load"], "reps": { "type": "fixed", "value": 10 }, "load": { "type": "fixed", "value": 60, "unit": "kg" }, "rest_after": { "type": "fixed", "value": 90, "unit": "s" } },
+                        { "dimensions": ["reps", "load"], "reps": { "type": "fixed", "value": 10 }, "load": { "type": "fixed", "value": 60, "unit": "kg" }, "rest_after": { "type": "fixed", "value": 90, "unit": "s" } },
+                        { "dimensions": ["reps", "load"], "reps": { "type": "fixed", "value": 10 }, "load": { "type": "fixed", "value": 60, "unit": "kg" } }
                       ]
                     }
                   ]
@@ -110,7 +110,7 @@
       "week_start": 3,
       "week_end": 4,
       "goal": "Increase intensity with heavier loads and lower rep ranges",
-      "sessions": [
+      "workouts": [
         {
           "name": "Day 1 — Upper Body",
           "blocks": [
@@ -123,19 +123,19 @@
                     {
                       "exercise_id": "bench_press",
                       "sets": [
-                        { "execution_type": "reps_load", "reps": { "type": "fixed", "value": 5 }, "load": { "type": "fixed", "value": 70, "unit": "kg" }, "rpe": { "type": "fixed", "value": 8 }, "rest_after": { "type": "fixed", "value": 180, "unit": "s" } },
-                        { "execution_type": "reps_load", "reps": { "type": "fixed", "value": 5 }, "load": { "type": "fixed", "value": 70, "unit": "kg" }, "rpe": { "type": "fixed", "value": 8 }, "rest_after": { "type": "fixed", "value": 180, "unit": "s" } },
-                        { "execution_type": "reps_load", "reps": { "type": "fixed", "value": 5 }, "load": { "type": "fixed", "value": 70, "unit": "kg" }, "rpe": { "type": "fixed", "value": 8 }, "rest_after": { "type": "fixed", "value": 180, "unit": "s" } },
-                        { "execution_type": "reps_load", "reps": { "type": "fixed", "value": 5 }, "load": { "type": "fixed", "value": 70, "unit": "kg" }, "rpe": { "type": "fixed", "value": 8 }, "rest_after": { "type": "fixed", "value": 180, "unit": "s" } },
-                        { "execution_type": "reps_load", "reps": { "type": "fixed", "value": 5 }, "load": { "type": "fixed", "value": 70, "unit": "kg" }, "rpe": { "type": "fixed", "value": 8 } }
+                        { "dimensions": ["reps", "load"], "reps": { "type": "fixed", "value": 5 }, "load": { "type": "fixed", "value": 70, "unit": "kg" }, "rpe": { "type": "fixed", "value": 8 }, "rest_after": { "type": "fixed", "value": 180, "unit": "s" } },
+                        { "dimensions": ["reps", "load"], "reps": { "type": "fixed", "value": 5 }, "load": { "type": "fixed", "value": 70, "unit": "kg" }, "rpe": { "type": "fixed", "value": 8 }, "rest_after": { "type": "fixed", "value": 180, "unit": "s" } },
+                        { "dimensions": ["reps", "load"], "reps": { "type": "fixed", "value": 5 }, "load": { "type": "fixed", "value": 70, "unit": "kg" }, "rpe": { "type": "fixed", "value": 8 }, "rest_after": { "type": "fixed", "value": 180, "unit": "s" } },
+                        { "dimensions": ["reps", "load"], "reps": { "type": "fixed", "value": 5 }, "load": { "type": "fixed", "value": 70, "unit": "kg" }, "rpe": { "type": "fixed", "value": 8 }, "rest_after": { "type": "fixed", "value": 180, "unit": "s" } },
+                        { "dimensions": ["reps", "load"], "reps": { "type": "fixed", "value": 5 }, "load": { "type": "fixed", "value": 70, "unit": "kg" }, "rpe": { "type": "fixed", "value": 8 } }
                       ]
                     },
                     {
                       "exercise_id": "lat_pulldown",
                       "sets": [
-                        { "execution_type": "reps_load", "reps": { "type": "fixed", "value": 8 }, "load": { "type": "fixed", "value": 55, "unit": "kg" }, "rest_after": { "type": "fixed", "value": 90, "unit": "s" } },
-                        { "execution_type": "reps_load", "reps": { "type": "fixed", "value": 8 }, "load": { "type": "fixed", "value": 55, "unit": "kg" }, "rest_after": { "type": "fixed", "value": 90, "unit": "s" } },
-                        { "execution_type": "reps_load", "reps": { "type": "fixed", "value": 8 }, "load": { "type": "fixed", "value": 55, "unit": "kg" } }
+                        { "dimensions": ["reps", "load"], "reps": { "type": "fixed", "value": 8 }, "load": { "type": "fixed", "value": 55, "unit": "kg" }, "rest_after": { "type": "fixed", "value": 90, "unit": "s" } },
+                        { "dimensions": ["reps", "load"], "reps": { "type": "fixed", "value": 8 }, "load": { "type": "fixed", "value": 55, "unit": "kg" }, "rest_after": { "type": "fixed", "value": 90, "unit": "s" } },
+                        { "dimensions": ["reps", "load"], "reps": { "type": "fixed", "value": 8 }, "load": { "type": "fixed", "value": 55, "unit": "kg" } }
                       ]
                     }
                   ]
@@ -156,17 +156,17 @@
                     {
                       "exercise_id": "back_squat",
                       "sets": [
-                        { "execution_type": "reps_load", "reps": { "type": "fixed", "value": 5 }, "load": { "type": "fixed", "value": 90, "unit": "kg" }, "rpe": { "type": "fixed", "value": 8 }, "rest_after": { "type": "fixed", "value": 180, "unit": "s" } },
-                        { "execution_type": "reps_load", "reps": { "type": "fixed", "value": 5 }, "load": { "type": "fixed", "value": 90, "unit": "kg" }, "rpe": { "type": "fixed", "value": 8 }, "rest_after": { "type": "fixed", "value": 180, "unit": "s" } },
-                        { "execution_type": "reps_load", "reps": { "type": "fixed", "value": 5 }, "load": { "type": "fixed", "value": 90, "unit": "kg" }, "rpe": { "type": "fixed", "value": 8 } }
+                        { "dimensions": ["reps", "load"], "reps": { "type": "fixed", "value": 5 }, "load": { "type": "fixed", "value": 90, "unit": "kg" }, "rpe": { "type": "fixed", "value": 8 }, "rest_after": { "type": "fixed", "value": 180, "unit": "s" } },
+                        { "dimensions": ["reps", "load"], "reps": { "type": "fixed", "value": 5 }, "load": { "type": "fixed", "value": 90, "unit": "kg" }, "rpe": { "type": "fixed", "value": 8 }, "rest_after": { "type": "fixed", "value": 180, "unit": "s" } },
+                        { "dimensions": ["reps", "load"], "reps": { "type": "fixed", "value": 5 }, "load": { "type": "fixed", "value": 90, "unit": "kg" }, "rpe": { "type": "fixed", "value": 8 } }
                       ]
                     },
                     {
                       "exercise_id": "deadlift",
                       "sets": [
-                        { "execution_type": "reps_load", "reps": { "type": "fixed", "value": 5 }, "load": { "type": "fixed", "value": 120, "unit": "kg" }, "rpe": { "type": "fixed", "value": 8 }, "rest_after": { "type": "fixed", "value": 180, "unit": "s" } },
-                        { "execution_type": "reps_load", "reps": { "type": "fixed", "value": 5 }, "load": { "type": "fixed", "value": 120, "unit": "kg" }, "rpe": { "type": "fixed", "value": 8 }, "rest_after": { "type": "fixed", "value": 180, "unit": "s" } },
-                        { "execution_type": "reps_load", "reps": { "type": "fixed", "value": 5 }, "load": { "type": "fixed", "value": 120, "unit": "kg" }, "rpe": { "type": "fixed", "value": 8 } }
+                        { "dimensions": ["reps", "load"], "reps": { "type": "fixed", "value": 5 }, "load": { "type": "fixed", "value": 120, "unit": "kg" }, "rpe": { "type": "fixed", "value": 8 }, "rest_after": { "type": "fixed", "value": 180, "unit": "s" } },
+                        { "dimensions": ["reps", "load"], "reps": { "type": "fixed", "value": 5 }, "load": { "type": "fixed", "value": 120, "unit": "kg" }, "rpe": { "type": "fixed", "value": 8 }, "rest_after": { "type": "fixed", "value": 180, "unit": "s" } },
+                        { "dimensions": ["reps", "load"], "reps": { "type": "fixed", "value": 5 }, "load": { "type": "fixed", "value": 120, "unit": "kg" }, "rpe": { "type": "fixed", "value": 8 } }
                       ]
                     }
                   ]

@@ -12,7 +12,7 @@ Pull-ups 3x8
 Plank 3x60s
 ```
 
-it produces a fully conformant OpenSet v1.0 JSON document with proper blocks, series, exercises, sets, execution types, and ValueType dimension objects.
+it produces a fully conformant OpenSet v1.0 JSON document with proper blocks, series, exercises, sets, dimensions, and ValueType dimension objects.
 
 ## How to use it
 
@@ -38,9 +38,9 @@ curl https://api.openai.com/v1/chat/completions \
 
 ### What the prompt covers
 
-- Full OpenSet v1.0 document structure (session, blocks, series, exercises, sets)
+- Full OpenSet v1.0 document structure (workout, blocks, series, exercises, sets)
 - All 10 series execution modes (SEQUENTIAL, CIRCUIT, SUPERSET, AMRAP, etc.)
-- All 16 set execution types with required and optional dimensions
+- Free-form set dimensions — any combination of 21 known dimensions
 - All 6 ValueType shapes (fixed, range, min, amrap, max, any)
 - The 42 canonical exercise IDs with synonym matching guidance
 - Ambiguity handling and unknown exercise fallback rules

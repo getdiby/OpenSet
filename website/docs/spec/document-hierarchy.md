@@ -1,5 +1,4 @@
 ---
-sidebar_position: 2
 title: Document Hierarchy
 ---
 
@@ -10,7 +9,7 @@ OpenSet documents follow a strict hierarchical structure.
 ```
 PROGRAM
   PHASE
-    SESSION          <-- minimum valid standalone document
+    WORKOUT          <-- minimum valid standalone document
       BLOCK
         SERIES
           EXERCISE
@@ -19,16 +18,18 @@ PROGRAM
 
 ## Document Types
 
-A valid OpenSet document is either:
+A valid OpenSet document is one of:
 
-1. **Standalone Session** — A single training session with `type: "session"`
-2. **Program** — A multi-phase training plan with `type: "program"` containing phases and sessions
+1. **Standalone Workout** — A single training workout with `type: "workout"`
+2. **Program** — A multi-phase training plan with `type: "program"` containing phases and workouts
+3. **Exercise Library** — A collection of exercise definitions with `type: "exercise_library"`
+4. **Workout Library** — A collection of reusable workout templates with `type: "workout_library"`
 
 ## Levels
 
 ### Program
 
-Top-level container for a multi-session training plan.
+Top-level container for a multi-workout training plan.
 
 | Field | Required | Description |
 |-------|----------|-------------|
@@ -36,13 +37,13 @@ Top-level container for a multi-session training plan.
 | `type` | Yes | Must be `"program"` |
 | `name` | Yes | Program name |
 | `description` | No | Program description |
-| `sport` | No | Target sport |
+| `sports` | No | Target sports |
 | `duration_weeks` | No | Total duration in weeks |
 | `phases` | Yes | Array of Phase objects |
 
 ### Phase
 
-Groups sessions within a program by training focus or time period.
+Groups workouts within a program by training focus or time period.
 
 | Field | Required | Description |
 |-------|----------|-------------|
@@ -50,24 +51,24 @@ Groups sessions within a program by training focus or time period.
 | `week_start` | No | Starting week number |
 | `week_end` | No | Ending week number |
 | `goal` | No | Phase objective |
-| `sessions` | Yes | Array of Session objects |
+| `workouts` | Yes | Array of Workout objects |
 
-### Session
+### Workout
 
-The minimum valid standalone document. Represents a single training session.
+The minimum valid standalone document. Represents a single training workout.
 
 | Field | Required | Description |
 |-------|----------|-------------|
 | `openset_version` | Yes | Spec version |
-| `type` | Yes | Must be `"session"` |
-| `name` | No | Session name |
+| `type` | Yes | Must be `"workout"` |
+| `name` | No | Workout name |
 | `date` | No | ISO 8601 date |
-| `sport` | No | Target sport |
+| `sports` | No | Target sports |
 | `blocks` | Yes | Array of Block objects |
 
 ### Block
 
-Groups related series within a session (e.g., warm-up, main work, cooldown).
+Groups related series within a workout (e.g., warm-up, main work, cooldown).
 
 | Field | Required | Description |
 |-------|----------|-------------|
@@ -102,5 +103,5 @@ The atomic unit — a single prescribed effort.
 
 | Field | Required | Description |
 |-------|----------|-------------|
-| `execution_type` | Yes | The prescription shape (see [Execution Types](./execution-types)) |
-| dimensions | Varies | Values for prescribed dimensions |
+| `dimensions` | Yes | Array of required dimension names (see [Dimensions](./set-dimensions)) |
+| dimension fields | Varies | Values for each declared and optional dimension |

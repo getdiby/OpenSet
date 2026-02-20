@@ -1,6 +1,5 @@
 import type { ValidationMessage } from '@openset/types';
 import {
-  EXECUTION_TYPE_MAP,
   VALID_VALUE_TYPES,
   DIMENSION_ALLOWED_TYPES,
   KNOWN_DIMENSIONS,
@@ -8,41 +7,25 @@ import {
   SET_NON_DIMENSION_FIELDS,
   UNIVERSAL_SET_DIMENSIONS,
   isExtensionField,
+  isValueObjectShape,
 } from '../data.js';
 import { formatMessage } from '../messages.js';
 
 /**
- * Rules: E003, E004, E005, E006, E007, E008, E009, E010, E012, E013, W007, W009
+ * Rules: E005, E006, E007, E008, E009, E010, E012, E013, E015, W007, W009
  */
 export function dimensionRules(
   doc: any,
   errors: ValidationMessage[],
   warnings: ValidationMessage[],
 ): void {
-  const blocks = doc.blocks ?? doc.phases?.flatMap((p: any) => p.sessions?.flatMap((s: any) => s.blocks ?? []) ?? []) ?? [];
+  const blocks = doc.blocks ?? doc.phases?.flatMap((p: any) => p.workouts?.flatMap((s: any) => s.blocks ?? []) ?? []) ?? [];
 
   for (const [bi, block] of blocks.entries()) {
     for (const [si, series] of (block.series ?? []).entries()) {
       for (const [ei, exercise] of (series.exercises ?? []).entries()) {
         for (const [seti, set] of (exercise.sets ?? []).entries()) {
           const path = `blocks[${bi}].series[${si}].exercises[${ei}].sets[${seti}]`;
-          const etSpec = EXECUTION_TYPE_MAP.get(set.execution_type);
-
-          if (!etSpec) continue; // E001 handles unknown execution_type
-
-          const allAllowed = new Set([...etSpec.required, ...etSpec.optional]);
-
-          // E003: Required dimensions must be present
-          for (const dim of etSpec.required) {
-            if (set[dim] === undefined) {
-              errors.push({
-                code: 'E003',
-                level: 'error',
-                path,
-                message: formatMessage('E003', set.execution_type, dim),
-              });
-            }
-          }
 
           // Walk all fields on the set
           const setDimensions: string[] = [];
@@ -55,16 +38,6 @@ export function dimensionRules(
 
             if (KNOWN_DIMENSIONS.has(key)) {
               setDimensions.push(key);
-
-              // E004: Dimension not in required or optional (rest_after is always allowed)
-              if (!allAllowed.has(key) && key !== 'rest_after') {
-                errors.push({
-                  code: 'E004',
-                  level: 'error',
-                  path,
-                  message: formatMessage('E004', key, set.execution_type),
-                });
-              }
             } else if (isExtensionField(key)) {
               // W009: Namespaced extension field
               warnings.push({
@@ -73,6 +46,17 @@ export function dimensionRules(
                 path,
                 message: formatMessage('W009', key),
               });
+
+              // E015: Extension field must be a valid ValueObject shape
+              const extVal = set[key];
+              if (extVal !== undefined && !isValueObjectShape(extVal)) {
+                errors.push({
+                  code: 'E015',
+                  level: 'error',
+                  path: `${path}.${key}`,
+                  message: formatMessage('E015', key),
+                });
+              }
             } else {
               // E013: Unknown dimension without valid namespace prefix
               errors.push({

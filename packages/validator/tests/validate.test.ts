@@ -1,8 +1,8 @@
 import { describe, it, expect } from 'vitest';
 import { validate, countElements } from '../src/index.js';
 
-function session(blocks: any[]) {
-  return { openset_version: '1.0', type: 'session', name: 'Test', date: '2026-01-01', blocks };
+function workout(blocks: any[]) {
+  return { openset_version: '1.0', type: 'workout', name: 'Test', date: '2026-01-01', blocks };
 }
 
 function block(series: any[]) {
@@ -21,96 +21,50 @@ function namedExercise(name: string, sets: any[], extra: any = {}) {
   return { name, sets, ...extra };
 }
 
-// === E001: Unknown execution_type ===
-describe('E001 — unknown execution_type', () => {
-  it('should error on unknown execution_type', () => {
-    const doc = session([block([series('SEQUENTIAL', [
-      exercise('back_squat', [{ execution_type: 'unknown_type', reps: { type: 'fixed', value: 5 } }]),
+// === E001: Unknown dimension name ===
+describe('E001 — unknown dimension name', () => {
+  it('should error on unknown dimension in dimensions array', () => {
+    const doc = workout([block([series('SEQUENTIAL', [
+      exercise('back_squat', [{ dimensions: ['reps', 'unknown_dim'], reps: { type: 'fixed', value: 5 } }]),
     ])])]);
     const result = validate(doc);
     expect(result.errors.some(e => e.code === 'E001')).toBe(true);
   });
 
-  it('should pass on valid execution_type', () => {
-    const doc = session([block([series('SEQUENTIAL', [
-      exercise('back_squat', [{ execution_type: 'reps_load', reps: { type: 'fixed', value: 5 }, load: { type: 'fixed', value: 100, unit: 'kg' } }]),
+  it('should pass on valid dimensions', () => {
+    const doc = workout([block([series('SEQUENTIAL', [
+      exercise('back_squat', [{ dimensions: ['reps', 'load'], reps: { type: 'fixed', value: 5 }, load: { type: 'fixed', value: 100, unit: 'kg' } }]),
     ])])]);
     const result = validate(doc);
     expect(result.errors.some(e => e.code === 'E001')).toBe(false);
   });
 });
 
-// === E002: execution_type not allowed for exercise ===
-describe('E002 — execution_type not allowed for exercise', () => {
-  it('should error when execution_type is not in exercise allowed list', () => {
-    const doc = session([block([series('SEQUENTIAL', [
-      exercise('plank', [{ execution_type: 'reps_load', reps: { type: 'fixed', value: 5 }, load: { type: 'fixed', value: 10, unit: 'kg' } }]),
-    ])])]);
-    const result = validate(doc);
-    expect(result.errors.some(e => e.code === 'E002')).toBe(true);
-  });
-
-  it('should pass when execution_type is allowed for exercise', () => {
-    const doc = session([block([series('SEQUENTIAL', [
-      exercise('plank', [{ execution_type: 'duration_only', duration: { type: 'fixed', value: 60, unit: 's' } }]),
-    ])])]);
-    const result = validate(doc);
-    expect(result.errors.some(e => e.code === 'E002')).toBe(false);
-  });
-});
-
-// === E003: Required dimension missing ===
-describe('E003 — required dimension missing', () => {
-  it('should error when required dimension is missing', () => {
-    const doc = session([block([series('SEQUENTIAL', [
-      exercise('back_squat', [{ execution_type: 'reps_load' }]),
+// === E003: Dimension declared but missing from set ===
+describe('E003 — dimension declared but missing from set', () => {
+  it('should error when declared dimension is missing from set', () => {
+    const doc = workout([block([series('SEQUENTIAL', [
+      exercise('back_squat', [{ dimensions: ['reps', 'load'] }]),
     ])])]);
     const result = validate(doc);
     expect(result.errors.some(e => e.code === 'E003')).toBe(true);
   });
 
-  it('should pass when all required dimensions present', () => {
-    const doc = session([block([series('SEQUENTIAL', [
-      exercise('back_squat', [{ execution_type: 'reps_load', reps: { type: 'fixed', value: 5 }, load: { type: 'fixed', value: 100, unit: 'kg' } }]),
+  it('should pass when all declared dimensions are present', () => {
+    const doc = workout([block([series('SEQUENTIAL', [
+      exercise('back_squat', [{ dimensions: ['reps', 'load'], reps: { type: 'fixed', value: 5 }, load: { type: 'fixed', value: 100, unit: 'kg' } }]),
     ])])]);
     const result = validate(doc);
     expect(result.errors.some(e => e.code === 'E003')).toBe(false);
   });
 });
 
-// === E004: Extra dimension not allowed ===
-describe('E004 — dimension not allowed for execution_type', () => {
-  it('should error on dimension not in required or optional', () => {
-    const doc = session([block([series('SEQUENTIAL', [
-      exercise('back_squat', [{
-        execution_type: 'reps_only',
-        reps: { type: 'fixed', value: 10 },
-        distance: { type: 'fixed', value: 100, unit: 'm' },
-      }]),
-    ])])]);
-    const result = validate(doc);
-    expect(result.errors.some(e => e.code === 'E004')).toBe(true);
-  });
-
-  it('should allow rest_after on any set', () => {
-    const doc = session([block([series('SEQUENTIAL', [
-      exercise('back_squat', [{
-        execution_type: 'reps_only',
-        reps: { type: 'fixed', value: 10 },
-        rest_after: { type: 'fixed', value: 60, unit: 's' },
-      }]),
-    ])])]);
-    const result = validate(doc);
-    expect(result.errors.some(e => e.code === 'E004')).toBe(false);
-  });
-});
-
 // === E005: Invalid value type ===
 describe('E005 — invalid value object type', () => {
   it('should error on unknown value type', () => {
-    const doc = session([block([series('SEQUENTIAL', [
+    const doc = workout([block([series('SEQUENTIAL', [
       exercise('back_squat', [{
-        execution_type: 'reps_only',
+        dimensions: ['reps'],
         reps: { type: 'invalid', value: 5 },
       }]),
     ])])]);
@@ -122,9 +76,9 @@ describe('E005 — invalid value object type', () => {
 // === E006: Range min >= max ===
 describe('E006 — range min >= max', () => {
   it('should error when range min equals max', () => {
-    const doc = session([block([series('SEQUENTIAL', [
+    const doc = workout([block([series('SEQUENTIAL', [
       exercise('back_squat', [{
-        execution_type: 'reps_only',
+        dimensions: ['reps'],
         reps: { type: 'range', min: 10, max: 10 },
       }]),
     ])])]);
@@ -133,9 +87,9 @@ describe('E006 — range min >= max', () => {
   });
 
   it('should error when range min > max', () => {
-    const doc = session([block([series('SEQUENTIAL', [
+    const doc = workout([block([series('SEQUENTIAL', [
       exercise('back_squat', [{
-        execution_type: 'reps_only',
+        dimensions: ['reps'],
         reps: { type: 'range', min: 12, max: 8 },
       }]),
     ])])]);
@@ -144,9 +98,9 @@ describe('E006 — range min >= max', () => {
   });
 
   it('should pass when range min < max', () => {
-    const doc = session([block([series('SEQUENTIAL', [
+    const doc = workout([block([series('SEQUENTIAL', [
       exercise('back_squat', [{
-        execution_type: 'reps_only',
+        dimensions: ['reps'],
         reps: { type: 'range', min: 8, max: 12 },
       }]),
     ])])]);
@@ -158,9 +112,9 @@ describe('E006 — range min >= max', () => {
 // === E007: Dimension does not allow value type ===
 describe('E007 — dimension does not allow value type', () => {
   it('should error when dimension uses disallowed value type', () => {
-    const doc = session([block([series('SEQUENTIAL', [
+    const doc = workout([block([series('SEQUENTIAL', [
       exercise('back_squat', [{
-        execution_type: 'reps_load',
+        dimensions: ['reps', 'load'],
         reps: { type: 'fixed', value: 5 },
         load: { type: 'amrap' },
       }]),
@@ -173,9 +127,9 @@ describe('E007 — dimension does not allow value type', () => {
 // === E008: sides must be 1 or 2 ===
 describe('E008 — sides value constraint', () => {
   it('should error when sides is not 1 or 2', () => {
-    const doc = session([block([series('SEQUENTIAL', [
+    const doc = workout([block([series('SEQUENTIAL', [
       exercise('lunge', [{
-        execution_type: 'reps_per_side',
+        dimensions: ['reps', 'sides'],
         reps: { type: 'fixed', value: 10 },
         sides: { type: 'fixed', value: 3 },
       }]),
@@ -185,9 +139,9 @@ describe('E008 — sides value constraint', () => {
   });
 
   it('should pass when sides is 2', () => {
-    const doc = session([block([series('SEQUENTIAL', [
+    const doc = workout([block([series('SEQUENTIAL', [
       exercise('lunge', [{
-        execution_type: 'reps_per_side',
+        dimensions: ['reps', 'sides'],
         reps: { type: 'fixed', value: 10 },
         sides: { type: 'fixed', value: 2 },
       }]),
@@ -200,9 +154,9 @@ describe('E008 — sides value constraint', () => {
 // === E009: heart_rate_zone must be 1-5 ===
 describe('E009 — heart_rate_zone constraint', () => {
   it('should error when heart_rate_zone is 0', () => {
-    const doc = session([block([series('SEQUENTIAL', [
+    const doc = workout([block([series('SEQUENTIAL', [
       exercise('run', [{
-        execution_type: 'duration_only',
+        dimensions: ['duration'],
         duration: { type: 'fixed', value: 1800, unit: 's' },
         heart_rate_zone: { type: 'fixed', value: 0 },
       }]),
@@ -212,9 +166,9 @@ describe('E009 — heart_rate_zone constraint', () => {
   });
 
   it('should error when heart_rate_zone is 6', () => {
-    const doc = session([block([series('SEQUENTIAL', [
+    const doc = workout([block([series('SEQUENTIAL', [
       exercise('run', [{
-        execution_type: 'duration_only',
+        dimensions: ['duration'],
         duration: { type: 'fixed', value: 1800, unit: 's' },
         heart_rate_zone: { type: 'fixed', value: 6 },
       }]),
@@ -227,9 +181,9 @@ describe('E009 — heart_rate_zone constraint', () => {
 // === E010: rpe must be 1-10 ===
 describe('E010 — rpe constraint', () => {
   it('should error when rpe is 0', () => {
-    const doc = session([block([series('SEQUENTIAL', [
+    const doc = workout([block([series('SEQUENTIAL', [
       exercise('back_squat', [{
-        execution_type: 'reps_only',
+        dimensions: ['reps'],
         reps: { type: 'fixed', value: 5 },
         rpe: { type: 'fixed', value: 0 },
       }]),
@@ -239,9 +193,9 @@ describe('E010 — rpe constraint', () => {
   });
 
   it('should error when rpe is 11', () => {
-    const doc = session([block([series('SEQUENTIAL', [
+    const doc = workout([block([series('SEQUENTIAL', [
       exercise('back_squat', [{
-        execution_type: 'reps_only',
+        dimensions: ['reps'],
         reps: { type: 'fixed', value: 5 },
         rpe: { type: 'fixed', value: 11 },
       }]),
@@ -254,17 +208,17 @@ describe('E010 — rpe constraint', () => {
 // === E011: group only valid in CLUSTER ===
 describe('E011 — group only in CLUSTER', () => {
   it('should error when group used outside CLUSTER', () => {
-    const doc = session([block([series('CIRCUIT', [
-      exercise('back_squat', [{ execution_type: 'reps_only', reps: { type: 'fixed', value: 5 } }], { group: 'pair_a' }),
+    const doc = workout([block([series('CIRCUIT', [
+      exercise('back_squat', [{ dimensions: ['reps'], reps: { type: 'fixed', value: 5 } }], { group: 'pair_a' }),
     ])])]);
     const result = validate(doc);
     expect(result.errors.some(e => e.code === 'E011')).toBe(true);
   });
 
   it('should pass when group used in CLUSTER', () => {
-    const doc = session([block([series('CLUSTER', [
-      exercise('back_squat', [{ execution_type: 'reps_only', reps: { type: 'fixed', value: 5 } }], { group: 'pair_a' }),
-      exercise('bench_press', [{ execution_type: 'reps_only', reps: { type: 'fixed', value: 5 } }], { group: 'pair_a' }),
+    const doc = workout([block([series('CLUSTER', [
+      exercise('back_squat', [{ dimensions: ['reps'], reps: { type: 'fixed', value: 5 } }], { group: 'pair_a' }),
+      exercise('bench_press', [{ dimensions: ['reps'], reps: { type: 'fixed', value: 5 } }], { group: 'pair_a' }),
     ])])]);
     const result = validate(doc);
     expect(result.errors.some(e => e.code === 'E011')).toBe(false);
@@ -274,9 +228,9 @@ describe('E011 — group only in CLUSTER', () => {
 // === E012: Mutually exclusive dimensions ===
 describe('E012 — mutually exclusive dimensions', () => {
   it('should error when pace and speed both present', () => {
-    const doc = session([block([series('SEQUENTIAL', [
+    const doc = workout([block([series('SEQUENTIAL', [
       exercise('run', [{
-        execution_type: 'distance_only',
+        dimensions: ['distance'],
         distance: { type: 'fixed', value: 5, unit: 'km' },
         pace: { type: 'fixed', value: 5, unit: 'min/km' },
         speed: { type: 'fixed', value: 12, unit: 'km/h' },
@@ -287,9 +241,9 @@ describe('E012 — mutually exclusive dimensions', () => {
   });
 
   it('should error when heart_rate and heart_rate_zone both present', () => {
-    const doc = session([block([series('SEQUENTIAL', [
+    const doc = workout([block([series('SEQUENTIAL', [
       exercise('run', [{
-        execution_type: 'distance_only',
+        dimensions: ['distance'],
         distance: { type: 'fixed', value: 5, unit: 'km' },
         heart_rate: { type: 'fixed', value: 150, unit: 'bpm' },
         heart_rate_zone: { type: 'fixed', value: 3 },
@@ -303,9 +257,9 @@ describe('E012 — mutually exclusive dimensions', () => {
 // === E013: Unknown dimension without namespace prefix ===
 describe('E013 — unknown dimension without namespace', () => {
   it('should error on unknown unprefixed dimension', () => {
-    const doc = session([block([series('SEQUENTIAL', [
+    const doc = workout([block([series('SEQUENTIAL', [
       exercise('back_squat', [{
-        execution_type: 'reps_only',
+        dimensions: ['reps'],
         reps: { type: 'fixed', value: 5 },
         grip_width: { type: 'fixed', value: 30, unit: 'cm' },
       }]),
@@ -315,9 +269,9 @@ describe('E013 — unknown dimension without namespace', () => {
   });
 
   it('should warn (not error) on x_ prefixed extension', () => {
-    const doc = session([block([series('SEQUENTIAL', [
+    const doc = workout([block([series('SEQUENTIAL', [
       exercise('back_squat', [{
-        execution_type: 'reps_only',
+        dimensions: ['reps'],
         reps: { type: 'fixed', value: 5 },
         x_grip_width: { type: 'fixed', value: 30, unit: 'cm' },
       }]),
@@ -331,9 +285,9 @@ describe('E013 — unknown dimension without namespace', () => {
 // === W001: rest_after at SET and SERIES ===
 describe('W001 — rest at SET and SERIES', () => {
   it('should warn when rest_after at both levels', () => {
-    const doc = session([block([series('SEQUENTIAL', [
+    const doc = workout([block([series('SEQUENTIAL', [
       exercise('back_squat', [{
-        execution_type: 'reps_only',
+        dimensions: ['reps'],
         reps: { type: 'fixed', value: 5 },
         rest_after: { type: 'fixed', value: 60, unit: 's' },
       }]),
@@ -346,8 +300,8 @@ describe('W001 — rest at SET and SERIES', () => {
 // === W003: Unknown exercise_id ===
 describe('W003 — unknown exercise_id', () => {
   it('should warn on unknown exercise_id', () => {
-    const doc = session([block([series('SEQUENTIAL', [
-      exercise('made_up_exercise', [{ execution_type: 'reps_only', reps: { type: 'fixed', value: 5 } }]),
+    const doc = workout([block([series('SEQUENTIAL', [
+      exercise('made_up_exercise', [{ dimensions: ['reps'], reps: { type: 'fixed', value: 5 } }]),
     ])])]);
     const result = validate(doc);
     expect(result.warnings.some(w => w.code === 'W003')).toBe(true);
@@ -357,8 +311,8 @@ describe('W003 — unknown exercise_id', () => {
 // === W004: No exercise_id and no name ===
 describe('W004 — no exercise_id and no name', () => {
   it('should warn when exercise has neither id nor name', () => {
-    const doc = session([block([series('SEQUENTIAL', [{
-      sets: [{ execution_type: 'reps_only', reps: { type: 'fixed', value: 5 } }],
+    const doc = workout([block([series('SEQUENTIAL', [{
+      sets: [{ dimensions: ['reps'], reps: { type: 'fixed', value: 5 } }],
     }])])]);
     const result = validate(doc);
     expect(result.warnings.some(w => w.code === 'W004')).toBe(true);
@@ -368,9 +322,9 @@ describe('W004 — no exercise_id and no name', () => {
 // === W005: CLUSTER without group ===
 describe('W005 — CLUSTER without group', () => {
   it('should warn when CLUSTER mode but no group fields', () => {
-    const doc = session([block([series('CLUSTER', [
-      exercise('back_squat', [{ execution_type: 'reps_only', reps: { type: 'fixed', value: 5 } }]),
-      exercise('bench_press', [{ execution_type: 'reps_only', reps: { type: 'fixed', value: 5 } }]),
+    const doc = workout([block([series('CLUSTER', [
+      exercise('back_squat', [{ dimensions: ['reps'], reps: { type: 'fixed', value: 5 } }]),
+      exercise('bench_press', [{ dimensions: ['reps'], reps: { type: 'fixed', value: 5 } }]),
     ])])]);
     const result = validate(doc);
     expect(result.warnings.some(w => w.code === 'W005')).toBe(true);
@@ -379,13 +333,13 @@ describe('W005 — CLUSTER without group', () => {
 
 // === W006: No date field ===
 describe('W006 — no date field', () => {
-  it('should warn when session has no date', () => {
+  it('should warn when workout has no date', () => {
     const doc = {
       openset_version: '1.0',
-      type: 'session',
+      type: 'workout',
       name: 'Test',
       blocks: [block([series('SEQUENTIAL', [
-        exercise('back_squat', [{ execution_type: 'reps_only', reps: { type: 'fixed', value: 5 } }]),
+        exercise('back_squat', [{ dimensions: ['reps'], reps: { type: 'fixed', value: 5 } }]),
       ])])],
     };
     const result = validate(doc);
@@ -396,9 +350,9 @@ describe('W006 — no date field', () => {
 // === W007: Load range without rpe ===
 describe('W007 — load range without rpe', () => {
   it('should warn when load is range but rpe absent', () => {
-    const doc = session([block([series('SEQUENTIAL', [
+    const doc = workout([block([series('SEQUENTIAL', [
       exercise('back_squat', [{
-        execution_type: 'reps_load',
+        dimensions: ['reps', 'load'],
         reps: { type: 'fixed', value: 5 },
         load: { type: 'range', min: 80, max: 100, unit: 'kg' },
       }]),
@@ -408,9 +362,9 @@ describe('W007 — load range without rpe', () => {
   });
 
   it('should not warn when load is range and rpe is present', () => {
-    const doc = session([block([series('SEQUENTIAL', [
+    const doc = workout([block([series('SEQUENTIAL', [
       exercise('back_squat', [{
-        execution_type: 'reps_load',
+        dimensions: ['reps', 'load'],
         reps: { type: 'fixed', value: 5 },
         load: { type: 'range', min: 80, max: 100, unit: 'kg' },
         rpe: { type: 'fixed', value: 8 },
@@ -424,15 +378,15 @@ describe('W007 — load range without rpe', () => {
 // === W008: Uneven set counts ===
 describe('W008 — uneven set counts', () => {
   it('should warn when exercises have uneven set counts in CIRCUIT', () => {
-    const doc = session([block([series('CIRCUIT', [
+    const doc = workout([block([series('CIRCUIT', [
       exercise('back_squat', [
-        { execution_type: 'reps_only', reps: { type: 'fixed', value: 5 } },
-        { execution_type: 'reps_only', reps: { type: 'fixed', value: 5 } },
-        { execution_type: 'reps_only', reps: { type: 'fixed', value: 5 } },
+        { dimensions: ['reps'], reps: { type: 'fixed', value: 5 } },
+        { dimensions: ['reps'], reps: { type: 'fixed', value: 5 } },
+        { dimensions: ['reps'], reps: { type: 'fixed', value: 5 } },
       ]),
       exercise('plank', [
-        { execution_type: 'duration_only', duration: { type: 'fixed', value: 45, unit: 's' } },
-        { execution_type: 'duration_only', duration: { type: 'fixed', value: 45, unit: 's' } },
+        { dimensions: ['duration'], duration: { type: 'fixed', value: 45, unit: 's' } },
+        { dimensions: ['duration'], duration: { type: 'fixed', value: 45, unit: 's' } },
       ]),
     ])])]);
     const result = validate(doc);
@@ -440,13 +394,13 @@ describe('W008 — uneven set counts', () => {
   });
 
   it('should not warn in SEQUENTIAL mode', () => {
-    const doc = session([block([series('SEQUENTIAL', [
+    const doc = workout([block([series('SEQUENTIAL', [
       exercise('back_squat', [
-        { execution_type: 'reps_only', reps: { type: 'fixed', value: 5 } },
-        { execution_type: 'reps_only', reps: { type: 'fixed', value: 5 } },
+        { dimensions: ['reps'], reps: { type: 'fixed', value: 5 } },
+        { dimensions: ['reps'], reps: { type: 'fixed', value: 5 } },
       ]),
       exercise('plank', [
-        { execution_type: 'duration_only', duration: { type: 'fixed', value: 45, unit: 's' } },
+        { dimensions: ['duration'], duration: { type: 'fixed', value: 45, unit: 's' } },
       ]),
     ])])]);
     const result = validate(doc);
@@ -454,15 +408,138 @@ describe('W008 — uneven set counts', () => {
   });
 });
 
+// === E014: Unsupported major version ===
+describe('E014 — unsupported major version', () => {
+  it('should error on major version 2', () => {
+    const doc = {
+      openset_version: '2.0',
+      type: 'workout',
+      name: 'Test',
+      date: '2026-01-01',
+      blocks: [block([series('SEQUENTIAL', [
+        exercise('back_squat', [{ dimensions: ['reps'], reps: { type: 'fixed', value: 5 } }]),
+      ])])],
+    };
+    const result = validate(doc);
+    expect(result.errors.some(e => e.code === 'E014')).toBe(true);
+    expect(result.valid).toBe(false);
+  });
+
+  it('should pass on version 1.0', () => {
+    const doc = workout([block([series('SEQUENTIAL', [
+      exercise('back_squat', [{ dimensions: ['reps'], reps: { type: 'fixed', value: 5 } }]),
+    ])])]);
+    const result = validate(doc);
+    expect(result.errors.some(e => e.code === 'E014')).toBe(false);
+  });
+});
+
+// === W010: Newer minor version ===
+describe('W010 — newer minor version', () => {
+  it('should warn on version 1.1', () => {
+    const doc = {
+      openset_version: '1.1',
+      type: 'workout',
+      name: 'Test',
+      date: '2026-01-01',
+      blocks: [block([series('SEQUENTIAL', [
+        exercise('back_squat', [{ dimensions: ['reps'], reps: { type: 'fixed', value: 5 } }]),
+      ])])],
+    };
+    const result = validate(doc);
+    expect(result.warnings.some(w => w.code === 'W010')).toBe(true);
+    // Should still validate the rest of the document
+    expect(result.valid).toBe(true);
+  });
+
+  it('should not warn on version 1.0', () => {
+    const doc = workout([block([series('SEQUENTIAL', [
+      exercise('back_squat', [{ dimensions: ['reps'], reps: { type: 'fixed', value: 5 } }]),
+    ])])]);
+    const result = validate(doc);
+    expect(result.warnings.some(w => w.code === 'W010')).toBe(false);
+  });
+});
+
+// === E015: Extension field with invalid value shape ===
+describe('E015 — extension field invalid value shape', () => {
+  it('should error when extension field is a plain string', () => {
+    const doc = workout([block([series('SEQUENTIAL', [
+      exercise('back_squat', [{
+        dimensions: ['reps'],
+        reps: { type: 'fixed', value: 5 },
+        x_custom: 'not a value object',
+      }]),
+    ])])]);
+    const result = validate(doc);
+    expect(result.errors.some(e => e.code === 'E015')).toBe(true);
+  });
+
+  it('should error when extension field is a number', () => {
+    const doc = workout([block([series('SEQUENTIAL', [
+      exercise('back_squat', [{
+        dimensions: ['reps'],
+        reps: { type: 'fixed', value: 5 },
+        app_tracking_id: 42,
+      }]),
+    ])])]);
+    const result = validate(doc);
+    expect(result.errors.some(e => e.code === 'E015')).toBe(true);
+  });
+
+  it('should error when extension field is an object without type', () => {
+    const doc = workout([block([series('SEQUENTIAL', [
+      exercise('back_squat', [{
+        dimensions: ['reps'],
+        reps: { type: 'fixed', value: 5 },
+        x_grip: { value: 30, unit: 'cm' },
+      }]),
+    ])])]);
+    const result = validate(doc);
+    expect(result.errors.some(e => e.code === 'E015')).toBe(true);
+  });
+
+  it('should pass when extension field is a valid ValueObject', () => {
+    const doc = workout([block([series('SEQUENTIAL', [
+      exercise('back_squat', [{
+        dimensions: ['reps'],
+        reps: { type: 'fixed', value: 5 },
+        x_grip_width: { type: 'fixed', value: 30, unit: 'cm' },
+      }]),
+    ])])]);
+    const result = validate(doc);
+    expect(result.errors.some(e => e.code === 'E015')).toBe(false);
+    // Should still warn about extension field
+    expect(result.warnings.some(w => w.code === 'W009')).toBe(true);
+  });
+});
+
+// === Extension regex alignment ===
+describe('Extension regex — reverse-DNS pattern', () => {
+  it('should accept com_myapp_ prefixed fields as extensions', () => {
+    const doc = workout([block([series('SEQUENTIAL', [
+      exercise('back_squat', [{
+        dimensions: ['reps'],
+        reps: { type: 'fixed', value: 5 },
+        com_myapp_tracking: { type: 'fixed', value: 1 },
+      }]),
+    ])])]);
+    const result = validate(doc);
+    // Should be a W009 warning, not E013 error
+    expect(result.errors.some(e => e.code === 'E013')).toBe(false);
+    expect(result.warnings.some(w => w.code === 'W009')).toBe(true);
+  });
+});
+
 // === Integration: Valid document ===
 describe('Integration — valid document', () => {
-  it('should validate a complete valid session', () => {
+  it('should validate a complete valid workout', () => {
     const doc = {
       openset_version: '1.0',
-      type: 'session',
+      type: 'workout',
       name: 'Upper Body — Push/Pull',
       date: '2026-02-17',
-      sport: 'strength',
+      sports: ['strength'],
       blocks: [
         {
           name: 'Block A',
@@ -474,17 +551,17 @@ describe('Integration — valid document', () => {
                 {
                   exercise_id: 'bench_press',
                   sets: [
-                    { execution_type: 'reps_load', reps: { type: 'fixed', value: 8 }, load: { type: 'fixed', value: 80, unit: 'kg' } },
-                    { execution_type: 'reps_load', reps: { type: 'fixed', value: 8 }, load: { type: 'fixed', value: 80, unit: 'kg' } },
-                    { execution_type: 'reps_load', reps: { type: 'fixed', value: 8 }, load: { type: 'fixed', value: 80, unit: 'kg' } },
+                    { dimensions: ['reps', 'load'], reps: { type: 'fixed', value: 8 }, load: { type: 'fixed', value: 80, unit: 'kg' } },
+                    { dimensions: ['reps', 'load'], reps: { type: 'fixed', value: 8 }, load: { type: 'fixed', value: 80, unit: 'kg' } },
+                    { dimensions: ['reps', 'load'], reps: { type: 'fixed', value: 8 }, load: { type: 'fixed', value: 80, unit: 'kg' } },
                   ],
                 },
                 {
                   exercise_id: 'pull_up',
                   sets: [
-                    { execution_type: 'reps_only', reps: { type: 'fixed', value: 10 } },
-                    { execution_type: 'reps_only', reps: { type: 'fixed', value: 10 } },
-                    { execution_type: 'reps_only', reps: { type: 'fixed', value: 10 } },
+                    { dimensions: ['reps'], reps: { type: 'fixed', value: 10 } },
+                    { dimensions: ['reps'], reps: { type: 'fixed', value: 10 } },
+                    { dimensions: ['reps'], reps: { type: 'fixed', value: 10 } },
                   ],
                 },
               ],
@@ -495,6 +572,34 @@ describe('Integration — valid document', () => {
     };
     const result = validate(doc);
     expect(result.valid).toBe(true);
+    expect(result.errors).toHaveLength(0);
+  });
+});
+
+// === Dimensions flexibility: any known dimension is optional ===
+describe('Dimensions flexibility', () => {
+  it('should allow extra known dimensions not in dimensions array', () => {
+    const doc = workout([block([series('SEQUENTIAL', [
+      exercise('back_squat', [{
+        dimensions: ['reps'],
+        reps: { type: 'fixed', value: 10 },
+        distance: { type: 'fixed', value: 100, unit: 'm' },
+      }]),
+    ])])]);
+    const result = validate(doc);
+    // No E004 error — any known dimension is freely allowed
+    expect(result.errors).toHaveLength(0);
+  });
+
+  it('should allow rest_after on any set', () => {
+    const doc = workout([block([series('SEQUENTIAL', [
+      exercise('back_squat', [{
+        dimensions: ['reps'],
+        reps: { type: 'fixed', value: 10 },
+        rest_after: { type: 'fixed', value: 60, unit: 's' },
+      }]),
+    ])])]);
+    const result = validate(doc);
     expect(result.errors).toHaveLength(0);
   });
 });
@@ -520,5 +625,96 @@ describe('countElements', () => {
     expect(counts.series).toBe(3);
     expect(counts.exercises).toBe(4);
     expect(counts.sets).toBe(7);
+  });
+});
+
+// === Workout Library validation ===
+describe('Workout Library validation', () => {
+  const workoutLibrary = (workouts: any[]) => ({
+    openset_version: '1.0',
+    type: 'workout_library',
+    id: 'test-lib',
+    name: 'Test Library',
+    version: '1.0.0',
+    provider: 'test',
+    license: 'MIT',
+    workouts,
+  });
+
+  const validWorkout = {
+    id: 'bench_day',
+    name: 'Bench Day',
+    blocks: [{
+      series: [{
+        execution_mode: 'SEQUENTIAL',
+        exercises: [{
+          exercise_id: 'bench_press',
+          sets: [{ dimensions: ['reps', 'load'], reps: { type: 'fixed', value: 5 }, load: { type: 'fixed', value: 100, unit: 'kg' } }],
+        }],
+      }],
+    }],
+  };
+
+  it('accepts a valid workout library', () => {
+    const result = validate(workoutLibrary([validWorkout]));
+    expect(result.valid).toBe(true);
+    expect(result.errors).toHaveLength(0);
+  });
+
+  it('errors on empty workouts array', () => {
+    const result = validate(workoutLibrary([]));
+    expect(result.valid).toBe(false);
+    expect(result.errors[0].code).toBe('SCHEMA');
+    expect(result.errors[0].path).toBe('workouts');
+  });
+
+  it('errors on missing workout id', () => {
+    const result = validate(workoutLibrary([{ name: 'Test', blocks: validWorkout.blocks }]));
+    expect(result.valid).toBe(false);
+    expect(result.errors.some(e => e.message.includes('"id"'))).toBe(true);
+  });
+
+  it('errors on missing workout name', () => {
+    const result = validate(workoutLibrary([{ id: 'test', blocks: validWorkout.blocks }]));
+    expect(result.valid).toBe(false);
+    expect(result.errors.some(e => e.message.includes('"name"'))).toBe(true);
+  });
+
+  it('errors on missing workout blocks', () => {
+    const result = validate(workoutLibrary([{ id: 'test', name: 'Test' }]));
+    expect(result.valid).toBe(false);
+    expect(result.errors.some(e => e.message.includes('"blocks"'))).toBe(true);
+  });
+
+  it('errors on duplicate workout IDs', () => {
+    const result = validate(workoutLibrary([validWorkout, { ...validWorkout }]));
+    expect(result.valid).toBe(false);
+    expect(result.errors.some(e => e.message.includes('Duplicate'))).toBe(true);
+  });
+
+  it('validates inner blocks with correct path prefix', () => {
+    const badWorkout = {
+      id: 'bad',
+      name: 'Bad',
+      blocks: [{
+        series: [{
+          execution_mode: 'SEQUENTIAL',
+          exercises: [{
+            exercise_id: 'bench_press',
+            sets: [{ dimensions: ['reps'], load: { type: 'fixed', value: 100, unit: 'kg' } }],
+          }],
+        }],
+      }],
+    };
+    const result = validate(workoutLibrary([badWorkout]));
+    // Should have inner validation messages with "workouts[0]." prefix in path
+    const allPaths = [...result.errors, ...result.warnings].map(m => m.path);
+    expect(allPaths.some(p => p.startsWith('workouts[0]'))).toBe(true);
+  });
+
+  it('suppresses W006 for library workouts', () => {
+    // Library workouts are templates and should not get "no date" warnings
+    const result = validate(workoutLibrary([validWorkout]));
+    expect(result.warnings.every(w => w.code !== 'W006')).toBe(true);
   });
 });

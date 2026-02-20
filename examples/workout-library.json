@@ -1,0 +1,121 @@
+{
+  "openset_version": "1.0",
+  "type": "workout_library",
+  "id": "example-workout-library",
+  "name": "Example Workout Library",
+  "version": "1.0.0",
+  "provider": "openset",
+  "license": "MIT",
+  "workouts": [
+    {
+      "id": "upper_body_push",
+      "name": "Upper Body Push",
+      "description": "Horizontal and vertical pressing with triceps accessories",
+      "tags": ["upper_body", "push", "strength"],
+      "level": "intermediate",
+      "estimated_duration_min": 60,
+      "sports": ["strength"],
+      "library": { "id": "openset-default", "version": "1.0.0" },
+      "media": {
+        "videos": [
+          { "url": "https://example.com/videos/upper-body-push.mp4", "label": "Workout walkthrough" }
+        ],
+        "photos": [
+          { "url": "https://example.com/photos/upper-body-push.jpg", "label": "Workout thumbnail" }
+        ]
+      },
+      "blocks": [
+        {
+          "name": "Main Work",
+          "series": [
+            {
+              "execution_mode": "SEQUENTIAL",
+              "exercises": [
+                {
+                  "exercise_id": "bench_press",
+                  "sets": [
+                    { "dimensions": ["reps", "load"], "reps": { "type": "fixed", "value": 5 }, "load": { "type": "fixed", "value": 100, "unit": "kg" } },
+                    { "dimensions": ["reps", "load"], "reps": { "type": "fixed", "value": 5 }, "load": { "type": "fixed", "value": 100, "unit": "kg" } },
+                    { "dimensions": ["reps", "load"], "reps": { "type": "fixed", "value": 5 }, "load": { "type": "fixed", "value": 100, "unit": "kg" } },
+                    { "dimensions": ["reps", "load", "rpe"], "reps": { "type": "amrap" }, "load": { "type": "fixed", "value": 100, "unit": "kg" }, "rpe": { "type": "fixed", "value": 9 } }
+                  ]
+                },
+                {
+                  "exercise_id": "overhead_press",
+                  "sets": [
+                    { "dimensions": ["reps", "load"], "reps": { "type": "range", "min": 8, "max": 12 }, "load": { "type": "fixed", "value": 50, "unit": "kg" } },
+                    { "dimensions": ["reps", "load"], "reps": { "type": "range", "min": 8, "max": 12 }, "load": { "type": "fixed", "value": 50, "unit": "kg" } },
+                    { "dimensions": ["reps", "load"], "reps": { "type": "range", "min": 8, "max": 12 }, "load": { "type": "fixed", "value": 50, "unit": "kg" } }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Accessories",
+          "series": [
+            {
+              "execution_mode": "SUPERSET",
+              "rounds": { "type": "fixed", "value": 3 },
+              "rest_after": { "type": "fixed", "value": 90, "unit": "s" },
+              "exercises": [
+                {
+                  "exercise_id": "dip",
+                  "sets": [
+                    { "dimensions": ["reps"], "reps": { "type": "range", "min": 10, "max": 15 } },
+                    { "dimensions": ["reps"], "reps": { "type": "range", "min": 10, "max": 15 } },
+                    { "dimensions": ["reps"], "reps": { "type": "range", "min": 10, "max": 15 } }
+                  ]
+                },
+                {
+                  "exercise_id": "triceps_cable_pushdown",
+                  "sets": [
+                    { "dimensions": ["reps"], "reps": { "type": "range", "min": 12, "max": 15 } },
+                    { "dimensions": ["reps"], "reps": { "type": "range", "min": 12, "max": 15 } },
+                    { "dimensions": ["reps"], "reps": { "type": "range", "min": 12, "max": 15 } }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cardio_intervals",
+      "name": "Cardio Intervals",
+      "description": "High-intensity interval training on assault bike and rower",
+      "tags": ["cardio", "hiit", "conditioning"],
+      "level": "intermediate",
+      "estimated_duration_min": 30,
+      "sports": ["crossfit"],
+      "blocks": [
+        {
+          "name": "Intervals",
+          "series": [
+            {
+              "execution_mode": "INTERVAL",
+              "rounds": { "type": "fixed", "value": 8 },
+              "exercises": [
+                {
+                  "exercise_id": "assault_bike",
+                  "sets": [
+                    { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 30, "unit": "s" } },
+                    { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 30, "unit": "s" } },
+                    { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 30, "unit": "s" } },
+                    { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 30, "unit": "s" } },
+                    { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 30, "unit": "s" } },
+                    { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 30, "unit": "s" } },
+                    { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 30, "unit": "s" } },
+                    { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 30, "unit": "s" } }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

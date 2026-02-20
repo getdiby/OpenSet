@@ -22,7 +22,7 @@
   "$defs": {
     "Exercise": {
       "type": "object",
-      "required": ["id", "name", "execution_types"],
+      "required": ["id", "name", "common_dimensions"],
       "properties": {
         "id": {
           "type": "string",
@@ -86,17 +86,21 @@
           "type": "array",
           "items": { "type": "string" }
         },
-        "execution_types": {
+        "common_dimensions": {
           "type": "array",
+          "description": "Array of typical dimension combinations for this exercise. Each inner array lists the dimension names that define a common way to perform the exercise.",
           "items": {
-            "type": "string",
-            "enum": [
-              "reps_only", "reps_load", "reps_per_side", "reps_height",
-              "duration_only", "duration_load", "duration_per_side", "duration_power",
-              "distance_only", "distance_time", "distance_load",
-              "power_duration", "power_distance",
-              "calories_only", "distance_calories", "rounds_time"
-            ]
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "reps", "sides", "rounds", "load", "duration", "duration_per_side",
+                "rest_between_sides", "tempo", "distance", "height", "incline",
+                "pace", "speed", "power", "heart_rate", "heart_rate_zone",
+                "rpe", "velocity", "calories", "cadence", "resistance"
+              ]
+            },
+            "minItems": 1
           },
           "minItems": 1
         },

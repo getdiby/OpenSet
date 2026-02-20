@@ -1,5 +1,4 @@
 ---
-sidebar_position: 5
 title: Value Types
 ---
 
@@ -84,4 +83,4 @@ No specific target. The dimension is acknowledged but unconstrained.
 
 ## Allowed Types per Dimension
 
-Not every value type is valid for every dimension. See [Dimensions](./dimensions) for the complete compatibility matrix.
+Not every value type is valid for every dimension. See [Dimensions](./set-dimensions) for the complete compatibility matrix.

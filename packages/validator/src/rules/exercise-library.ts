@@ -4,14 +4,14 @@ import { formatMessage } from '../messages.js';
 /**
  * Rules: W003, W004, W006, W008
  */
-export function movementLibraryRules(
+export function exerciseLibraryRules(
   doc: any,
   errors: ValidationMessage[],
   warnings: ValidationMessage[],
-  exerciseLibrary: Map<string, any> | null,
+  exerciseIds: Set<string> | null,
 ): void {
-  // W006: session has no date field
-  if (doc.type === 'session' && !doc.date) {
+  // W006: workout has no date field
+  if (doc.type === 'workout' && !doc.date) {
     warnings.push({
       code: 'W006',
       level: 'warn',
@@ -20,15 +20,15 @@ export function movementLibraryRules(
     });
   }
 
-  // For programs, check each session
+  // For programs, check each workout
   if (doc.type === 'program') {
     for (const [pi, phase] of (doc.phases ?? []).entries()) {
-      for (const [si, session] of (phase.sessions ?? []).entries()) {
-        if (!session.date) {
+      for (const [wi, wkt] of (phase.workouts ?? []).entries()) {
+        if (!wkt.date) {
           warnings.push({
             code: 'W006',
             level: 'warn',
-            path: `phases[${pi}].sessions[${si}]`,
+            path: `phases[${pi}].workouts[${wi}]`,
             message: formatMessage('W006'),
           });
         }
@@ -36,7 +36,7 @@ export function movementLibraryRules(
     }
   }
 
-  const blocks = doc.blocks ?? doc.phases?.flatMap((p: any) => p.sessions?.flatMap((s: any) => s.blocks ?? []) ?? []) ?? [];
+  const blocks = doc.blocks ?? doc.phases?.flatMap((p: any) => p.workouts?.flatMap((s: any) => s.blocks ?? []) ?? []) ?? [];
 
   for (const [bi, block] of blocks.entries()) {
     for (const [si, series] of (block.series ?? []).entries()) {
@@ -60,7 +60,7 @@ export function movementLibraryRules(
         const path = `blocks[${bi}].series[${si}].exercises[${ei}]`;
 
         // W003: exercise_id not found in library
-        if (exercise.exercise_id && exerciseLibrary && !exerciseLibrary.has(exercise.exercise_id)) {
+        if (exercise.exercise_id && exerciseIds && !exerciseIds.has(exercise.exercise_id)) {
           warnings.push({
             code: 'W003',
             level: 'warn',

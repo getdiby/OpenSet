@@ -57,30 +57,35 @@ export type ExecutionMode =
   | 'LADDER'
   | 'CLUSTER';
 
-// === Execution Types ===
+// === Dimensions ===
 
-export type ExecutionType =
-  | 'reps_only'
-  | 'reps_load'
-  | 'reps_per_side'
-  | 'reps_height'
-  | 'duration_only'
-  | 'duration_load'
+export type Dimension =
+  | 'reps'
+  | 'sides'
+  | 'rounds'
+  | 'load'
+  | 'duration'
   | 'duration_per_side'
-  | 'duration_power'
-  | 'distance_only'
-  | 'distance_time'
-  | 'distance_load'
-  | 'power_duration'
-  | 'power_distance'
-  | 'calories_only'
-  | 'distance_calories'
-  | 'rounds_time';
+  | 'rest_between_sides'
+  | 'tempo'
+  | 'distance'
+  | 'height'
+  | 'incline'
+  | 'pace'
+  | 'speed'
+  | 'power'
+  | 'heart_rate'
+  | 'heart_rate_zone'
+  | 'rpe'
+  | 'velocity'
+  | 'calories'
+  | 'cadence'
+  | 'resistance';
 
 // === Set ===
 
 export interface Set {
-  execution_type: ExecutionType;
+  dimensions: Dimension[];
   reps?: ValueObject;
   sides?: ValueObject;
   rounds?: ValueObject;
@@ -101,9 +106,13 @@ export interface Set {
   rpe?: ValueObject;
   velocity?: ValueObject;
   calories?: ValueObject;
+  cadence?: ValueObject;
+  resistance?: ValueObject;
   note?: string;
+  /** Extension dimensions — any key with x_, app_, or reverse-DNS prefix */
   [key: `x_${string}`]: ValueObject | undefined;
   [key: `app_${string}`]: ValueObject | undefined;
+  [key: string]: unknown;
 }
 
 // === Exercise ===
@@ -136,17 +145,19 @@ export interface Block {
   series: Series[];
 }
 
-// === Session ===
+// === Workout ===
 
-export interface Session {
+export interface Workout {
   openset_version?: string;
-  type?: 'session';
+  type?: 'workout';
   id?: string;
   name?: string;
   date?: string;
-  sport?: string;
+  sports?: string[];
   note?: string;
   library?: LibraryRef;
+  /** Declared extension namespaces used in this document */
+  x_extensions?: string[];
   blocks: Block[];
 }
 
@@ -158,7 +169,7 @@ export interface Phase {
   week_start?: number;
   week_end?: number;
   goal?: string;
-  sessions: Session[];
+  workouts: Workout[];
 }
 
 // === Program ===
@@ -169,8 +180,10 @@ export interface Program {
   id?: string;
   name: string;
   description?: string;
-  sport?: string;
+  sports?: string[];
   duration_weeks?: number;
+  /** Declared extension namespaces used in this document */
+  x_extensions?: string[];
   phases: Phase[];
   created_at?: string;
   author?: string;
@@ -183,9 +196,9 @@ export interface LibraryRef {
   version?: string;
 }
 
-// === OpenSet Document (union of standalone session or program) ===
+// === OpenSet Document (union of standalone workout or program) ===
 
-export type OpenSetDocument = Session | Program;
+export type OpenSetDocument = Workout | Program;
 
 // === Exercise Library Types ===
 
@@ -239,7 +252,7 @@ export interface ExerciseDefinition {
   regressions?: string[];
   variations?: string[];
   sport_relevance?: string[];
-  execution_types: ExecutionType[];
+  common_dimensions: Dimension[][];
   media?: Media;
   note?: string;
 }
@@ -253,6 +266,33 @@ export interface ExerciseLibrary {
   provider: string;
   license: string;
   exercises: ExerciseDefinition[];
+}
+
+// === Workout Library Types ===
+
+export interface WorkoutDefinition {
+  id: string;
+  name: string;
+  description?: string;
+  tags?: string[];
+  level?: 'beginner' | 'intermediate' | 'advanced' | 'elite';
+  estimated_duration_min?: number;
+  sports?: string[];
+  note?: string;
+  library?: LibraryRef;
+  media?: Media;
+  blocks: Block[];
+}
+
+export interface WorkoutLibrary {
+  openset_version: string;
+  type: 'workout_library';
+  id: string;
+  name: string;
+  version: string;
+  provider: string;
+  license: string;
+  workouts: WorkoutDefinition[];
 }
 
 // === Validation Types ===

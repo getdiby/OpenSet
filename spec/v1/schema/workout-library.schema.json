@@ -1,0 +1,282 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openset.dev/schema/v1/workout-library.schema.json",
+  "title": "OpenSet Workout Library",
+  "description": "Schema for validating OpenSet workout library documents",
+  "type": "object",
+  "required": ["openset_version", "type", "id", "name", "version", "provider", "license", "workouts"],
+  "properties": {
+    "openset_version": { "type": "string", "const": "1.0" },
+    "type": { "type": "string", "const": "workout_library" },
+    "id": { "type": "string" },
+    "name": { "type": "string" },
+    "version": { "type": "string" },
+    "provider": { "type": "string" },
+    "license": { "type": "string" },
+    "workouts": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/WorkoutDefinition" }
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "WorkoutDefinition": {
+      "type": "object",
+      "required": ["id", "name", "blocks"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*(_[a-z0-9]+)*$",
+          "description": "Unique snake_case identifier within the library"
+        },
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "tags": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "level": {
+          "type": "string",
+          "enum": ["beginner", "intermediate", "advanced", "elite"]
+        },
+        "estimated_duration_min": { "type": "integer", "minimum": 1 },
+        "sports": { "type": "array", "items": { "type": "string" } },
+        "note": { "type": "string" },
+        "library": { "$ref": "#/$defs/LibraryRef" },
+        "media": { "$ref": "#/$defs/Media" },
+        "blocks": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/Block" },
+          "minItems": 1
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "LibraryRef": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "version": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+
+    "Media": {
+      "type": "object",
+      "properties": {
+        "videos": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["url", "label"],
+            "properties": {
+              "url": { "type": "string", "format": "uri" },
+              "label": { "type": "string" },
+              "language": { "type": "string" }
+            },
+            "additionalProperties": false
+          }
+        },
+        "photos": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["url", "label"],
+            "properties": {
+              "url": { "type": "string", "format": "uri" },
+              "label": { "type": "string" }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "Block": {
+      "type": "object",
+      "required": ["series"],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "note": { "type": "string" },
+        "series": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/Series" },
+          "minItems": 1
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "Series": {
+      "type": "object",
+      "required": ["execution_mode", "exercises"],
+      "properties": {
+        "id": { "type": "string" },
+        "execution_mode": {
+          "type": "string",
+          "enum": [
+            "SEQUENTIAL", "CIRCUIT", "SUPERSET",
+            "AMRAP", "FOR_TIME", "INTERVAL",
+            "TABATA", "EMOM", "LADDER", "CLUSTER"
+          ]
+        },
+        "rounds": { "$ref": "#/$defs/ValueObject" },
+        "rest_after": { "$ref": "#/$defs/ValueObject" },
+        "note": { "type": "string" },
+        "exercises": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/Exercise" },
+          "minItems": 1
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "Exercise": {
+      "type": "object",
+      "required": ["sets"],
+      "oneOf": [
+        { "required": ["exercise_id"] },
+        { "required": ["name"] }
+      ],
+      "properties": {
+        "exercise_id": { "type": "string" },
+        "name": { "type": "string" },
+        "group": { "type": "string" },
+        "note": { "type": "string" },
+        "sets": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/Set" },
+          "minItems": 1
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "Set": {
+      "type": "object",
+      "required": ["dimensions"],
+      "properties": {
+        "dimensions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "reps", "sides", "rounds", "load", "duration",
+              "duration_per_side", "rest_between_sides", "tempo",
+              "distance", "height", "incline", "pace", "speed",
+              "power", "heart_rate", "heart_rate_zone", "rpe",
+              "velocity", "calories", "cadence", "resistance"
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "reps": { "$ref": "#/$defs/ValueObject" },
+        "sides": { "$ref": "#/$defs/ValueObject" },
+        "rounds": { "$ref": "#/$defs/ValueObject" },
+        "load": { "$ref": "#/$defs/ValueObject" },
+        "duration": { "$ref": "#/$defs/ValueObject" },
+        "duration_per_side": { "$ref": "#/$defs/ValueObject" },
+        "rest_between_sides": { "$ref": "#/$defs/ValueObject" },
+        "rest_after": { "$ref": "#/$defs/ValueObject" },
+        "tempo": { "$ref": "#/$defs/ValueObject" },
+        "distance": { "$ref": "#/$defs/ValueObject" },
+        "height": { "$ref": "#/$defs/ValueObject" },
+        "incline": { "$ref": "#/$defs/ValueObject" },
+        "pace": { "$ref": "#/$defs/ValueObject" },
+        "speed": { "$ref": "#/$defs/ValueObject" },
+        "power": { "$ref": "#/$defs/ValueObject" },
+        "heart_rate": { "$ref": "#/$defs/ValueObject" },
+        "heart_rate_zone": { "$ref": "#/$defs/ValueObject" },
+        "rpe": { "$ref": "#/$defs/ValueObject" },
+        "velocity": { "$ref": "#/$defs/ValueObject" },
+        "calories": { "$ref": "#/$defs/ValueObject" },
+        "cadence": { "$ref": "#/$defs/ValueObject" },
+        "resistance": { "$ref": "#/$defs/ValueObject" },
+        "note": { "type": "string" }
+      },
+      "patternProperties": {
+        "^x_": { "description": "Generic extension dimension" },
+        "^app_": { "description": "App-specific extension dimension" },
+        "^[a-z]+_[a-z]+_": { "description": "Reverse-DNS extension dimension" }
+      },
+      "additionalProperties": true
+    },
+
+    "ValueObject": {
+      "oneOf": [
+        { "$ref": "#/$defs/FixedValue" },
+        { "$ref": "#/$defs/RangeValue" },
+        { "$ref": "#/$defs/MinValue" },
+        { "$ref": "#/$defs/AmrapValue" },
+        { "$ref": "#/$defs/MaxValue" },
+        { "$ref": "#/$defs/AnyValue" }
+      ]
+    },
+
+    "FixedValue": {
+      "type": "object",
+      "required": ["type", "value"],
+      "properties": {
+        "type": { "type": "string", "const": "fixed" },
+        "value": { "type": "number" },
+        "unit": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+
+    "RangeValue": {
+      "type": "object",
+      "required": ["type", "min", "max"],
+      "properties": {
+        "type": { "type": "string", "const": "range" },
+        "min": { "type": "number" },
+        "max": { "type": "number" },
+        "unit": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+
+    "MinValue": {
+      "type": "object",
+      "required": ["type", "value"],
+      "properties": {
+        "type": { "type": "string", "const": "min" },
+        "value": { "type": "number" },
+        "unit": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+
+    "AmrapValue": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": { "type": "string", "const": "amrap" }
+      },
+      "additionalProperties": false
+    },
+
+    "MaxValue": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": { "type": "string", "const": "max" }
+      },
+      "additionalProperties": false
+    },
+
+    "AnyValue": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": { "type": "string", "const": "any" }
+      },
+      "additionalProperties": false
+    }
+  }
+}

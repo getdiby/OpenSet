@@ -1,7 +1,7 @@
 {
   "name": "@openset/validator",
   "version": "1.0.0",
-  "description": "Validator for OpenSet training session and program documents",
+  "description": "Validator for OpenSet training workout and program documents",
   "license": "MIT",
   "type": "module",
   "main": "./dist/index.js",
@@ -21,6 +21,9 @@
         "default": "./dist/index.cjs"
       }
     }
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "files": [
     "dist"

@@ -1,6 +1,6 @@
 # @openset/types
 
-TypeScript type definitions for the [OpenSet](https://github.com/openset/openset) training data standard.
+TypeScript type definitions for the [OpenSet](https://github.com/getdiby/openset) training data standard.
 
 ## Installation
 
@@ -12,7 +12,7 @@ npm install @openset/types
 
 ```typescript
 import type {
-  Session,
+  Workout,
   Exercise,
   Set,
   Program,
@@ -20,7 +20,7 @@ import type {
   ExerciseLibrary,
   ValueObject,
   ExecutionMode,
-  ExecutionType,
+  Dimension,
   ValidationResult,
 } from '@openset/types';
 ```
@@ -29,16 +29,16 @@ import type {
 
 ### Document Types
 
-- `Session` — A standalone training session
+- `Workout` — A standalone training workout
 - `Program` — A multi-phase training program
-- `OpenSetDocument` — Union of `Session | Program`
+- `OpenSetDocument` — Union of `Workout | Program`
 
 ### Hierarchy
 
-- `Block` — A named group of series within a session
+- `Block` — A named group of series within a workout
 - `Series` — A group of exercises with an execution mode
 - `Exercise` — A single exercise with its sets
-- `Set` — A single set with execution type and dimensions
+- `Set` — A single set with declared dimensions and their values
 
 ### Value Types
 

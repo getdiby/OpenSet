@@ -14,7 +14,7 @@ const config: Config = {
   url: 'https://openset.dev',
   baseUrl: '/',
 
-  organizationName: 'openset',
+  organizationName: 'getdiby',
   projectName: 'openset',
 
   onBrokenLinks: 'throw',
@@ -30,7 +30,7 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
-          editUrl: 'https://github.com/openset/openset/tree/main/website/',
+          editUrl: 'https://github.com/getdiby/openset/tree/main/website/',
         },
         blog: false,
         theme: {
@@ -60,7 +60,7 @@ const config: Config = {
           label: 'Tools',
         },
         {
-          href: 'https://github.com/openset/openset',
+          href: 'https://github.com/getdiby/openset',
           label: 'GitHub',
           position: 'right',
         },
@@ -73,8 +73,7 @@ const config: Config = {
           title: 'Specification',
           items: [
             {label: 'Overview', to: '/docs/spec/overview'},
-            {label: 'Execution Types', to: '/docs/spec/execution-types'},
-            {label: 'Dimensions', to: '/docs/spec/dimensions'},
+            {label: 'Dimensions', to: '/docs/spec/set-dimensions'},
           ],
         },
         {
@@ -82,18 +81,26 @@ const config: Config = {
           items: [
             {label: 'Validator', to: '/docs/tools/validator'},
             {label: 'TypeScript Types', to: '/docs/tools/typescript-types'},
+            {label: 'Code Generator', to: '/docs/tools/codegen'},
             {label: 'Conversion Tool', to: '/docs/tools/conversion'},
+            {label: 'Online Converter', href: 'https://getdiby.com'},
           ],
         },
         {
-          title: 'More',
+          title: 'Community',
           items: [
-            {label: 'GitHub', href: 'https://github.com/openset/openset'},
+            {label: 'GitHub', href: 'https://github.com/getdiby/openset'},
             {label: 'npm', href: 'https://www.npmjs.com/org/openset'},
           ],
         },
+        {
+          title: 'Company',
+          items: [
+            {label: 'Diby', href: 'https://getdiby.com'},
+          ],
+        },
       ],
-      copyright: `Copyright \u00a9 ${new Date().getFullYear()} OpenSet Contributors. Released under the MIT License.`,
+      copyright: `Copyright \u00a9 ${new Date().getFullYear()} OpenSet Contributors. Released under the MIT License.<br/>Built by <a href="https://getdiby.com" target="_blank" rel="noopener noreferrer" style="color: #60a5fa; font-weight: 500;">Diby</a>`,
     },
     prism: {
       theme: prismThemes.github,

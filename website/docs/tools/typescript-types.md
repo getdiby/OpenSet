@@ -1,5 +1,4 @@
 ---
-sidebar_position: 2
 title: TypeScript Types
 ---
 
@@ -17,16 +16,18 @@ npm install @openset/types
 
 ```typescript
 import type {
-  Session,
+  Workout,
   Program,
   Set,
   Exercise,
   Series,
   Block,
   ValueObject,
+  Dimension,
   ExecutionMode,
   ExerciseDefinition,
   ExerciseLibrary,
+  WorkoutLibrary,
 } from '@openset/types';
 ```
 
@@ -46,13 +47,27 @@ type ValueObject =
   | AnyValue;
 ```
 
+### Dimension
+
+Union of all valid dimension names:
+
+```typescript
+type Dimension =
+  | 'reps' | 'load' | 'duration' | 'distance'
+  | 'power' | 'calories' | 'rounds' | 'height'
+  | 'sides' | 'tempo' | 'velocity' | 'pace'
+  | 'speed' | 'heart_rate' | 'heart_rate_zone'
+  | 'rpe' | 'incline' | 'rest_between_sides'
+  | 'cadence' | 'resistance';
+```
+
 ### Set
 
 The atomic unit of prescription:
 
 ```typescript
 interface Set {
-  execution_type: string;
+  dimensions: Dimension[];
   reps?: ValueObject;
   load?: ValueObject;
   duration?: ValueObject;
@@ -89,17 +104,17 @@ type ExecutionMode =
   | 'TABATA' | 'EMOM' | 'LADDER' | 'CLUSTER';
 ```
 
-### Session & Program
+### Workout & Program
 
 Top-level document types:
 
 ```typescript
-interface Session {
+interface Workout {
   openset_version: string;
-  type: 'session';
+  type: 'workout';
   name?: string;
   date?: string;
-  sport?: string;
+  sports?: string[];
   blocks: Block[];
 }
 
@@ -125,7 +140,6 @@ interface ExerciseDefinition {
   level?: string;
   equipment?: string[];
   target_muscles?: string[];
-  execution_types?: string[];
 }
 
 interface ExerciseLibrary {
@@ -134,5 +148,33 @@ interface ExerciseLibrary {
   id: string;
   name: string;
   exercises: ExerciseDefinition[];
+}
+```
+
+## Workout Library Types
+
+```typescript
+interface WorkoutTemplate {
+  id: string;
+  name: string;
+  description?: string;
+  tags?: string[];
+  level?: string;
+  estimated_duration_min?: number;
+  sports?: string[];
+  note?: string;
+  library?: { id: string; version: string };
+  blocks: Block[];
+}
+
+interface WorkoutLibrary {
+  openset_version: string;
+  type: 'workout_library';
+  id: string;
+  name: string;
+  version: string;
+  provider: string;
+  license: string;
+  workouts: WorkoutTemplate[];
 }
 ```

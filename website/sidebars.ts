@@ -5,16 +5,23 @@ const sidebars: SidebarsConfig = {
     'spec/overview',
     'spec/document-hierarchy',
     'spec/execution-modes',
-    'spec/execution-types',
+    'spec/set-dimensions',
     'spec/value-types',
-    'spec/dimensions',
-    'spec/exercise-library',
+    {
+      type: 'category',
+      label: 'Libraries',
+      items: [
+        'spec/exercise-library',
+        'spec/workout-library',
+      ],
+    },
     'spec/extensions',
     'spec/examples',
   ],
   toolsSidebar: [
     'tools/validator',
     'tools/typescript-types',
+    'tools/codegen',
     'tools/conversion',
   ],
 };

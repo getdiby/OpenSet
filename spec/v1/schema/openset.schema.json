@@ -2,27 +2,32 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://openset.dev/schema/v1/openset.schema.json",
   "title": "OpenSet Training Document",
-  "description": "An open, sport-agnostic standard for representing structured training sessions and programs as machine-readable data.",
+  "description": "An open, sport-agnostic standard for representing structured training workouts and programs as machine-readable data.",
 
   "oneOf": [
-    { "$ref": "#/$defs/StandaloneSession" },
+    { "$ref": "#/$defs/StandaloneWorkout" },
     { "$ref": "#/$defs/ProgramDocument" }
   ],
 
   "$defs": {
 
-    "StandaloneSession": {
+    "StandaloneWorkout": {
       "type": "object",
       "required": ["openset_version", "type", "blocks"],
       "properties": {
-        "openset_version": { "type": "string", "const": "1.0" },
-        "type": { "type": "string", "const": "session" },
+        "openset_version": { "type": "string", "pattern": "^1\\.[0-9]+$" },
+        "type": { "type": "string", "const": "workout" },
         "id": { "type": "string" },
         "name": { "type": "string" },
         "date": { "type": "string", "format": "date" },
-        "sport": { "type": "string" },
+        "sports": { "type": "array", "items": { "type": "string" } },
         "note": { "type": "string" },
         "library": { "$ref": "#/$defs/LibraryRef" },
+        "x_extensions": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Declared extension namespaces used in this document"
+        },
         "blocks": {
           "type": "array",
           "items": { "$ref": "#/$defs/Block" },
@@ -36,13 +41,18 @@
       "type": "object",
       "required": ["openset_version", "type", "name", "phases"],
       "properties": {
-        "openset_version": { "type": "string", "const": "1.0" },
+        "openset_version": { "type": "string", "pattern": "^1\\.[0-9]+$" },
         "type": { "type": "string", "const": "program" },
         "id": { "type": "string" },
         "name": { "type": "string" },
         "description": { "type": "string" },
-        "sport": { "type": "string" },
+        "sports": { "type": "array", "items": { "type": "string" } },
         "duration_weeks": { "type": "integer", "minimum": 1 },
+        "x_extensions": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Declared extension namespaces used in this document"
+        },
         "phases": {
           "type": "array",
           "items": { "$ref": "#/$defs/Phase" },
@@ -56,30 +66,30 @@
 
     "Phase": {
       "type": "object",
-      "required": ["name", "sessions"],
+      "required": ["name", "workouts"],
       "properties": {
         "id": { "type": "string" },
         "name": { "type": "string" },
         "week_start": { "type": "integer", "minimum": 1 },
         "week_end": { "type": "integer", "minimum": 1 },
         "goal": { "type": "string" },
-        "sessions": {
+        "workouts": {
           "type": "array",
-          "items": { "$ref": "#/$defs/Session" },
+          "items": { "$ref": "#/$defs/Workout" },
           "minItems": 1
         }
       },
       "additionalProperties": false
     },
 
-    "Session": {
+    "Workout": {
       "type": "object",
       "required": ["blocks"],
       "properties": {
         "id": { "type": "string" },
         "name": { "type": "string" },
         "date": { "type": "string", "format": "date" },
-        "sport": { "type": "string" },
+        "sports": { "type": "array", "items": { "type": "string" } },
         "note": { "type": "string" },
         "library": { "$ref": "#/$defs/LibraryRef" },
         "blocks": {
@@ -164,17 +174,22 @@
 
     "Set": {
       "type": "object",
-      "required": ["execution_type"],
+      "required": ["dimensions"],
       "properties": {
-        "execution_type": {
-          "type": "string",
-          "enum": [
-            "reps_only", "reps_load", "reps_per_side", "reps_height",
-            "duration_only", "duration_load", "duration_per_side", "duration_power",
-            "distance_only", "distance_time", "distance_load",
-            "power_duration", "power_distance",
-            "calories_only", "distance_calories", "rounds_time"
-          ]
+        "dimensions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "reps", "sides", "rounds", "load", "duration",
+              "duration_per_side", "rest_between_sides", "tempo",
+              "distance", "height", "incline", "pace", "speed",
+              "power", "heart_rate", "heart_rate_zone", "rpe",
+              "velocity", "calories", "cadence", "resistance"
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true
         },
         "reps": { "$ref": "#/$defs/ValueObject" },
         "sides": { "$ref": "#/$defs/ValueObject" },
@@ -196,6 +211,8 @@
         "rpe": { "$ref": "#/$defs/ValueObject" },
         "velocity": { "$ref": "#/$defs/ValueObject" },
         "calories": { "$ref": "#/$defs/ValueObject" },
+        "cadence": { "$ref": "#/$defs/ValueObject" },
+        "resistance": { "$ref": "#/$defs/ValueObject" },
         "note": { "type": "string" }
       },
       "patternProperties": {
@@ -203,7 +220,7 @@
         "^app_": { "description": "App-specific extension dimension" },
         "^[a-z]+_[a-z]+_": { "description": "Reverse-DNS extension dimension" }
       },
-      "additionalProperties": false
+      "additionalProperties": true
     },
 
     "ValueObject": {

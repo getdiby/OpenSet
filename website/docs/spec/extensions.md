@@ -1,11 +1,10 @@
 ---
-sidebar_position: 8
 title: Extensions
 ---
 
 # Extension Mechanism
 
-OpenSet supports custom dimensions, execution types, and fields via namespaced prefixes.
+OpenSet supports custom dimensions and fields via namespaced prefixes.
 
 ## Namespace Prefixes
 
@@ -17,32 +16,39 @@ OpenSet supports custom dimensions, execution types, and fields via namespaced p
 
 ## Extension Dimensions
 
-Custom dimensions can be added to sets using a namespaced key:
+Custom dimensions can be added to sets using a namespaced key. Extension values **must be valid ValueObjects** (with a `type` field like `fixed`, `range`, etc.). Extension dimensions can also be listed in the `dimensions` array to mark them as required:
 
 ```json
 {
-  "execution_type": "reps_load",
+  "dimensions": ["reps", "load", "x_band_tension"],
   "reps": { "type": "fixed", "value": 10 },
   "load": { "type": "fixed", "value": 60, "unit": "kg" },
   "x_band_tension": { "type": "fixed", "value": 20, "unit": "lb" }
 }
 ```
 
-## Extension Execution Types
+## Declaring Extensions
 
-Custom execution types use the same prefix convention:
+Documents can optionally declare which extension namespaces they use via the `x_extensions` field:
 
 ```json
 {
-  "execution_type": "x_swim_intervals",
-  "x_laps": { "type": "fixed", "value": 4 },
-  "duration": { "type": "fixed", "value": 120, "unit": "s" }
+  "openset_version": "1.0",
+  "type": "workout",
+  "x_extensions": ["x_band", "com_myapp"],
+  "blocks": [...]
 }
 ```
 
+This helps consumers understand what custom data a document contains without inspecting every set.
+
 ## Validation Behavior
 
-- Unknown fields **with** a valid namespace prefix produce warning **W009**
-- Unknown fields **without** a prefix produce error **E013**
+- Unknown fields **with** a valid namespace prefix: warning **W009** + structural check **E015** (must be a ValueObject)
+- Unknown fields **without** a prefix: error **E013**
 
-This ensures forward compatibility — apps can add custom data without breaking validation, while typos and invalid fields are caught.
+This ensures forward compatibility while catching both typos and malformed extension values.
+
+## Forward Compatibility
+
+The Set type in the JSON Schema uses `additionalProperties: true`, meaning new fields added in minor version bumps (e.g., v1.1) pass through a v1.0 schema validator without errors. The semantic validator will warn about unknown fields while still validating the rest of the document.

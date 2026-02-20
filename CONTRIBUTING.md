@@ -5,7 +5,7 @@ Thank you for considering contributing to OpenSet. This guide covers how to set 
 ## Development Setup
 
 ```bash
-git clone https://github.com/openset/openset.git
+git clone https://github.com/getdiby/openset.git
 cd openset
 pnpm install
 pnpm build
@@ -42,7 +42,7 @@ node packages/validator/dist/cli.js validate examples/*.json --summary
 2. Add a new exercise object with:
    - A unique `snake_case` `id`
    - A human-readable `name`
-   - At least one valid `execution_types` entry
+   - At least one valid `common_dimensions` entry (e.g., `[["reps", "load"]]`)
    - As many optional fields as applicable (`body_part`, `category`, `mechanic`, `laterality`, `level`, `equipment`, `target_muscles`, etc.)
 3. Update the exercise map in `packages/validator/src/index.ts`
 4. Run tests to verify: `pnpm test`
@@ -50,23 +50,15 @@ node packages/validator/dist/cli.js validate examples/*.json --summary
 
 **Bar for inclusion:** The exercise must appear across multiple sports or coaching contexts. Sport-specific or equipment-specific variants belong in application-level extensions.
 
-## Proposing a New Execution Type
-
-Open an issue with:
-
-- The proposed `id` (snake_case)
-- Required and optional dimensions
-- At least 3 real-world examples from different sports that need this type and cannot be expressed with existing types
-
 ## Proposing a New Dimension
 
 Open an issue with:
 
-- The proposed dimension name
+- The proposed dimension name (snake_case)
 - Unit(s)
 - Allowed value types
-- Which execution types it belongs in
-- Examples from at least 2 different sports
+- At least 3 real-world examples from different sports that need this dimension
+- Why it cannot be expressed with existing dimensions
 
 ## Proposing a New Execution Mode
 

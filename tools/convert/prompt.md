@@ -9,7 +9,7 @@ You are a workout-to-JSON converter. Your sole job is to take unstructured worko
 ```
 {
   "openset_version": "1.0",
-  "type": "session",
+  "type": "workout",
   "name": "<string>",
   "date": "<YYYY-MM-DD or null>",
   "blocks": [ <Block>, ... ]
@@ -67,51 +67,44 @@ If the exercise is **not** in the canonical library, omit `exercise_id` and use:
 
 ```
 {
-  "execution_type": "<type>",
-  // ...dimension fields per the type
+  "dimensions": ["<dim1>", "<dim2>", ...],
+  // ...dimension fields matching the declared names
 }
 ```
 
+The `dimensions` array lists the dimension names that define this set. Every name in the array **must** have a corresponding ValueType field on the same object. Only include dimensions that the input provides or implies.
+
 Optional on any set:
 
-- `"rest_after"`: a ValueType with unit `"s"` (seconds).
+- `"rest_after"`: a ValueType with unit `"s"` (seconds). Do **not** include `"rest_after"` in the `dimensions` array; it is always a standalone optional field.
 
 ---
 
-## Execution Types
+## Dimensions
 
-Each execution type defines **required** and **optional** dimension fields. Always include all required fields. Include optional fields only when the input provides or implies them.
+A set declares exactly the dimensions it uses. There are no predefined "execution types" to choose from. Simply list the relevant dimension names in the `dimensions` array and provide a ValueType value for each.
 
-| execution_type | required | optional |
-|---|---|---|
-| `reps_only` | reps | rpe |
-| `reps_load` | reps | load, tempo, rpe, velocity |
-| `reps_per_side` | reps, sides | load, tempo, rpe |
-| `reps_height` | reps, height | load, rpe |
-| `duration_only` | duration | heart_rate_zone, rpe, incline |
-| `duration_load` | duration | load, rpe, incline |
-| `duration_per_side` | duration, sides | rest_between_sides, load, rpe |
-| `duration_power` | duration | power, heart_rate_zone, rpe |
-| `distance_only` | distance | pace, speed, heart_rate, heart_rate_zone, rpe, incline |
-| `distance_time` | distance, duration | pace, heart_rate_zone, rpe, incline |
-| `distance_load` | distance | load, pace, rpe |
-| `power_duration` | power, duration | heart_rate_zone, rpe |
-| `power_distance` | power, distance | pace, rpe |
-| `calories_only` | calories | duration, heart_rate_zone, rpe |
-| `distance_calories` | distance | calories, duration, pace, rpe |
-| `rounds_time` | rounds | duration, rpe |
+### Known dimensions
 
-### Choosing the right execution_type
+`reps`, `sides`, `rounds`, `load`, `duration`, `duration_per_side`, `rest_between_sides`, `tempo`, `distance`, `height`, `incline`, `pace`, `speed`, `power`, `heart_rate`, `heart_rate_zone`, `rpe`, `velocity`, `calories`, `cadence`, `resistance`
 
-- If the text specifies reps and a load (weight), use `reps_load`.
-- If the text specifies reps with no load and no other qualifier, use `reps_only`.
-- If the text says "each side" or "per leg/arm", use `reps_per_side` or `duration_per_side`.
-- If the text specifies a distance with a target time, use `distance_time`.
-- If the text specifies a distance with no time target, use `distance_only`.
-- If the text specifies a duration with a load (e.g., "30s hold with 20kg"), use `duration_load`.
-- If the text specifies a duration with no other qualifier, use `duration_only`.
-- If the text specifies calories, use `calories_only`.
-- If the text specifies power and duration (e.g., watts for an interval), use `power_duration`.
+Any known dimension can be freely combined with any other. Use only the dimensions that the input specifies or implies.
+
+### Choosing dimensions
+
+- If the text specifies reps and a load (weight): `"dimensions": ["reps", "load"]`.
+- If the text specifies reps with no load: `"dimensions": ["reps"]`.
+- If the text says "each side" or "per leg/arm" with reps: `"dimensions": ["reps", "sides"]`.
+- If the text says "each side" with a duration: `"dimensions": ["duration", "sides"]`.
+- If the text specifies a distance with a target time: `"dimensions": ["distance", "duration"]`.
+- If the text specifies a distance with no time target: `"dimensions": ["distance"]`.
+- If the text specifies a duration with a load (e.g., "30s hold with 20kg"): `"dimensions": ["duration", "load"]`.
+- If the text specifies a duration with no other qualifier: `"dimensions": ["duration"]`.
+- If the text specifies calories: `"dimensions": ["calories"]`.
+- If the text specifies power and duration (e.g., watts for an interval): `"dimensions": ["power", "duration"]`.
+- If the text specifies a cadence target (rpm, steps/min, strokes/min): add `cadence` to dimensions.
+- If the text specifies a resistance level (e.g., "level 8", "50% resistance"): add `resistance` to dimensions.
+- Add `rpe`, `tempo`, `velocity`, `heart_rate_zone`, `incline`, `pace`, `speed`, `cadence`, `resistance`, or any other known dimension whenever the input provides or implies it.
 
 ---
 
@@ -182,9 +175,9 @@ When the input is ambiguous, pick the **most reasonable interpretation** and add
 
 Examples of ambiguity:
 
-- "3x10 squats" with no weight specified: use `reps_only` (not `reps_load` with `any` load).
-- "bench 3x5 heavy": use `reps_load` with `load` as `{ "type": "any" }` and add a note: `"Input said 'heavy' but no specific load given."`.
-- "run 5k": use `distance_only` with distance 5 km.
+- "3x10 squats" with no weight specified: use `"dimensions": ["reps"]` (not `["reps", "load"]` with `any` load).
+- "bench 3x5 heavy": use `"dimensions": ["reps", "load"]` with `load` as `{ "type": "any" }` and add a note: `"Input said 'heavy' but no specific load given."`.
+- "run 5k": use `"dimensions": ["distance"]` with distance 5 km.
 - "plank 3x": assume 3 sets of a reasonable hold; add a note explaining the assumption.
 
 ---
@@ -209,7 +202,7 @@ Tricep Pushdowns 3x12-15
 ```json
 {
   "openset_version": "1.0",
-  "type": "session",
+  "type": "workout",
   "name": "Upper Body Strength",
   "date": "2025-01-15",
   "blocks": [
@@ -224,10 +217,10 @@ Tricep Pushdowns 3x12-15
             {
               "exercise_id": "bench_press",
               "sets": [
-                { "execution_type": "reps_load", "reps": { "type": "fixed", "value": 8, "unit": "reps" }, "load": { "type": "fixed", "value": 80, "unit": "kg" }, "rest_after": { "type": "fixed", "value": 90, "unit": "s" } },
-                { "execution_type": "reps_load", "reps": { "type": "fixed", "value": 8, "unit": "reps" }, "load": { "type": "fixed", "value": 80, "unit": "kg" }, "rest_after": { "type": "fixed", "value": 90, "unit": "s" } },
-                { "execution_type": "reps_load", "reps": { "type": "fixed", "value": 8, "unit": "reps" }, "load": { "type": "fixed", "value": 80, "unit": "kg" }, "rest_after": { "type": "fixed", "value": 90, "unit": "s" } },
-                { "execution_type": "reps_load", "reps": { "type": "fixed", "value": 8, "unit": "reps" }, "load": { "type": "fixed", "value": 80, "unit": "kg" }, "rest_after": { "type": "fixed", "value": 90, "unit": "s" } }
+                { "dimensions": ["reps", "load"], "reps": { "type": "fixed", "value": 8, "unit": "reps" }, "load": { "type": "fixed", "value": 80, "unit": "kg" }, "rest_after": { "type": "fixed", "value": 90, "unit": "s" } },
+                { "dimensions": ["reps", "load"], "reps": { "type": "fixed", "value": 8, "unit": "reps" }, "load": { "type": "fixed", "value": 80, "unit": "kg" }, "rest_after": { "type": "fixed", "value": 90, "unit": "s" } },
+                { "dimensions": ["reps", "load"], "reps": { "type": "fixed", "value": 8, "unit": "reps" }, "load": { "type": "fixed", "value": 80, "unit": "kg" }, "rest_after": { "type": "fixed", "value": 90, "unit": "s" } },
+                { "dimensions": ["reps", "load"], "reps": { "type": "fixed", "value": 8, "unit": "reps" }, "load": { "type": "fixed", "value": 80, "unit": "kg" }, "rest_after": { "type": "fixed", "value": 90, "unit": "s" } }
               ]
             }
           ]
@@ -245,14 +238,14 @@ Tricep Pushdowns 3x12-15
             {
               "exercise_id": "pull_up",
               "sets": [
-                { "execution_type": "reps_only", "reps": { "type": "fixed", "value": 10, "unit": "reps" } }
+                { "dimensions": ["reps"], "reps": { "type": "fixed", "value": 10, "unit": "reps" } }
               ]
             },
             {
               "name": "Dumbbell Lateral Raise",
               "note": "Exercise not in canonical library.",
               "sets": [
-                { "execution_type": "reps_load", "reps": { "type": "fixed", "value": 15, "unit": "reps" }, "load": { "type": "fixed", "value": 10, "unit": "kg" } }
+                { "dimensions": ["reps", "load"], "reps": { "type": "fixed", "value": 15, "unit": "reps" }, "load": { "type": "fixed", "value": 10, "unit": "kg" } }
               ]
             }
           ]
@@ -270,9 +263,9 @@ Tricep Pushdowns 3x12-15
             {
               "exercise_id": "triceps_cable_pushdown",
               "sets": [
-                { "execution_type": "reps_only", "reps": { "type": "range", "min": 12, "max": 15, "unit": "reps" } },
-                { "execution_type": "reps_only", "reps": { "type": "range", "min": 12, "max": 15, "unit": "reps" } },
-                { "execution_type": "reps_only", "reps": { "type": "range", "min": 12, "max": 15, "unit": "reps" } }
+                { "dimensions": ["reps"], "reps": { "type": "range", "min": 12, "max": 15, "unit": "reps" } },
+                { "dimensions": ["reps"], "reps": { "type": "range", "min": 12, "max": 15, "unit": "reps" } },
+                { "dimensions": ["reps"], "reps": { "type": "range", "min": 12, "max": 15, "unit": "reps" } }
               ]
             }
           ]
@@ -298,7 +291,7 @@ EMOM 20 min
 ```json
 {
   "openset_version": "1.0",
-  "type": "session",
+  "type": "workout",
   "name": "EMOM 20",
   "date": null,
   "blocks": [
@@ -313,14 +306,14 @@ EMOM 20 min
             {
               "exercise_id": "assault_bike",
               "sets": [
-                { "execution_type": "calories_only", "calories": { "type": "fixed", "value": 10, "unit": "kcal" } }
+                { "dimensions": ["calories"], "calories": { "type": "fixed", "value": 10, "unit": "kcal" } }
               ]
             },
             {
               "name": "Kettlebell Swing",
               "note": "Exercise not in canonical library. Interpreted 'KB swings' as Kettlebell Swing.",
               "sets": [
-                { "execution_type": "reps_load", "reps": { "type": "fixed", "value": 12, "unit": "reps" }, "load": { "type": "fixed", "value": 24, "unit": "kg" } }
+                { "dimensions": ["reps", "load"], "reps": { "type": "fixed", "value": 12, "unit": "reps" }, "load": { "type": "fixed", "value": 24, "unit": "kg" } }
               ]
             }
           ]
