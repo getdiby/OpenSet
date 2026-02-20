@@ -379,13 +379,13 @@ Full body conditioning demonstrating **AMRAP**, **FOR_TIME**, **TABATA**, and ca
             {
               "exercise_id": "assault_bike",
               "sets": [
-                { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 20, "unit": "s" }, "rpe": { "type": "max" } },
-                { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 20, "unit": "s" }, "rpe": { "type": "max" } },
-                { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 20, "unit": "s" }, "rpe": { "type": "max" } },
-                { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 20, "unit": "s" }, "rpe": { "type": "max" } },
-                { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 20, "unit": "s" }, "rpe": { "type": "max" } },
-                { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 20, "unit": "s" }, "rpe": { "type": "max" } },
-                { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 20, "unit": "s" }, "rpe": { "type": "max" } },
+                { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 20, "unit": "s" }, "rest_after": { "type": "fixed", "value": 10, "unit": "s" }, "rpe": { "type": "max" } },
+                { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 20, "unit": "s" }, "rest_after": { "type": "fixed", "value": 10, "unit": "s" }, "rpe": { "type": "max" } },
+                { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 20, "unit": "s" }, "rest_after": { "type": "fixed", "value": 10, "unit": "s" }, "rpe": { "type": "max" } },
+                { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 20, "unit": "s" }, "rest_after": { "type": "fixed", "value": 10, "unit": "s" }, "rpe": { "type": "max" } },
+                { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 20, "unit": "s" }, "rest_after": { "type": "fixed", "value": 10, "unit": "s" }, "rpe": { "type": "max" } },
+                { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 20, "unit": "s" }, "rest_after": { "type": "fixed", "value": 10, "unit": "s" }, "rpe": { "type": "max" } },
+                { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 20, "unit": "s" }, "rest_after": { "type": "fixed", "value": 10, "unit": "s" }, "rpe": { "type": "max" } },
                 { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 20, "unit": "s" }, "rpe": { "type": "max" } }
               ]
             }

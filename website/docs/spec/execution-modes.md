@@ -224,7 +224,7 @@ Repeating work/rest structure. Each exercise represents one interval, and `round
 
 ## TABATA
 
-20 seconds of work followed by 10 seconds of rest, repeated for 8 rounds (4 minutes total). A standardized high-intensity interval protocol.
+20 seconds of work followed by 10 seconds of rest, repeated for 8 rounds (4 minutes total). A standardized high-intensity interval protocol. Rest between work intervals is modeled with `rest_after` on each set (omitted on the last round).
 
 **Use for:** Sprint conditioning, metabolic finishers, cardio equipment intervals.
 
@@ -236,19 +236,21 @@ Repeating work/rest structure. Each exercise represents one interval, and `round
     {
       "exercise_id": "assault_bike",
       "sets": [
-        { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 20, "unit": "s" }, "rpe": { "type": "max" } },
-        { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 20, "unit": "s" }, "rpe": { "type": "max" } },
-        { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 20, "unit": "s" }, "rpe": { "type": "max" } },
-        { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 20, "unit": "s" }, "rpe": { "type": "max" } },
-        { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 20, "unit": "s" }, "rpe": { "type": "max" } },
-        { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 20, "unit": "s" }, "rpe": { "type": "max" } },
-        { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 20, "unit": "s" }, "rpe": { "type": "max" } },
+        { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 20, "unit": "s" }, "rest_after": { "type": "fixed", "value": 10, "unit": "s" }, "rpe": { "type": "max" } },
+        { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 20, "unit": "s" }, "rest_after": { "type": "fixed", "value": 10, "unit": "s" }, "rpe": { "type": "max" } },
+        { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 20, "unit": "s" }, "rest_after": { "type": "fixed", "value": 10, "unit": "s" }, "rpe": { "type": "max" } },
+        { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 20, "unit": "s" }, "rest_after": { "type": "fixed", "value": 10, "unit": "s" }, "rpe": { "type": "max" } },
+        { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 20, "unit": "s" }, "rest_after": { "type": "fixed", "value": 10, "unit": "s" }, "rpe": { "type": "max" } },
+        { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 20, "unit": "s" }, "rest_after": { "type": "fixed", "value": 10, "unit": "s" }, "rpe": { "type": "max" } },
+        { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 20, "unit": "s" }, "rest_after": { "type": "fixed", "value": 10, "unit": "s" }, "rpe": { "type": "max" } },
         { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 20, "unit": "s" }, "rpe": { "type": "max" } }
       ]
     }
   ]
 }
 ```
+
+*Note: `rpe` is optional here (an effort cue: "max"). Only **required** dimensions go in the `dimensions` array; see [Dimensions](./set-dimensions.md).*
 
 ## EMOM
 

@@ -72,29 +72,29 @@
         }
       ]
     },
-    {
-      "name": "Tabata Finisher",
-      "series": [
-        {
-          "execution_mode": "TABATA",
-          "rounds": { "type": "fixed", "value": 8 },
-          "exercises": [
             {
-              "exercise_id": "assault_bike",
-              "sets": [
-                { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 20, "unit": "s" }, "rpe": { "type": "max" } },
-                { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 20, "unit": "s" }, "rpe": { "type": "max" } },
-                { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 20, "unit": "s" }, "rpe": { "type": "max" } },
-                { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 20, "unit": "s" }, "rpe": { "type": "max" } },
-                { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 20, "unit": "s" }, "rpe": { "type": "max" } },
-                { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 20, "unit": "s" }, "rpe": { "type": "max" } },
-                { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 20, "unit": "s" }, "rpe": { "type": "max" } },
-                { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 20, "unit": "s" }, "rpe": { "type": "max" } }
+              "name": "Tabata Finisher",
+              "series": [
+                {
+                  "execution_mode": "TABATA",
+                  "rounds": { "type": "fixed", "value": 8 },
+                  "exercises": [
+                    {
+                      "exercise_id": "assault_bike",
+                      "sets": [
+                        { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 20, "unit": "s" }, "rest_after": { "type": "fixed", "value": 10, "unit": "s" }, "rpe": { "type": "max" } },
+                        { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 20, "unit": "s" }, "rest_after": { "type": "fixed", "value": 10, "unit": "s" }, "rpe": { "type": "max" } },
+                        { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 20, "unit": "s" }, "rest_after": { "type": "fixed", "value": 10, "unit": "s" }, "rpe": { "type": "max" } },
+                        { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 20, "unit": "s" }, "rest_after": { "type": "fixed", "value": 10, "unit": "s" }, "rpe": { "type": "max" } },
+                        { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 20, "unit": "s" }, "rest_after": { "type": "fixed", "value": 10, "unit": "s" }, "rpe": { "type": "max" } },
+                        { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 20, "unit": "s" }, "rest_after": { "type": "fixed", "value": 10, "unit": "s" }, "rpe": { "type": "max" } },
+                        { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 20, "unit": "s" }, "rest_after": { "type": "fixed", "value": 10, "unit": "s" }, "rpe": { "type": "max" } },
+                        { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 20, "unit": "s" }, "rpe": { "type": "max" } }
+                      ]
+                    }
+                  ]
+                }
               ]
             }
-          ]
-        }
-      ]
-    }
   ]
 }
