@@ -39,6 +39,11 @@
           "type": "string",
           "enum": ["upper_body", "lower_body", "core", "full_body", "cardio"]
         },
+        "body_parts": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Optional finer taxonomy (e.g. chest, triceps); body_part remains primary"
+        },
         "category": {
           "type": "string",
           "enum": ["push", "pull", "hinge", "squat", "carry", "rotation", "gait"]
@@ -86,6 +91,7 @@
           "type": "array",
           "items": { "type": "string" }
         },
+        "default_tempo": { "type": "string" },
         "common_dimensions": {
           "type": "array",
           "description": "Array of typical dimension combinations for this exercise. Each inner array lists the dimension names that define a common way to perform the exercise.",

@@ -380,7 +380,7 @@ Some popular training patterns don't need their own execution mode — they are 
 
 A drop set is a single exercise where the load decreases each set while reps stay the same (or increase). The key characteristic is **no rest between sets** — the athlete reduces the weight immediately.
 
-In OpenSet, this is a `SEQUENTIAL` series with decreasing `load` values and zero or minimal `rest_after`:
+Some systems use a dedicated DROPSET type; in OpenSet this is expressed as a `SEQUENTIAL` series with decreasing `load` values and zero or minimal `rest_after`:
 
 ```json
 {

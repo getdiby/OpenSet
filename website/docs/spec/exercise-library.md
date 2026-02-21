@@ -39,6 +39,7 @@ Each exercise in the `exercises` array is an object with the following fields:
 | Field | Values | Description |
 |-------|--------|-------------|
 | `body_part` | `upper_body`, `lower_body`, `core`, `full_body`, `cardio` | Primary body region |
+| `body_parts` | `string[]` | Optional finer taxonomy (e.g. chest, triceps); secondary to `body_part` for apps that need muscle-group or region detail |
 | `category` | `push`, `pull`, `hinge`, `squat`, `carry`, `rotation`, `gait` | Movement pattern |
 | `mechanic` | `compound`, `isolation` | Joint involvement |
 | `laterality` | `bilateral`, `unilateral`, `alternating` | Side symmetry |
@@ -54,6 +55,7 @@ Each exercise in the `exercises` array is an object with the following fields:
 | `target_muscles` | `string[]` | Primary muscles worked |
 | `synergist_muscles` | `string[]` | Secondary muscles involved |
 | `sport_relevance` | `string[]` | Sports where this exercise is commonly used |
+| `default_tempo` | `string` | Default tempo (e.g. `"3-1-2-0"`) when a set does not specify `tempo` |
 | `note` | `string` | Coaching cues or additional notes |
 
 ### Relationship Fields

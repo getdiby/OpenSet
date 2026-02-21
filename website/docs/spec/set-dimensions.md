@@ -30,7 +30,7 @@ The `dimensions` array tells validators and consumers which fields are **require
 
 ## Known Dimensions
 
-There are 21 known dimension names:
+There are 21 known dimension names. By category: **count** (reps, sides, rounds); **load**; **time** (duration, duration_per_side, rest_between_sides, rest_after); **tempo**; **distance and space** (distance, height, incline); **cardio and effort** (pace, speed, power, heart_rate, heart_rate_zone, rpe, velocity, calories, cadence, resistance).
 
 | Dimension | Allowed Types | Units |
 |-----------|---------------|-------|
@@ -136,9 +136,13 @@ Some dimensions are mutually exclusive within a single set:
 
 The validator will emit **E012** if conflicting dimensions are found on the same set.
 
+## To failure
+
+To prescribe **"to failure"**, use `reps` with type `amrap` or `rpe` with type `max` as appropriate.
+
 ## Universal Dimensions
 
 The following dimensions are always allowed on any set, regardless of what is listed in `dimensions`:
 
-- `rest_after` -- Rest period after the set
+- `rest_after` -- Rest period after the set. It can also appear at series level; when both are present, **set overrides series**.
 - `note` -- Freeform coaching notes

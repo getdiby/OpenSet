@@ -23,6 +23,8 @@
         "sports": { "type": "array", "items": { "type": "string" } },
         "note": { "type": "string" },
         "library": { "$ref": "#/$defs/LibraryRef" },
+        "level": { "type": "string", "enum": ["beginner", "intermediate", "advanced", "elite"] },
+        "estimated_duration_min": { "type": "integer", "minimum": 1 },
         "x_extensions": {
           "type": "array",
           "items": { "type": "string" },
@@ -92,6 +94,8 @@
         "sports": { "type": "array", "items": { "type": "string" } },
         "note": { "type": "string" },
         "library": { "$ref": "#/$defs/LibraryRef" },
+        "level": { "type": "string", "enum": ["beginner", "intermediate", "advanced", "elite"] },
+        "estimated_duration_min": { "type": "integer", "minimum": 1 },
         "blocks": {
           "type": "array",
           "items": { "$ref": "#/$defs/Block" },

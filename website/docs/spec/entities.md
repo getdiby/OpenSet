@@ -16,6 +16,8 @@ PROGRAM
             SET
 ```
 
+Order of series within a block, exercises within a series, and sets within an exercise is given by **array index** (first element is first). There is no separate `order` field.
+
 ## Document Types
 
 A valid OpenSet document is one of:
@@ -37,7 +39,7 @@ Top-level container for a multi-workout training plan.
 | `type` | Yes | Must be `"program"` |
 | `name` | Yes | Program name |
 | `description` | No | Program description |
-| `sports` | No | Target sports |
+| `sports` | No | Target sports (freeform; common values include strength, running, cycling, swimming, fitness, yoga) |
 | `duration_weeks` | No | Total duration in weeks |
 | `phases` | Yes | Array of Phase objects |
 
@@ -63,7 +65,9 @@ The minimum valid standalone document. Represents a single training workout.
 | `type` | Yes | Must be `"workout"` |
 | `name` | No | Workout name |
 | `date` | No | ISO 8601 date |
-| `sports` | No | Target sports |
+| `sports` | No | Target sports (freeform; common values include strength, running, cycling, swimming, fitness, yoga) |
+| `level` | No | Difficulty: `beginner`, `intermediate`, `advanced`, `elite` |
+| `estimated_duration_min` | No | Estimated duration in minutes |
 | `blocks` | Yes | Array of Block objects |
 
 ### Block
@@ -82,7 +86,7 @@ A group of exercises performed with a specific execution mode.
 | Field | Required | Description |
 |-------|----------|-------------|
 | `execution_mode` | Yes | How exercises flow (see [Execution Modes](./execution-modes)) |
-| `rounds` | No | Number of rounds |
+| `rounds` | No | When present, how many times the series is repeated (e.g. for CIRCUIT, SUPERSET, AMRAP) |
 | `rest_after` | No | Rest after the series |
 | `exercises` | Yes | Array of Exercise objects |
 
