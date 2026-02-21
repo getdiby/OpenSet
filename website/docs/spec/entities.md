@@ -1,8 +1,8 @@
 ---
-title: Document Hierarchy
+title: Entities
 ---
 
-# Document Hierarchy
+# Entities
 
 OpenSet documents follow a strict hierarchical structure.
 
