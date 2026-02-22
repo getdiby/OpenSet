@@ -27,4 +27,4 @@
 - [FAQ](https://openset.dev/docs/faq): Frequently asked questions and format comparison
 - [Contributors](https://openset.dev/docs/contributors): List of contributors
 - [GitHub](https://github.com/getdiby/openset): Source code and issue tracker
-- [npm org](https://www.npmjs.com/org/openset): @openset/types, @openset/validator, @openset/codegen
+- [npm org](https://www.npmjs.com/org/diby): @openset/types, @openset/validator, @openset/codegen
