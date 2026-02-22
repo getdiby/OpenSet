@@ -217,6 +217,104 @@ export interface LibraryRef {
 
 export type OpenSetDocument = Workout | Program;
 
+// === Workout execution (optional layer: what was done) ===
+
+export interface SetRef {
+  block: number;
+  series: number;
+  exercise: number;
+  set: number;
+}
+
+export type DimensionCompletion = 'met' | 'partial' | 'missed' | 'not_logged';
+
+export interface DimensionResult {
+  value: number;
+  unit?: string;
+  completion: DimensionCompletion;
+}
+
+export type SetExecutionStatus = 'skipped' | 'partial' | 'completed';
+
+export interface MediaItem {
+  url: string;
+  type?: 'photo' | 'video';
+  label?: string;
+}
+
+export interface SetExecution {
+  set_ref: SetRef;
+  status: SetExecutionStatus;
+  started_at: string;
+  completed_at: string;
+  dimensions: Record<string, DimensionResult>;
+  rest_actual?: number;
+  /** Optional: client's felt RPE for this set (0–10). Can be logged even when RPE was not prescribed ("real feel"). When prescribed, may use this and/or dimensions.rpe with completion. */
+  rpe?: number;
+  /** Same as prescribed exercise's exercise_id. Strongly recommended when exercise is from a library (enables trends by exercise); omit only for custom exercises. */
+  exercise_id?: string;
+  /** Per-set feedback (e.g. how that set felt, form notes, coach comments). */
+  feedback?: string;
+  /** Photos or videos from this set (e.g. form check on first or last set of exercise). */
+  media?: MediaItem[];
+}
+
+export interface WorkoutRef {
+  workout_id?: string;
+  date?: string;
+  program_id?: string;
+  phase_index?: number;
+  workout_index?: number;
+}
+
+export interface ExerciseRef {
+  block: number;
+  series: number;
+  exercise: number;
+}
+
+export interface ExerciseFeedback {
+  exercise_ref: ExerciseRef;
+  feedback: string;
+  media?: MediaItem[];
+}
+
+export interface WorkoutExecutionSummary {
+  sets_completed?: number;
+  sets_skipped?: number;
+  total_volume_kg?: number;
+  [key: string]: unknown;
+}
+
+/** Provenance for execution data (e.g. FIT import, manual). Use for deduplication and linking back to the original activity. */
+export interface WorkoutExecutionSource {
+  provider?: string;
+  activity_id?: string;
+  imported_at?: string;
+  device?: string;
+  mapping_summary?: string;
+  [key: string]: unknown;
+}
+
+export interface WorkoutExecution {
+  openset_version: string;
+  type: 'workout_execution';
+  execution_id: string;
+  workout_ref: WorkoutRef;
+  started_at: string;
+  completed_at: string;
+  set_executions: SetExecution[];
+  summary?: WorkoutExecutionSummary;
+  /** Overall workout feedback (e.g. how the session felt, notes from the athlete or coach). */
+  feedback?: string;
+  /** Photos or videos for the entire session. */
+  media?: MediaItem[];
+  /** Feedback per exercise (and optional media); how each exercise felt overall. */
+  exercise_feedback?: ExerciseFeedback[];
+  /** Where this execution came from (e.g. FIT import, manual). For deduplication and audit. */
+  source?: WorkoutExecutionSource;
+}
+
 // === Exercise Library Types ===
 
 export type BodyPart = 'upper_body' | 'lower_body' | 'core' | 'full_body' | 'cardio';

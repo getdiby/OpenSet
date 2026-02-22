@@ -233,3 +233,10 @@ button,
   transition: color 0.15s ease, background-color 0.15s ease,
     border-color 0.15s ease, box-shadow 0.15s ease;
 }
+
+/* Spec sidebar: separator above Execution section */
+.theme-doc-sidebar-container .menu__list-item:has(ul a.menu__link[href*='workout-execution']) {
+  border-top: 1px solid var(--ifm-toc-border-color);
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+}

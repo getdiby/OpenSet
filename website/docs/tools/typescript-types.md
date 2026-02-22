@@ -30,6 +30,11 @@ import type {
   ExerciseDefinition,
   ExerciseLibrary,
   WorkoutLibrary,
+  WorkoutExecution,
+  SetExecution,
+  SetRef,
+  DimensionResult,
+  WorkoutRef,
 } from '@openset/types';
 ```
 
@@ -178,5 +183,84 @@ interface WorkoutLibrary {
   provider: string;
   license: string;
   workouts: WorkoutTemplate[];
+}
+```
+
+## Workout execution types
+
+Optional execution layer (see [Workout execution](/docs/spec/workout-execution)): record what was done for a workout instance.
+
+```typescript
+interface SetRef {
+  block: number;
+  series: number;
+  exercise: number;
+  set: number;
+}
+
+interface DimensionResult {
+  value: number;
+  unit?: string;
+  completion: 'met' | 'partial' | 'missed' | 'not_logged';
+}
+
+interface MediaItem {
+  url: string;
+  type?: 'photo' | 'video';
+  label?: string;
+}
+
+interface SetExecution {
+  set_ref: SetRef;
+  status: 'skipped' | 'partial' | 'completed';
+  started_at: string;
+  completed_at: string;
+  dimensions: Record<string, DimensionResult>;
+  rest_actual?: number;
+  rpe?: number;        // optional felt RPE (0–10), even when not prescribed
+  exercise_id?: string;
+  feedback?: string;   // per-set feedback
+  media?: MediaItem[]; // photos/videos from this set
+}
+
+interface WorkoutRef {
+  workout_id?: string;
+  date?: string;
+  program_id?: string;
+  phase_index?: number;
+  workout_index?: number;
+}
+
+interface ExerciseRef {
+  block: number;
+  series: number;
+  exercise: number;
+}
+
+interface ExerciseFeedback {
+  exercise_ref: ExerciseRef;
+  feedback: string;
+  media?: MediaItem[];
+}
+
+interface WorkoutExecution {
+  openset_version: string;
+  type: 'workout_execution';
+  execution_id: string;
+  workout_ref: WorkoutRef;
+  started_at: string;
+  completed_at: string;
+  set_executions: SetExecution[];
+  summary?: { sets_completed?: number; sets_skipped?: number; total_volume_kg?: number };
+  feedback?: string;           // overall workout feedback
+  media?: MediaItem[];         // session-level photos/videos
+  exercise_feedback?: ExerciseFeedback[]; // per-exercise feedback (and optional media)
+  source?: {                   // provenance (e.g. FIT import) for deduplication and audit
+    provider?: string;
+    activity_id?: string;
+    imported_at?: string;
+    device?: string;
+    mapping_summary?: string;
+  };
 }
 ```

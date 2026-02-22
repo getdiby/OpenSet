@@ -30,6 +30,14 @@ const sidebars: SidebarsConfig = {
     },
     'spec/extensions',
     'spec/examples',
+    {
+      type: 'category',
+      label: 'Execution',
+      collapsed: false,
+      items: [
+        'spec/workout-execution',
+      ],
+    },
   ],
   toolsSidebar: [
     'tools/validator',

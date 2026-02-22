@@ -18,7 +18,7 @@ PROGRAM
             SET
 ```
 
-A valid OpenSet document is either a standalone **workout**, a **program** containing phases and workouts, or a **workout_library** containing reusable workout definitions.
+A valid OpenSet document is either a standalone **workout**, a **program** containing phases and workouts, or a **workout_library** containing reusable workout definitions. An optional **workout execution** document type (`workout_execution`) records what was actually done for a workout instance (session + set-level actuals); see `workout-execution.schema.json` and the [Workout execution](https://openset.dev/docs/spec/workout-execution) spec.
 
 ## Schema type naming
 

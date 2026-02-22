@@ -41,6 +41,7 @@ A valid OpenSet document is one of:
 2. **Program document** — A multi-phase training plan with `type: "program"` containing phases and workouts (schema: `ProgramDocument`)
 3. **Exercise Library** — A collection of exercise definitions with `type: "exercise_library"`
 4. **Workout Library** — A collection of reusable workout templates with `type: "workout_library"`
+5. **Workout Execution** — Records what was done for a workout instance with `type: "workout_execution"` (schema: [workout-execution](https://openset.dev/schema/v1/workout-execution.schema.json)); see [Workout execution](/docs/spec/workout-execution).
 
 ## Levels
 

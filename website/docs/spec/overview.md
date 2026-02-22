@@ -10,7 +10,7 @@ OpenSet is an open, sport-agnostic JSON standard for representing structured tra
 
 ## Philosophy
 
-OpenSet models **what should be done, how it should feel, and under what constraints**. It is a prescription format, not a logging format. It does not model actual execution timelines, sensor data, or real-time athlete behavior.
+OpenSet models **what should be done, how it should feel, and under what constraints**. The core spec is a **prescription format** (workouts and programs). An optional **workout execution** layer (see [Workout execution](/docs/spec/workout-execution)) records what was actually done — set-level actuals, timestamps, and completion state — so you can build audit trails, analytics, and import device data (e.g. FIT) into the same model.
 
 ## Design Goals
 

@@ -11,6 +11,7 @@
 - [Execution modes](https://openset.dev/docs/spec/execution-modes): SEQUENTIAL, SUPERSET, CIRCUIT, AMRAP, FOR_TIME, INTERVAL, TABATA, EMOM, LADDER, CLUSTER
 - [Exercise library](https://openset.dev/docs/spec/exercise-library): Canonical exercise library and how to reference exercises
 - [Workout library](https://openset.dev/docs/spec/workout-library): Reusable workout templates
+- [Workout execution](https://openset.dev/docs/spec/workout-execution): Optional execution layer — record what was done (session + set-level actuals, timestamps, completion)
 - [Extensions](https://openset.dev/docs/spec/extensions): Namespaced extension mechanism for custom dimensions and fields
 - [Examples](https://openset.dev/docs/spec/examples): Full workout and program examples in JSON
 
