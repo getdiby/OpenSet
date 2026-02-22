@@ -26,6 +26,11 @@ const config: Config = {
 
   onBrokenLinks: 'throw',
 
+  customFields: {
+    /** When set (e.g. DOCUSAURUS_GATE_PASSWORD=secret), the whole site is behind a password gate; unlock is stored in localStorage. */
+    gatePassword: process.env.DOCUSAURUS_GATE_PASSWORD ?? 'Kodelab2026',
+  },
+
   i18n: {
     defaultLocale: 'en',
     locales: ['en'],
