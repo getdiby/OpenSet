@@ -55,6 +55,16 @@
       "additionalProperties": true
     }
   },
+  "x_extensions": {
+    "type": "array",
+    "items": { "type": "string" },
+    "description": "Declared extension namespaces used in this document"
+  },
+  "patternProperties": {
+    "^x_": {},
+    "^app_": {},
+    "^[a-z]+_[a-z]+_": {}
+  },
   "additionalProperties": false,
 
   "$defs": {

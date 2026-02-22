@@ -96,6 +96,60 @@ Example (set with a cue 30 seconds in):
 
 Declare `"x_cue"` in `x_extensions` when the document uses it. This extension is optional; if adopters use it widely, it may be promoted to first-class in a future minor version.
 
+### AI-generated insights (`x_ai_insights`)
+
+Apps or agents that use AI to analyze workouts or executions can attach structured insights without overloading core fields like `feedback`. The **`x_ai_insights`** extension (generic `x_` namespace) is optional and **safe to strip** for storage or display — consumers may ignore it; OpenSet compliance does not require it.
+
+**Where it is allowed:**
+
+- **Prescription:** Workout and program documents (same as other document-level extensions).
+- **Execution:** Workout execution documents support extensions at the root via `x_extensions` and `patternProperties` in the [workout-execution schema](https://openset.dev/schema/v1/workout-execution.schema.json).
+
+**Suggested shape:** A flexible object or array of insight objects. Minimal useful fields:
+
+- **`type`** (string): e.g. `"suggestion"`, `"form_note"`, `"summary"`.
+- **`text`** (string): Human-readable insight.
+- **`scope`** (string, optional): `"workout"`, `"exercise"`, `"set"` to indicate what the insight refers to.
+- **`target`** (optional): When scope is exercise or set, a reference (e.g. `set_ref`-style indices or exercise index) so consumers can place the insight in context.
+
+Consumers may ignore or strip `x_ai_insights`; validators treat it as an extension (namespaced field). Use `x_extensions` to declare `"x_ai_insights"` when present.
+
+Example on a **prescription** (e.g. AI-suggested deload):
+
+```json
+{
+  "openset_version": "1.0",
+  "type": "workout",
+  "x_extensions": ["x_ai_insights"],
+  "name": "Upper Body A",
+  "x_ai_insights": [
+    { "type": "suggestion", "text": "Consider deload next week; volume has increased for 3 weeks." }
+  ],
+  "blocks": [...]
+}
+```
+
+Example on an **execution** (e.g. form note or volume summary):
+
+```json
+{
+  "openset_version": "1.0",
+  "type": "workout_execution",
+  "x_extensions": ["x_ai_insights"],
+  "execution_id": "...",
+  "workout_ref": {...},
+  "started_at": "...",
+  "completed_at": "...",
+  "set_executions": [...],
+  "x_ai_insights": [
+    { "type": "form_note", "text": "Slight knee cave on set 2.", "scope": "set", "target": { "block": 0, "series": 0, "exercise": 0, "set": 1 } },
+    { "type": "summary", "text": "Volume above weekly target; recovery may benefit from lighter session next." }
+  ]
+}
+```
+
+This extension is optional. If adopters use it widely, it may be promoted to first-class in a future minor version.
+
 ## Validation Behavior
 
 - Unknown fields **with** a valid namespace prefix: warning **W009** + structural check **E015** (must be a ValueObject)
