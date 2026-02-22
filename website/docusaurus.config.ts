@@ -125,7 +125,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright \u00a9 ${new Date().getFullYear()} OpenSet Contributors. Released under the MIT License.<br/><a href="https://getdiby.com" target="_blank" rel="noopener noreferrer" class="footer__diby-logo" aria-label="Built by Diby"><img src="/img/diby-logo.png" alt="Diby" loading="lazy" /></a>`,
+      copyright: `Copyright \u00a9 ${new Date().getFullYear()} OpenSet Contributors. Released under the MIT License.<br/><span class="footer__backed-by">Backed by</span> <a href="https://getdiby.com" target="_blank" rel="noopener noreferrer" class="footer__diby-logo" aria-label="Built by Diby"><img src="/img/diby-logo.png" alt="Diby" loading="lazy" /></a>`,
     },
     prism: {
       theme: prismThemes.github,
