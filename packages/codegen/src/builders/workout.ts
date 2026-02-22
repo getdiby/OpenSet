@@ -1,4 +1,4 @@
-import type { Workout as WorkoutType, LibraryRef } from '@openset/types';
+import type { Workout as WorkoutType, LibraryRef, DocumentMetadata } from '@openset/types';
 import { BlockBuilder } from './block.js';
 
 export class WorkoutBuilder {
@@ -9,6 +9,7 @@ export class WorkoutBuilder {
   private _note?: string;
   private _library?: LibraryRef;
   private _x_extensions?: string[];
+  private _metadata?: DocumentMetadata;
   private _blocks: ReturnType<BlockBuilder['build']>[] = [];
 
   constructor(name?: string) {
@@ -57,6 +58,12 @@ export class WorkoutBuilder {
     return this;
   }
 
+  /** Set document metadata (version, author, provider, license, created_at, updated_at) */
+  metadata(metadata: DocumentMetadata): this {
+    this._metadata = metadata;
+    return this;
+  }
+
   /** Add a named block */
   block(name: string, configure: (b: BlockBuilder) => void): this;
   /** Add an unnamed block */
@@ -88,6 +95,7 @@ export class WorkoutBuilder {
     if (this._note !== undefined) result.note = this._note;
     if (this._library !== undefined) result.library = this._library;
     if (this._x_extensions !== undefined) result.x_extensions = this._x_extensions;
+    if (this._metadata !== undefined) result.metadata = this._metadata;
     return result;
   }
 

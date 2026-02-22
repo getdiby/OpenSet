@@ -636,7 +636,12 @@ Multi-phase program demonstrating progressive overload across two phases with **
   "description": "A beginner-friendly 4-week program focusing on compound movements with progressive overload.",
   "sports": ["strength"],
   "duration_weeks": 4,
-  "author": "OpenSet",
+  "metadata": {
+    "version": "1.0.0",
+    "author": "OpenSet",
+    "provider": "OpenSet",
+    "updated_at": "2024-02-01T00:00:00Z"
+  },
   "phases": [
     {
       "name": "Phase 1 — Base Building",

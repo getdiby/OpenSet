@@ -28,6 +28,7 @@
           "items": { "type": "string" },
           "description": "Optional tags for filtering and discovery"
         },
+        "metadata": { "$ref": "#/$defs/DocumentMetadata" },
         "blocks": {
           "type": "array",
           "items": { "$ref": "#/$defs/Block" },
@@ -82,8 +83,7 @@
           "items": { "$ref": "#/$defs/Phase" },
           "minItems": 1
         },
-        "created_at": { "type": "string", "format": "date-time" },
-        "author": { "type": "string" }
+        "metadata": { "$ref": "#/$defs/DocumentMetadata" }
       },
       "patternProperties": {
         "^x_": {},
@@ -116,6 +116,19 @@
       "properties": {
         "id": { "type": "string" },
         "version": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+
+    "DocumentMetadata": {
+      "type": "object",
+      "properties": {
+        "version": { "type": "string" },
+        "author": { "type": "string" },
+        "provider": { "type": "string" },
+        "license": { "type": "string" },
+        "created_at": { "type": "string", "format": "date-time" },
+        "updated_at": { "type": "string", "format": "date-time" }
       },
       "additionalProperties": false
     },

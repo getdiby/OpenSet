@@ -145,6 +145,17 @@ export interface Block {
   series: Series[];
 }
 
+// === Document Metadata ===
+
+export interface DocumentMetadata {
+  version?: string;
+  author?: string;
+  provider?: string;
+  license?: string;
+  created_at?: string;
+  updated_at?: string;
+}
+
 // === Workout ===
 
 export interface Workout {
@@ -162,6 +173,8 @@ export interface Workout {
   x_extensions?: string[];
   /** Optional tags for filtering and discovery */
   tags?: string[];
+  /** Document metadata (version, author, provider, license, timestamps) */
+  metadata?: DocumentMetadata;
   blocks: Block[];
 }
 
@@ -189,8 +202,8 @@ export interface Program {
   /** Declared extension namespaces used in this document */
   x_extensions?: string[];
   phases: Phase[];
-  created_at?: string;
-  author?: string;
+  /** Document metadata (version, author, provider, license, timestamps) */
+  metadata?: DocumentMetadata;
 }
 
 // === Library Reference ===

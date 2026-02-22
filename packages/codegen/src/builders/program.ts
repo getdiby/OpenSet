@@ -1,4 +1,4 @@
-import type { Program as ProgramType } from '@openset/types';
+import type { Program as ProgramType, DocumentMetadata } from '@openset/types';
 import { PhaseBuilder } from './phase.js';
 
 export class ProgramBuilder {
@@ -7,8 +7,7 @@ export class ProgramBuilder {
   private _description?: string;
   private _sports?: string[];
   private _duration_weeks?: number;
-  private _author?: string;
-  private _created_at?: string;
+  private _metadata?: DocumentMetadata;
   private _x_extensions?: string[];
   private _phases: ReturnType<PhaseBuilder['build']>[] = [];
 
@@ -40,15 +39,21 @@ export class ProgramBuilder {
     return this;
   }
 
-  /** Set the author */
+  /** Set the author (convenience for metadata.author) */
   author(author: string): this {
-    this._author = author;
+    this._metadata = { ...this._metadata, author };
     return this;
   }
 
-  /** Set the creation date (ISO 8601 format) */
+  /** Set the creation date (ISO 8601 format; convenience for metadata.created_at) */
   createdAt(date: string): this {
-    this._created_at = date;
+    this._metadata = { ...this._metadata, created_at: date };
+    return this;
+  }
+
+  /** Set document metadata (version, author, provider, license, created_at, updated_at) */
+  metadata(metadata: DocumentMetadata): this {
+    this._metadata = { ...this._metadata, ...metadata };
     return this;
   }
 
@@ -78,8 +83,7 @@ export class ProgramBuilder {
     if (this._description !== undefined) result.description = this._description;
     if (this._sports !== undefined) result.sports = this._sports;
     if (this._duration_weeks !== undefined) result.duration_weeks = this._duration_weeks;
-    if (this._author !== undefined) result.author = this._author;
-    if (this._created_at !== undefined) result.created_at = this._created_at;
+    if (this._metadata !== undefined) result.metadata = this._metadata;
     if (this._x_extensions !== undefined) result.x_extensions = this._x_extensions;
     return result;
   }

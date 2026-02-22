@@ -4,6 +4,10 @@
   "name": "Upper Body — Push/Pull",
   "date": "2026-02-17",
   "sports": ["strength"],
+  "metadata": {
+    "version": "1.0.0",
+    "author": "OpenSet"
+  },
   "blocks": [
     {
       "name": "Block A",

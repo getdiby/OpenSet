@@ -18,6 +18,19 @@ PROGRAM
 
 Order of series within a block, exercises within a series, and sets within an exercise is given by **array index** (first element is first). There is no separate `order` field.
 
+## Metadata
+
+Workout and Program documents may include an optional `metadata` object for versioning and attribution (e.g. when selling programs). All fields are optional.
+
+| Field | Description |
+|-------|-------------|
+| `version` | Content version (e.g. `"1.0.0"`, `"2024.02"`); distinct from `openset_version` (spec version). |
+| `author` | Person or handle; attribution. |
+| `provider` | Organization or brand publishing the content (same meaning as in libraries). |
+| `license` | License identifier or URL (e.g. `"MIT"`, `"proprietary"`, `"CC-BY-4.0"`). |
+| `created_at` | ISO 8601 date-time. |
+| `updated_at` | Last modification time (ISO 8601 date-time). |
+
 ## Document Types
 
 A valid OpenSet document is one of:
@@ -42,6 +55,7 @@ Top-level container for a multi-workout training plan.
 | `sports` | No | Target sports (freeform; common values include strength, running, cycling, swimming, fitness, yoga) |
 | `duration_weeks` | No | Total duration in weeks |
 | `phases` | Yes | Array of Phase objects |
+| `metadata` | No | Document metadata (see [Metadata](#metadata)) |
 
 ### Phase
 
@@ -69,6 +83,7 @@ The minimum valid standalone document. Represents a single training workout.
 | `level` | No | Difficulty: `beginner`, `intermediate`, `advanced`, `elite` |
 | `estimated_duration_min` | No | Estimated duration in minutes |
 | `tags` | No | Optional tags for filtering and discovery |
+| `metadata` | No | Document metadata (see [Metadata](#metadata)) |
 | `blocks` | Yes | Array of Block objects |
 
 ### Block

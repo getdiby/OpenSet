@@ -253,8 +253,8 @@ describe('ProgramBuilder', () => {
     expect(doc.description).toBe('A test program');
     expect(doc.sports).toEqual(['strength']);
     expect(doc.duration_weeks).toBe(4);
-    expect(doc.author).toBe('Coach');
-    expect(doc.created_at).toBe('2024-01-01');
+    expect(doc.metadata?.author).toBe('Coach');
+    expect(doc.metadata?.created_at).toBe('2024-01-01');
     expect(doc.x_extensions).toEqual(['x_custom']);
     expect(doc.phases[0].week_start).toBe(1);
     expect(doc.phases[0].week_end).toBe(2);
