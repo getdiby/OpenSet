@@ -23,7 +23,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: 'Machine-Readable',
-    emoji: '\u{2699}',
+    emoji: '{ }',
     description: (
       <>
         Valid JSON with a formal JSON Schema (2020-12). Includes a TypeScript
@@ -33,7 +33,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: 'Extensible',
-    emoji: '\u{1F9E9}',
+    emoji: '\u{1F50C}',
     description: (
       <>
         Namespaced extension mechanism for custom dimensions
@@ -47,7 +47,7 @@ function Feature({title, emoji, description}: FeatureItem) {
   return (
     <div className={clsx('col col--4')}>
       <div className={styles.featureCard}>
-        <div className={styles.featureEmoji}>{emoji}</div>
+        <div className={styles.featureIcon}>{emoji}</div>
         <Heading as="h3" className={styles.featureTitle}>{title}</Heading>
         <p className={styles.featureDescription}>{description}</p>
       </div>

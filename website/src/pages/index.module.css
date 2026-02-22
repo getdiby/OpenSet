@@ -10,11 +10,11 @@
   text-align: center;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #3b82f6 100%);
+  background: linear-gradient(135deg, #0f1c00 0%, #1a2e00 50%, #243d00 100%);
 }
 
 [data-theme='dark'] .heroBanner {
-  background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #1d4ed8 100%);
+  background: linear-gradient(135deg, #0f1c00 0%, #1a2e00 50%, #243d00 100%);
 }
 
 .heroBanner::before {
@@ -23,7 +23,7 @@
   inset: 0;
   background-image: radial-gradient(
     circle at 1px 1px,
-    rgba(255, 255, 255, 0.07) 1px,
+    rgba(135, 255, 0, 0.06) 1px,
     transparent 0
   );
   background-size: 32px 32px;
@@ -32,15 +32,15 @@
 
 .versionBadge {
   display: inline-block;
-  background: rgba(255, 255, 255, 0.15);
-  color: rgba(255, 255, 255, 0.9);
+  background: rgba(135, 255, 0, 0.15);
+  color: #87ff00;
   font-size: 0.8rem;
   font-weight: 500;
   padding: 0.25rem 0.75rem;
   border-radius: 9999px;
   margin-bottom: 1.25rem;
   letter-spacing: 0.02em;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(135, 255, 0, 0.3);
 }
 
 .heroTitle {
@@ -48,14 +48,14 @@
   font-size: 4.75rem;
   font-weight: 700;
   letter-spacing: -0.02em;
-  color: #ffffff;
+  color: #87ff00;
   margin-bottom: 0.5rem;
 }
 
 .heroSubtitle {
   font-size: 1.25rem;
   font-weight: 400;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(135, 255, 0, 0.85);
   max-width: 600px;
   margin: 0 auto 2rem;
   line-height: 1.6;
@@ -69,8 +69,8 @@
 }
 
 .heroPrimary {
-  background: #ffffff;
-  color: #1e3a8a;
+  background: #87ff00;
+  color: #0f1c00;
   border: none;
   font-weight: 600;
   padding: 0.75rem 2rem;
@@ -78,20 +78,21 @@
   font-size: 1rem;
   cursor: pointer;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
 }
 
 .heroPrimary:hover {
   transform: translateY(-1px);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
-  color: #1e3a8a;
+  box-shadow: 0 10px 15px -3px rgba(135, 255, 0, 0.35);
+  color: #0f1c00;
+  background: #9fff33;
   text-decoration: none;
 }
 
 .heroSecondary {
   background: transparent;
-  color: #ffffff;
-  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  color: #87ff00;
+  border: 1.5px solid rgba(135, 255, 0, 0.5);
   font-weight: 600;
   padding: 0.75rem 2rem;
   border-radius: 0.5rem;
@@ -101,9 +102,9 @@
 }
 
 .heroSecondary:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.7);
-  color: #ffffff;
+  background: rgba(135, 255, 0, 0.12);
+  border-color: #87ff00;
+  color: #87ff00;
   text-decoration: none;
 }
 

@@ -1,13 +1,13 @@
 :root {
-  --ifm-color-primary: #2563eb;
-  --ifm-color-primary-dark: #1d4ed8;
-  --ifm-color-primary-darker: #1e40af;
-  --ifm-color-primary-darkest: #1e3a8a;
-  --ifm-color-primary-light: #3b82f6;
-  --ifm-color-primary-lighter: #60a5fa;
-  --ifm-color-primary-lightest: #93c5fd;
+  --ifm-color-primary: #87ff00;
+  --ifm-color-primary-dark: #6bcc00;
+  --ifm-color-primary-darker: #5ab300;
+  --ifm-color-primary-darkest: #4d9900;
+  --ifm-color-primary-light: #9fff33;
+  --ifm-color-primary-lighter: #b3ff66;
+  --ifm-color-primary-lightest: #c7ff99;
   --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --docusaurus-highlighted-code-line-bg: rgba(15, 28, 0, 0.15);
 
   --ifm-font-family-base: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --ifm-heading-font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
@@ -17,23 +17,23 @@
   --ifm-global-shadow-lw: 0 1px 3px 0 rgba(0, 0, 0, 0.08), 0 1px 2px -1px rgba(0, 0, 0, 0.08);
   --ifm-global-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
   --ifm-global-shadow-tl: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
-  --site-color-subtle-bg: #f8fafc;
-  --site-color-border: #e2e8f0;
+  --site-color-subtle-bg: #f0f5e6;
+  --site-color-border: #d4e8b0;
 }
 
 [data-theme='dark'] {
-  --ifm-color-primary: #60a5fa;
-  --ifm-color-primary-dark: #3b82f6;
-  --ifm-color-primary-darker: #2563eb;
-  --ifm-color-primary-darkest: #1d4ed8;
-  --ifm-color-primary-light: #93c5fd;
-  --ifm-color-primary-lighter: #bfdbfe;
-  --ifm-color-primary-lightest: #dbeafe;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
-  --ifm-background-color: #0f172a;
-  --ifm-background-surface-color: #1e293b;
-  --site-color-subtle-bg: #1e293b;
-  --site-color-border: #334155;
+  --ifm-color-primary: #87ff00;
+  --ifm-color-primary-dark: #9fff33;
+  --ifm-color-primary-darker: #b3ff66;
+  --ifm-color-primary-darkest: #c7ff99;
+  --ifm-color-primary-light: #6bcc00;
+  --ifm-color-primary-lighter: #5ab300;
+  --ifm-color-primary-lightest: #4d9900;
+  --docusaurus-highlighted-code-line-bg: rgba(135, 255, 0, 0.08);
+  --ifm-background-color: #0f1c00;
+  --ifm-background-surface-color: #1a2e00;
+  --site-color-subtle-bg: #1a2e00;
+  --site-color-border: #2d4d00;
 }
 
 /* Navbar — frosted glass */
@@ -46,7 +46,7 @@
 }
 
 [data-theme='dark'] .navbar {
-  background: rgba(15, 23, 42, 0.85);
+  background: rgba(15, 28, 0, 0.9);
 }
 
 .navbar__title {
