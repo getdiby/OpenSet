@@ -39,7 +39,7 @@ Each exercise in the `exercises` array is an object with the following fields:
 | Field | Values | Description |
 |-------|--------|-------------|
 | `body_part` | `upper_body`, `lower_body`, `core`, `full_body`, `cardio` | Primary body region |
-| `body_parts` | `string[]` | Optional finer taxonomy (e.g. chest, triceps); secondary to `body_part` for apps that need muscle-group or region detail |
+| `body_parts` | `string[]` | Optional finer taxonomy; use the [recommended vocabulary](#recommended-body-part-vocabulary) below for consistency. Secondary to `body_part` for apps that need muscle-group or region detail. |
 | `category` | `push`, `pull`, `hinge`, `squat`, `carry`, `rotation`, `gait` | Movement pattern |
 | `mechanic` | `compound`, `isolation` | Joint involvement |
 | `laterality` | `bilateral`, `unilateral`, `alternating` | Side symmetry |
@@ -84,6 +84,26 @@ The optional `media` field provides instructional content:
   }
 }
 ```
+
+### Recommended body part vocabulary
+
+For `body_parts`, the following snake_case values are recommended so libraries and apps can filter and categorize consistently:
+
+| Term | Description |
+|------|-------------|
+| `chest` | Pectorals, chest |
+| `back` | Lats, rhomboids, traps, spinal erectors |
+| `shoulders` | Deltoids |
+| `biceps` | Biceps brachii |
+| `triceps` | Triceps brachii |
+| `core` | Abs, obliques, transverse abdominis |
+| `glutes` | Gluteals |
+| `quads` | Quadriceps |
+| `hamstrings` | Hamstrings |
+| `calves` | Gastrocnemius, soleus |
+| `full_body` | Whole body / general |
+
+These are optional; libraries may use other values. Keeping to this vocabulary improves interoperability.
 
 ### Common Dimensions
 

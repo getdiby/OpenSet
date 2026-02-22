@@ -30,11 +30,21 @@
           "items": { "type": "string" },
           "description": "Declared extension namespaces used in this document"
         },
+        "tags": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Optional tags for filtering and discovery"
+        },
         "blocks": {
           "type": "array",
           "items": { "$ref": "#/$defs/Block" },
           "minItems": 1
         }
+      },
+      "patternProperties": {
+        "^x_": {},
+        "^app_": {},
+        "^[a-z]+_[a-z]+_": {}
       },
       "additionalProperties": false
     },
@@ -62,6 +72,11 @@
         },
         "created_at": { "type": "string", "format": "date-time" },
         "author": { "type": "string" }
+      },
+      "patternProperties": {
+        "^x_": {},
+        "^app_": {},
+        "^[a-z]+_[a-z]+_": {}
       },
       "additionalProperties": false
     },
@@ -96,11 +111,21 @@
         "library": { "$ref": "#/$defs/LibraryRef" },
         "level": { "type": "string", "enum": ["beginner", "intermediate", "advanced", "elite"] },
         "estimated_duration_min": { "type": "integer", "minimum": 1 },
+        "tags": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Optional tags for filtering and discovery"
+        },
         "blocks": {
           "type": "array",
           "items": { "$ref": "#/$defs/Block" },
           "minItems": 1
         }
+      },
+      "patternProperties": {
+        "^x_": {},
+        "^app_": {},
+        "^[a-z]+_[a-z]+_": {}
       },
       "additionalProperties": false
     },

@@ -68,6 +68,7 @@ The minimum valid standalone document. Represents a single training workout.
 | `sports` | No | Target sports (freeform; common values include strength, running, cycling, swimming, fitness, yoga) |
 | `level` | No | Difficulty: `beginner`, `intermediate`, `advanced`, `elite` |
 | `estimated_duration_min` | No | Estimated duration in minutes |
+| `tags` | No | Optional tags for filtering and discovery |
 | `blocks` | Yes | Array of Block objects |
 
 ### Block

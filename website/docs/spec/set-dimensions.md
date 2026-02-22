@@ -136,6 +136,10 @@ Some dimensions are mutually exclusive within a single set:
 
 The validator will emit **E012** if conflicting dimensions are found on the same set.
 
+## Hold (isometric) exercises
+
+Exercises where the athlete holds a position for time (e.g. plank, wall sit, hollow hold) are prescribed using the **duration** dimension. There is no separate "hold" dimension — use `dimensions: ["duration"]` and set `duration` to the hold time (e.g. 30s, 60s).
+
 ## To failure
 
 To prescribe **"to failure"**, use `reps` with type `amrap` or `rpe` with type `max` as appropriate.

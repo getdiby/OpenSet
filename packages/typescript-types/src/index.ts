@@ -156,8 +156,12 @@ export interface Workout {
   sports?: string[];
   note?: string;
   library?: LibraryRef;
+  level?: 'beginner' | 'intermediate' | 'advanced' | 'elite';
+  estimated_duration_min?: number;
   /** Declared extension namespaces used in this document */
   x_extensions?: string[];
+  /** Optional tags for filtering and discovery */
+  tags?: string[];
   blocks: Block[];
 }
 
