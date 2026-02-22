@@ -123,7 +123,7 @@ openset/
 
 ## Contributing
 
-See [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines on adding exercises, proposing new dimensions, and contributing to the spec.
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines on adding exercises, proposing new dimensions, and contributing to the spec. A list of contributors is in [CONTRIBUTORS.md](./CONTRIBUTORS.md).
 
 ## License
 

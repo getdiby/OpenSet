@@ -102,6 +102,7 @@ const config: Config = {
         {
           title: 'Community',
           items: [
+            {label: 'Contributors', to: '/docs/contributors'},
             {label: 'GitHub', href: 'https://github.com/getdiby/openset'},
             {label: 'npm', href: 'https://www.npmjs.com/org/openset'},
           ],
