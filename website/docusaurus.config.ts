@@ -67,6 +67,12 @@ const config: Config = {
           label: 'Tools',
         },
         {
+          type: 'docSidebar',
+          sidebarId: 'faqSidebar',
+          position: 'left',
+          label: 'FAQ',
+        },
+        {
           href: 'https://github.com/getdiby/openset',
           label: 'GitHub',
           position: 'right',
@@ -81,6 +87,7 @@ const config: Config = {
           items: [
             {label: 'Overview', to: '/docs/spec/overview'},
             {label: 'Dimensions', to: '/docs/spec/set-dimensions'},
+            {label: 'FAQ', to: '/docs/faq'},
           ],
         },
         {

@@ -1,13 +1,15 @@
 :root {
-  --ifm-color-primary: #87ff00;
-  --ifm-color-primary-dark: #6bcc00;
-  --ifm-color-primary-darker: #5ab300;
-  --ifm-color-primary-darkest: #4d9900;
-  --ifm-color-primary-light: #9fff33;
-  --ifm-color-primary-lighter: #b3ff66;
-  --ifm-color-primary-lightest: #c7ff99;
+  --ifm-color-primary: #111;
+  --ifm-color-primary-dark: #000;
+  --ifm-color-primary-darker: #000;
+  --ifm-color-primary-darkest: #000;
+  --ifm-color-primary-light: #333;
+  --ifm-color-primary-lighter: #555;
+  --ifm-color-primary-lightest: #777;
+  --ifm-link-color: #111;
+  --ifm-link-hover-color: #333;
   --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(15, 28, 0, 0.15);
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.06);
 
   --ifm-font-family-base: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --ifm-heading-font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
@@ -17,25 +19,27 @@
   --ifm-global-shadow-lw: 0 1px 3px 0 rgba(0, 0, 0, 0.08), 0 1px 2px -1px rgba(0, 0, 0, 0.08);
   --ifm-global-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
   --ifm-global-shadow-tl: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
-  --site-color-subtle-bg: #f0f5e6;
-  --site-color-border: #d4e8b0;
-  --site-nav-active-color: #0f1c00;
+  --site-color-subtle-bg: #f5f5f5;
+  --site-color-border: #e0e0e0;
+  --site-nav-active-color: #111;
 }
 
 [data-theme='dark'] {
-  --ifm-color-primary: #87ff00;
-  --ifm-color-primary-dark: #9fff33;
-  --ifm-color-primary-darker: #b3ff66;
-  --ifm-color-primary-darkest: #c7ff99;
-  --ifm-color-primary-light: #6bcc00;
-  --ifm-color-primary-lighter: #5ab300;
-  --ifm-color-primary-lightest: #4d9900;
-  --docusaurus-highlighted-code-line-bg: rgba(135, 255, 0, 0.08);
-  --ifm-background-color: #0f1c00;
-  --ifm-background-surface-color: #1a2e00;
-  --site-color-subtle-bg: #1a2e00;
-  --site-color-border: #2d4d00;
-  --site-nav-active-color: #87ff00;
+  --ifm-color-primary: #fff;
+  --ifm-color-primary-dark: #e0e0e0;
+  --ifm-color-primary-darker: #c0c0c0;
+  --ifm-color-primary-darkest: #a0a0a0;
+  --ifm-color-primary-light: #fff;
+  --ifm-color-primary-lighter: #fff;
+  --ifm-color-primary-lightest: #fff;
+  --ifm-link-color: #b0d0ff;
+  --ifm-link-hover-color: #fff;
+  --docusaurus-highlighted-code-line-bg: rgba(255, 255, 255, 0.06);
+  --ifm-background-color: #1a1a1a;
+  --ifm-background-surface-color: #242424;
+  --site-color-subtle-bg: #242424;
+  --site-color-border: #333;
+  --site-nav-active-color: #fff;
 }
 
 /* Navbar — frosted glass */
@@ -61,19 +65,27 @@
   font-weight: 500;
 }
 
-/* Light mode: active nav/sidebar links use dark green for contrast on white */
+/* Active nav/sidebar links and underline use neutral (dark in light mode, white in dark) */
 .navbar__link--active,
 .menu__link--active {
   color: var(--site-nav-active-color) !important;
   font-weight: 600;
 }
 
-[data-theme='dark'] .navbar__link--active,
-[data-theme='dark'] .menu__link--active {
-  color: var(--ifm-color-primary) !important;
+.navbar__link--active {
+  border-bottom-color: var(--site-nav-active-color) !important;
 }
 
-/* Light mode: breadcrumb current page (pill) — dark green for contrast */
+[data-theme='dark'] .navbar__link--active,
+[data-theme='dark'] .menu__link--active {
+  color: var(--site-nav-active-color) !important;
+}
+
+[data-theme='dark'] .navbar__link--active {
+  border-bottom-color: var(--site-nav-active-color) !important;
+}
+
+/* Breadcrumb current page uses same active color */
 .breadcrumbs__item--active,
 .breadcrumbs__item:last-child,
 .breadcrumbs__item:last-child .breadcrumbs__link {
@@ -83,13 +95,16 @@
 [data-theme='dark'] .breadcrumbs__item--active,
 [data-theme='dark'] .breadcrumbs__item:last-child,
 [data-theme='dark'] .breadcrumbs__item:last-child .breadcrumbs__link {
-  color: var(--ifm-color-primary) !important;
+  color: var(--site-nav-active-color) !important;
 }
 
-/* Footer */
-.footer {
-  padding-top: 3rem;
-  padding-bottom: 2rem;
+/* Footer — dark background, so links must be light */
+.footer .footer__link-item {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.footer .footer__link-item:hover {
+  color: #fff;
 }
 
 .footer__title {
@@ -98,6 +113,12 @@
   text-transform: uppercase;
   letter-spacing: 0.08em;
   opacity: 0.7;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.footer {
+  padding-top: 3rem;
+  padding-bottom: 2rem;
 }
 
 .footer__link-item {
@@ -132,6 +153,34 @@ pre[class*='language-'] {
 
 .markdown p {
   line-height: 1.75;
+}
+
+/* Doc content links, edit page, pagination — use theme primary (neutral) */
+.markdown a,
+.theme-doc-markdown a,
+a[href^="/docs/"] {
+  color: var(--ifm-link-color);
+}
+
+.markdown a:hover,
+.theme-doc-markdown a:hover {
+  color: var(--ifm-link-hover-color);
+}
+
+.pagination-nav__link,
+.theme-edit-this-page,
+.table-of-contents__link {
+  color: var(--ifm-color-primary) !important;
+}
+
+.pagination-nav__link:hover,
+.table-of-contents__link:hover {
+  color: var(--ifm-link-hover-color) !important;
+}
+
+.pagination-nav__link--next .pagination-nav__label::after,
+.pagination-nav__link--prev .pagination-nav__label::before {
+  border-color: var(--ifm-color-primary);
 }
 
 /* Smooth transitions */

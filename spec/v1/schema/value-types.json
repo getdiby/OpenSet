@@ -39,7 +39,7 @@
     "time": ["s", "min", "hr"],
     "speed": ["km/h", "mph", "min/km", "min/mi"],
     "velocity": ["m/s"],
-    "power": ["W"],
+    "power": ["W", "%FTP"],
     "height": ["cm", "in"],
     "heart_rate": ["bpm"],
     "unitless": null

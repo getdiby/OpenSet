@@ -50,6 +50,18 @@ OpenSet models **what should be done, how it should feel, and under what constra
 }
 ```
 
+## Interoperability and related formats
+
+OpenSet can represent the same prescription intent as other workout and prescription formats. Conversion to and from these formats is out of scope of the core spec but is encouraged for implementers and tools (e.g. in the [tools/convert](/docs/tools/conversion) area).
+
+| Format | Domain | Notes |
+|--------|--------|------|
+| **Zwift (ZWO)** | Indoor cycling/running | XML; segment types (Warmup, SteadyState, IntervalsT, Ramp, etc.) map to OpenSet blocks/series/sets and execution modes. Power as %FTP or fixed W. |
+| **ERG / MRC** | Cycling trainers | Text-based time + power (Watts or %FTP). Intervals map to OpenSet sets with `duration`, `power`, `rest_after`. |
+| **FHIR Physical Activity IG** | Healthcare | CarePlan, ServiceRequest, Goal for high-level prescriptions (e.g. minutes/week). OpenSet can describe the detailed workout structure referenced by or embedded in FHIR workflows. |
+| **Structured Workout Format (SWF)** | Cross-platform JSON | Sections, intervals, repeats with volume and intensity. OpenSet covers the same ideas with blocks, series, sets, and dimensions; conversion is straightforward. |
+| **TCX / FIT** | Garmin, devices | Primarily recording/targets; OpenSet is prescription-first. Export from OpenSet to FIT/TCX for device use is a tooling concern. |
+
 ## Versioning
 
 - `MAJOR.MINOR` semantic versioning

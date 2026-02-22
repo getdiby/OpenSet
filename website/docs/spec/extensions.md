@@ -67,6 +67,33 @@ Example:
 
 Use `x_extensions` to declare `"x_status"` when the document uses it. Other document-level extensions (e.g. `app_workout_id`, `com_myapp_approved_at`) follow the same pattern.
 
+### In-workout cues (`x_cue`)
+
+Apps or devices that show messages during execution (e.g. trainers, watches, coaching apps) can use the **`x_cue`** extension at **set** or **series** level. A cue defines when to display a message relative to the start of that set or series.
+
+- **`x_cue`**: Optional array of cue objects. Each cue has:
+  - **`time_offset_s`** (number): Seconds from the start of the set/series when the message should be shown.
+  - **`message`** (string): Text to display (e.g. "Relax shoulders", "Last rep").
+  - **`distance_offset_m`** (number, optional): For distance-based sets, meters from the start when the message should be shown. Use either `time_offset_s` or `distance_offset_m` per cue.
+
+Consumers may show the message at the given offset during playback. If both time and distance are present, they can use the first that applies for the current sport/device.
+
+Example (set with a cue 30 seconds in):
+
+```json
+{
+  "dimensions": ["duration", "power"],
+  "duration": { "type": "fixed", "value": 300, "unit": "s" },
+  "power": { "type": "fixed", "value": 0.65, "unit": "%FTP" },
+  "x_cue": [
+    { "time_offset_s": 30, "message": "Settle into the effort" },
+    { "time_offset_s": 240, "message": "Last minute — hold form" }
+  ]
+}
+```
+
+Declare `"x_cue"` in `x_extensions` when the document uses it. This extension is optional; if adopters use it widely, it may be promoted to first-class in a future minor version.
+
 ## Validation Behavior
 
 - Unknown fields **with** a valid namespace prefix: warning **W009** + structural check **E015** (must be a ValueObject)

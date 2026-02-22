@@ -53,6 +53,7 @@
       "allowedTypes": ["fixed", "range"]
     },
     "power": {
+      "description": "Absolute watts (W) or relative to athlete FTP (%FTP). Use %FTP for portable cycling/ERG workouts.",
       "unit": "W",
       "allowedTypes": ["fixed", "range"]
     },

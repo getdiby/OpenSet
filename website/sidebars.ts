@@ -37,6 +37,7 @@ const sidebars: SidebarsConfig = {
     'tools/codegen',
     'tools/conversion',
   ],
+  faqSidebar: ['faq'],
 };
 
 export default sidebars;

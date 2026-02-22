@@ -48,7 +48,7 @@ There are 21 known dimension names. By category: **count** (reps, sides, rounds)
 | `incline` | fixed, range | % |
 | `pace` | fixed, range | min/km, min/mi |
 | `speed` | fixed, range | km/h, mph |
-| `power` | fixed, range | W |
+| `power` | fixed, range | W, %FTP |
 | `heart_rate` | fixed, range, max | bpm |
 | `heart_rate_zone` | fixed, range | (zone number) |
 | `rpe` | fixed, range, max | (scale) |
@@ -56,6 +56,8 @@ There are 21 known dimension names. By category: **count** (reps, sides, rounds)
 | `calories` | fixed, min, amrap | kcal |
 | `cadence` | fixed, range | rpm, spm |
 | `resistance` | fixed, range | level, % |
+
+**Power:** Use `W` for absolute watts or `%FTP` for power relative to the athlete's FTP. `%FTP` makes workouts portable across riders (e.g. shared cycling/ERG workouts).
 
 ## Examples
 
@@ -98,6 +100,16 @@ Here `reps` and `load` are required (listed in `dimensions`), while `rpe` is opt
   "dimensions": ["duration", "power"],
   "duration": { "type": "fixed", "value": 20, "unit": "min" },
   "power": { "type": "range", "min": 200, "max": 220, "unit": "W" }
+}
+```
+
+Portable cycling workout using %FTP (same file works for any rider):
+
+```json
+{
+  "dimensions": ["duration", "power"],
+  "duration": { "type": "fixed", "value": 5, "unit": "min" },
+  "power": { "type": "fixed", "value": 0.65, "unit": "%FTP" }
 }
 ```
 

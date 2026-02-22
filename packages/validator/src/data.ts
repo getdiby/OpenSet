@@ -64,4 +64,5 @@ export function isValueObjectShape(val: unknown): boolean {
 }
 
 // Non-dimension fields on a set object that are always valid
-export const SET_NON_DIMENSION_FIELDS = new Set(['dimensions', 'note']);
+// x_cue: optional in-workout cues (array of { time_offset_s, message, distance_offset_m? }) — see spec extensions
+export const SET_NON_DIMENSION_FIELDS = new Set(['dimensions', 'note', 'x_cue']);
