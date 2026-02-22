@@ -22,8 +22,8 @@ Order of series within a block, exercises within a series, and sets within an ex
 
 A valid OpenSet document is one of:
 
-1. **Standalone Workout** — A single training workout with `type: "workout"`
-2. **Program** — A multi-phase training plan with `type: "program"` containing phases and workouts
+1. **Workout document** — A single training workout with `type: "workout"` (schema: `WorkoutDocument`)
+2. **Program document** — A multi-phase training plan with `type: "program"` containing phases and workouts (schema: `ProgramDocument`)
 3. **Exercise Library** — A collection of exercise definitions with `type: "exercise_library"`
 4. **Workout Library** — A collection of reusable workout templates with `type: "workout_library"`
 

@@ -5,18 +5,16 @@
   "description": "An open, sport-agnostic standard for representing structured training workouts and programs as machine-readable data.",
 
   "oneOf": [
-    { "$ref": "#/$defs/StandaloneWorkout" },
+    { "$ref": "#/$defs/WorkoutDocument" },
     { "$ref": "#/$defs/ProgramDocument" }
   ],
 
   "$defs": {
 
-    "StandaloneWorkout": {
+    "Workout": {
       "type": "object",
-      "required": ["openset_version", "type", "blocks"],
+      "required": ["blocks"],
       "properties": {
-        "openset_version": { "type": "string", "pattern": "^1\\.[0-9]+$" },
-        "type": { "type": "string", "const": "workout" },
         "id": { "type": "string" },
         "name": { "type": "string" },
         "date": { "type": "string", "format": "date" },
@@ -25,11 +23,6 @@
         "library": { "$ref": "#/$defs/LibraryRef" },
         "level": { "type": "string", "enum": ["beginner", "intermediate", "advanced", "elite"] },
         "estimated_duration_min": { "type": "integer", "minimum": 1 },
-        "x_extensions": {
-          "type": "array",
-          "items": { "type": "string" },
-          "description": "Declared extension namespaces used in this document"
-        },
         "tags": {
           "type": "array",
           "items": { "type": "string" },
@@ -47,6 +40,25 @@
         "^[a-z]+_[a-z]+_": {}
       },
       "additionalProperties": false
+    },
+
+    "WorkoutDocument": {
+      "allOf": [
+        { "$ref": "#/$defs/Workout" },
+        {
+          "type": "object",
+          "required": ["openset_version", "type", "blocks"],
+          "properties": {
+            "openset_version": { "type": "string", "pattern": "^1\\.[0-9]+$" },
+            "type": { "type": "string", "const": "workout" },
+            "x_extensions": {
+              "type": "array",
+              "items": { "type": "string" },
+              "description": "Declared extension namespaces used in this document"
+            }
+          }
+        }
+      ]
     },
 
     "ProgramDocument": {
@@ -95,37 +107,6 @@
           "items": { "$ref": "#/$defs/Workout" },
           "minItems": 1
         }
-      },
-      "additionalProperties": false
-    },
-
-    "Workout": {
-      "type": "object",
-      "required": ["blocks"],
-      "properties": {
-        "id": { "type": "string" },
-        "name": { "type": "string" },
-        "date": { "type": "string", "format": "date" },
-        "sports": { "type": "array", "items": { "type": "string" } },
-        "note": { "type": "string" },
-        "library": { "$ref": "#/$defs/LibraryRef" },
-        "level": { "type": "string", "enum": ["beginner", "intermediate", "advanced", "elite"] },
-        "estimated_duration_min": { "type": "integer", "minimum": 1 },
-        "tags": {
-          "type": "array",
-          "items": { "type": "string" },
-          "description": "Optional tags for filtering and discovery"
-        },
-        "blocks": {
-          "type": "array",
-          "items": { "$ref": "#/$defs/Block" },
-          "minItems": 1
-        }
-      },
-      "patternProperties": {
-        "^x_": {},
-        "^app_": {},
-        "^[a-z]+_[a-z]+_": {}
       },
       "additionalProperties": false
     },

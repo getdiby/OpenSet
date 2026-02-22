@@ -20,6 +20,18 @@ PROGRAM
 
 A valid OpenSet document is either a standalone **workout**, a **program** containing phases and workouts, or a **workout_library** containing reusable workout definitions.
 
+## Schema type naming
+
+In `openset.schema.json`:
+
+| Type | Role |
+|------|------|
+| **Workout** | Workout payload (blocks, name, tags, etc.). Used as the shape of workouts inside a program (`Phase.workouts[]`) and as the base for the workout root document. |
+| **WorkoutDocument** | Root document: a single workout file. Composes `Workout` with `openset_version`, `type: "workout"`, and `x_extensions`. |
+| **ProgramDocument** | Root document: a program file. Contains `phases`, each with an array of `Workout`. |
+
+Root documents are the two top-level shapes (`WorkoutDocument` \| `ProgramDocument`). The shared workout content is defined once as `Workout`.
+
 ## Execution Modes
 
 Series-level field that defines how exercises flow:
