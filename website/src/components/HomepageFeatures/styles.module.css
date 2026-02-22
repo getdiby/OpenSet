@@ -27,6 +27,11 @@
   line-height: 1;
 }
 
+.featureIconSvg {
+  color: currentColor;
+  vertical-align: middle;
+}
+
 .featureTitle {
   font-size: 1.2rem;
   font-weight: 700;

@@ -73,8 +73,7 @@ const config: Config = {
           label: 'FAQ',
         },
         {
-          href: 'https://github.com/getdiby/openset',
-          label: 'GitHub',
+          type: 'custom-githubIcon',
           position: 'right',
         },
       ],
@@ -114,7 +113,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright \u00a9 ${new Date().getFullYear()} OpenSet Contributors. Released under the MIT License.<br/>Built by <a href="https://getdiby.com" target="_blank" rel="noopener noreferrer" style="color: #60a5fa; font-weight: 500;">Diby</a>`,
+      copyright: `Copyright \u00a9 ${new Date().getFullYear()} OpenSet Contributors. Released under the MIT License.<br/><a href="https://getdiby.com" target="_blank" rel="noopener noreferrer" class="footer__diby-logo" aria-label="Built by Diby"><img src="/img/diby-logo.png" alt="Diby" loading="lazy" /></a>`,
     },
     prism: {
       theme: prismThemes.github,

@@ -80,9 +80,10 @@
   gap: 1rem;
 }
 
+/* Always black text on green for contrast in both themes (Link inherits theme link color otherwise) */
 .heroPrimary {
   background: #87ff00;
-  color: #0f1c00;
+  color: #0f1c00 !important;
   border: none;
   font-weight: 600;
   padding: 0.75rem 2rem;
@@ -96,28 +97,41 @@
 .heroPrimary:hover {
   transform: translateY(-1px);
   box-shadow: 0 10px 15px -3px rgba(135, 255, 0, 0.35);
-  color: #0f1c00;
+  color: #0f1c00 !important;
   background: #9fff33;
   text-decoration: none;
 }
 
 .heroSecondary {
-  background: transparent;
-  color: #87ff00;
-  border: 1.5px solid rgba(135, 255, 0, 0.5);
+  background: #87ff00;
+  color: #0f1c00 !important;
+  border: 1.5px solid transparent;
   font-weight: 600;
   padding: 0.75rem 2rem;
   border-radius: 0.5rem;
   font-size: 1rem;
   cursor: pointer;
   transition: all 0.15s ease;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
 }
 
 .heroSecondary:hover {
-  background: rgba(135, 255, 0, 0.12);
-  border-color: #87ff00;
-  color: #87ff00;
+  background: #9fff33;
+  color: #0f1c00 !important;
+  border-color: transparent;
+  box-shadow: 0 10px 15px -3px rgba(135, 255, 0, 0.35);
   text-decoration: none;
+}
+
+/* Ensure dark theme doesn’t override hero button text with link color */
+[data-theme='dark'] .heroPrimary,
+[data-theme='dark'] .heroSecondary {
+  color: #0f1c00 !important;
+}
+
+[data-theme='dark'] .heroPrimary:hover,
+[data-theme='dark'] .heroSecondary:hover {
+  color: #0f1c00 !important;
 }
 
 .codeExample {

@@ -65,6 +65,35 @@
   font-weight: 500;
 }
 
+/* Align right-side navbar items (e.g. GitHub icon + color mode toggle) */
+.navbar__items--right {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.navbar__items--right .navbar__item {
+  display: flex;
+  align-items: center;
+}
+
+/* Match Docusaurus ColorModeToggle size (2rem × 2rem) so icons align */
+.navbar__link--icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  line-height: 0;
+  border-radius: 50%;
+  transition: background var(--ifm-transition-fast);
+}
+
+.navbar__link--icon:hover {
+  background: var(--ifm-color-emphasis-200);
+}
+
 /* Active nav/sidebar links and underline use neutral (dark in light mode, white in dark) */
 .navbar__link--active,
 .menu__link--active {
@@ -181,6 +210,19 @@ a[href^="/docs/"] {
 .pagination-nav__link--next .pagination-nav__label::after,
 .pagination-nav__link--prev .pagination-nav__label::before {
   border-color: var(--ifm-color-primary);
+}
+
+/* Footer Diby logo */
+.footer__diby-logo {
+  display: inline-block;
+  margin-top: 0.5rem;
+}
+
+.footer__diby-logo img {
+  height: 28px;
+  width: auto;
+  display: block;
+  vertical-align: middle;
 }
 
 /* Smooth transitions */
