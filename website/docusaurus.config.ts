@@ -7,6 +7,13 @@ const config: Config = {
   tagline: 'An open, sport-agnostic JSON standard for structured training',
   favicon: 'img/favicon.ico',
 
+  headTags: [
+    { tagName: 'link', attributes: { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/img/favicon-32x32.png' } },
+    { tagName: 'link', attributes: { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/img/favicon-16x16.png' } },
+    { tagName: 'link', attributes: { rel: 'apple-touch-icon', href: '/img/apple-touch-icon.png' } },
+    { tagName: 'link', attributes: { rel: 'manifest', href: '/img/site.webmanifest' } },
+  ],
+
   future: {
     v4: true,
   },
