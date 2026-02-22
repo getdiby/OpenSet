@@ -1,6 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "npm --prefix website run build",
-  "outputDirectory": "website/build",
+  "buildCommand": "if [ -f website/package.json ]; then npm --prefix website run build && rm -rf build && cp -R website/build build; else npm run build; fi",
+  "outputDirectory": "build",
   "installCommand": "npm ci"
 }
