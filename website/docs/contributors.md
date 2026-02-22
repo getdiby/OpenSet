@@ -12,3 +12,5 @@ Thank you to everyone who has contributed to OpenSet.
 - **Mario Vidović**
 
 To contribute, see [Contributing to OpenSet](https://github.com/getdiby/openset/blob/main/CONTRIBUTING.md) on GitHub.
+
+For general questions, contact `hello@openset.dev`.

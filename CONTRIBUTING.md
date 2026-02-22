@@ -79,3 +79,9 @@ Open an issue with:
 ## Code of Conduct
 
 Be respectful and constructive. We follow a standard contributor code of conduct.
+
+## Questions and Support
+
+For general contributor questions, email `hello@openset.dev`.
+
+For security issues, do not open a public issue. See `SECURITY.md` and report privately to `security@openset.dev`.

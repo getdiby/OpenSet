@@ -125,6 +125,12 @@ openset/
 
 See [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines on adding exercises, proposing new dimensions, and contributing to the spec. A list of contributors is in [CONTRIBUTORS.md](./CONTRIBUTORS.md).
 
+## Contact
+
+For general questions, partnerships, or community inquiries, email `hello@openset.dev`.
+
+For security vulnerabilities, see [SECURITY.md](./SECURITY.md) and use `security@openset.dev`.
+
 ## License
 
 [MIT](./LICENSE)
