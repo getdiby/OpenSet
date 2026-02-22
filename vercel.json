@@ -1,0 +1,5 @@
+{
+  "buildCommand": "pnpm install && pnpm --filter @openset/website build",
+  "outputDirectory": "website/build",
+  "installCommand": "pnpm install"
+}
