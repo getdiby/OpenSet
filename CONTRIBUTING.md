@@ -7,12 +7,12 @@ Thank you for considering contributing to OpenSet. This guide covers how to set 
 ```bash
 git clone https://github.com/getdiby/openset.git
 cd openset
-pnpm install
-pnpm build
-pnpm test
+npm install
+npm run build
+npm test
 ```
 
-**Requirements:** Node.js >= 20, pnpm >= 9
+**Requirements:** Node.js >= 20
 
 ## Project Structure
 
@@ -27,10 +27,10 @@ pnpm test
 
 ```bash
 # Run all tests
-pnpm test
+npm test
 
 # Run validator tests in watch mode
-pnpm --filter @openset/validator test:watch
+npm run test:watch -w @openset/validator
 
 # Validate example files
 node packages/validator/dist/cli.js validate examples/*.json --summary
@@ -45,7 +45,7 @@ node packages/validator/dist/cli.js validate examples/*.json --summary
    - At least one valid `common_dimensions` entry (e.g., `[["reps", "load"]]`)
    - As many optional fields as applicable (`body_part`, `category`, `mechanic`, `laterality`, `level`, `equipment`, `target_muscles`, etc.)
 3. Update the exercise map in `packages/validator/src/index.ts`
-4. Run tests to verify: `pnpm test`
+4. Run tests to verify: `npm test`
 5. Open a PR
 
 **Bar for inclusion:** The exercise must appear across multiple sports or coaching contexts. Sport-specific or equipment-specific variants belong in application-level extensions.
@@ -72,7 +72,7 @@ Open an issue with:
 
 - One logical change per PR
 - Include tests for any new validation rules
-- Ensure `pnpm test` passes
+- Ensure `npm test` passes
 - Update relevant documentation
 - Follow existing code style (2-space indentation, no trailing whitespace)
 

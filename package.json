@@ -2,15 +2,16 @@
   "name": "openset",
   "private": true,
   "description": "An open, sport-agnostic standard for representing structured training workouts as machine-readable data",
+  "workspaces": [
+    "packages/*",
+    "website"
+  ],
   "scripts": {
-    "build": "pnpm -r build",
-    "test": "pnpm -r test",
-    "lint": "pnpm -r lint"
+    "build": "npm run build --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present"
   },
   "engines": {
     "node": ">=20"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": ["esbuild"]
   }
 }

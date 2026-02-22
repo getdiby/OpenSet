@@ -1,5 +1,5 @@
 {
-  "buildCommand": "pnpm install && pnpm --filter @openset/website build",
+  "buildCommand": "npm ci && npm run build -w @openset/website",
   "outputDirectory": "website/build",
-  "installCommand": "pnpm install"
+  "installCommand": "npm ci"
 }

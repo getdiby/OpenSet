@@ -30,7 +30,7 @@
     "lint": "tsc --noEmit"
   },
   "dependencies": {
-    "@openset/types": "workspace:*"
+    "@openset/types": "*"
   },
   "peerDependencies": {
     "@openset/validator": "^1.0.0"
@@ -41,7 +41,7 @@
     }
   },
   "devDependencies": {
-    "@openset/validator": "workspace:*",
+    "@openset/validator": "*",
     "tsup": "^8.0.0",
     "typescript": "^5.4.0",
     "vitest": "^3.0.0"
