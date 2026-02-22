@@ -56,7 +56,7 @@ Top-level container for a multi-workout training plan.
 | `name` | Yes | Program name |
 | `description` | No | Program description |
 | `sports` | No | Target sports (freeform; common values include strength, running, cycling, swimming, fitness, yoga) |
-| `duration_weeks` | No | Total duration in weeks |
+| `duration` | No | Program duration object with numeric `value` and `unit` from `s|min|h|day|week` |
 | `phases` | Yes | Array of Phase objects |
 | `metadata` | No | Document metadata (see [Metadata](#metadata)) |
 
@@ -84,7 +84,7 @@ The minimum valid standalone document. Represents a single training workout.
 | `date` | No | ISO 8601 date |
 | `sports` | No | Target sports (freeform; common values include strength, running, cycling, swimming, fitness, yoga) |
 | `level` | No | Difficulty: `beginner`, `intermediate`, `advanced`, `elite` |
-| `estimated_duration_min` | No | Estimated duration in minutes |
+| `duration` | No | Estimated workout duration object with numeric `value` and `unit` from `s|min|h|day|week` |
 | `tags` | No | Optional tags for filtering and discovery |
 | `metadata` | No | Document metadata (see [Metadata](#metadata)) |
 | `blocks` | Yes | Array of Block objects |

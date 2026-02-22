@@ -156,6 +156,7 @@ describe('WorkoutBuilder', () => {
       .id('sess-1')
       .date('2024-01-15')
       .sports('strength')
+      .duration(45, 'min')
       .note('First week')
       .extensions(['x_band'])
       .block('Main', b => b
@@ -171,6 +172,7 @@ describe('WorkoutBuilder', () => {
     expect(doc.id).toBe('sess-1');
     expect(doc.date).toBe('2024-01-15');
     expect(doc.sports).toEqual(['strength']);
+    expect((doc as unknown as Record<string, unknown>).duration).toEqual({ value: 45, unit: 'min' });
     expect(doc.note).toBe('First week');
     expect(doc.x_extensions).toEqual(['x_band']);
   });
@@ -232,7 +234,7 @@ describe('ProgramBuilder', () => {
       .id('prog-1')
       .description('A test program')
       .sports('strength')
-      .durationWeeks(4)
+      .duration(28, 'day')
       .author('Coach')
       .createdAt('2024-01-01')
       .extensions(['x_custom'])
@@ -252,7 +254,7 @@ describe('ProgramBuilder', () => {
     expect(doc.id).toBe('prog-1');
     expect(doc.description).toBe('A test program');
     expect(doc.sports).toEqual(['strength']);
-    expect(doc.duration_weeks).toBe(4);
+    expect((doc as unknown as Record<string, unknown>).duration).toEqual({ value: 28, unit: 'day' });
     expect(doc.metadata?.author).toBe('Coach');
     expect(doc.metadata?.created_at).toBe('2024-01-01');
     expect(doc.x_extensions).toEqual(['x_custom']);
@@ -274,7 +276,7 @@ describe('ProgramBuilder', () => {
       )
       .build();
 
-    const innerWorkout = doc.phases[0].workouts[0] as Record<string, unknown>;
+    const innerWorkout = doc.phases[0].workouts[0] as unknown as Record<string, unknown>;
     expect(innerWorkout.openset_version).toBeUndefined();
     expect(innerWorkout.type).toBeUndefined();
     expect(innerWorkout.name).toBe('S1');

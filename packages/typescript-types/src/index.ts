@@ -4,6 +4,21 @@
 
 export type ValueType = 'fixed' | 'range' | 'min' | 'amrap' | 'max' | 'any';
 
+export type LoadUnit = 'kg' | 'lb' | '%1RM' | '%BW';
+export type TimeUnit = 's' | 'min' | 'h';
+export type DistanceUnit = 'm' | 'km' | 'mi' | 'ft' | 'yd';
+export type HeightUnit = 'cm' | 'in';
+export type InclineUnit = '%';
+export type PaceUnit = 'min/km' | 'min/mi';
+export type SpeedUnit = 'km/h' | 'mph';
+export type PowerUnit = 'W' | '%FTP';
+export type HeartRateUnit = 'bpm';
+export type VelocityUnit = 'm/s';
+export type CaloriesUnit = 'kcal';
+export type CadenceUnit = 'rpm' | 'spm';
+export type ResistanceUnit = 'level' | '%';
+export type DurationUnit = 's' | 'min' | 'h' | 'day' | 'week';
+
 export interface FixedValue {
   type: 'fixed';
   value: number;
@@ -34,6 +49,64 @@ export interface MaxValue {
 export interface AnyValue {
   type: 'any';
 }
+
+export interface FixedNoUnitValue {
+  type: 'fixed';
+  value: number;
+}
+
+export interface RangeNoUnitValue {
+  type: 'range';
+  min: number;
+  max: number;
+}
+
+export interface MinNoUnitValue {
+  type: 'min';
+  value: number;
+}
+
+export interface FixedWithUnitValue<U extends string> {
+  type: 'fixed';
+  value: number;
+  unit: U;
+}
+
+export interface RangeWithUnitValue<U extends string> {
+  type: 'range';
+  min: number;
+  max: number;
+  unit: U;
+}
+
+export interface MinWithUnitValue<U extends string> {
+  type: 'min';
+  value: number;
+  unit: U;
+}
+
+export type RepsValueObject = FixedNoUnitValue | RangeNoUnitValue | MinNoUnitValue | AmrapValue;
+export type SidesValueObject = FixedNoUnitValue;
+export type RoundsValueObject = FixedNoUnitValue | AmrapValue;
+export type LoadValueObject = FixedWithUnitValue<LoadUnit> | RangeWithUnitValue<LoadUnit> | MaxValue;
+export type DurationValueObject = FixedWithUnitValue<TimeUnit> | RangeWithUnitValue<TimeUnit> | MinWithUnitValue<TimeUnit>;
+export type DurationPerSideValueObject = FixedWithUnitValue<TimeUnit> | RangeWithUnitValue<TimeUnit>;
+export type RestBetweenSidesValueObject = FixedWithUnitValue<TimeUnit>;
+export type RestAfterValueObject = FixedWithUnitValue<TimeUnit> | RangeWithUnitValue<TimeUnit>;
+export type TempoValueObject = FixedNoUnitValue;
+export type DistanceValueObject = FixedWithUnitValue<DistanceUnit> | RangeWithUnitValue<DistanceUnit> | MinWithUnitValue<DistanceUnit> | AmrapValue;
+export type HeightValueObject = FixedWithUnitValue<HeightUnit> | RangeWithUnitValue<HeightUnit>;
+export type InclineValueObject = FixedWithUnitValue<InclineUnit> | RangeWithUnitValue<InclineUnit>;
+export type PaceValueObject = FixedWithUnitValue<PaceUnit> | RangeWithUnitValue<PaceUnit>;
+export type SpeedValueObject = FixedWithUnitValue<SpeedUnit> | RangeWithUnitValue<SpeedUnit>;
+export type PowerValueObject = FixedWithUnitValue<PowerUnit> | RangeWithUnitValue<PowerUnit>;
+export type HeartRateValueObject = FixedWithUnitValue<HeartRateUnit> | RangeWithUnitValue<HeartRateUnit> | MaxValue;
+export type HeartRateZoneValueObject = FixedNoUnitValue | RangeNoUnitValue;
+export type RpeValueObject = FixedNoUnitValue | RangeNoUnitValue | MaxValue;
+export type VelocityValueObject = FixedWithUnitValue<VelocityUnit> | RangeWithUnitValue<VelocityUnit>;
+export type CaloriesValueObject = FixedWithUnitValue<CaloriesUnit> | MinWithUnitValue<CaloriesUnit> | AmrapValue;
+export type CadenceValueObject = FixedWithUnitValue<CadenceUnit> | RangeWithUnitValue<CadenceUnit>;
+export type ResistanceValueObject = FixedWithUnitValue<ResistanceUnit> | RangeWithUnitValue<ResistanceUnit>;
 
 export type ValueObject =
   | FixedValue
@@ -86,28 +159,28 @@ export type Dimension =
 
 export interface Set {
   dimensions: Dimension[];
-  reps?: ValueObject;
-  sides?: ValueObject;
-  rounds?: ValueObject;
-  load?: ValueObject;
-  duration?: ValueObject;
-  duration_per_side?: ValueObject;
-  rest_between_sides?: ValueObject;
-  rest_after?: ValueObject;
-  tempo?: ValueObject;
-  distance?: ValueObject;
-  height?: ValueObject;
-  incline?: ValueObject;
-  pace?: ValueObject;
-  speed?: ValueObject;
-  power?: ValueObject;
-  heart_rate?: ValueObject;
-  heart_rate_zone?: ValueObject;
-  rpe?: ValueObject;
-  velocity?: ValueObject;
-  calories?: ValueObject;
-  cadence?: ValueObject;
-  resistance?: ValueObject;
+  reps?: RepsValueObject;
+  sides?: SidesValueObject;
+  rounds?: RoundsValueObject;
+  load?: LoadValueObject;
+  duration?: DurationValueObject;
+  duration_per_side?: DurationPerSideValueObject;
+  rest_between_sides?: RestBetweenSidesValueObject;
+  rest_after?: RestAfterValueObject;
+  tempo?: TempoValueObject;
+  distance?: DistanceValueObject;
+  height?: HeightValueObject;
+  incline?: InclineValueObject;
+  pace?: PaceValueObject;
+  speed?: SpeedValueObject;
+  power?: PowerValueObject;
+  heart_rate?: HeartRateValueObject;
+  heart_rate_zone?: HeartRateZoneValueObject;
+  rpe?: RpeValueObject;
+  velocity?: VelocityValueObject;
+  calories?: CaloriesValueObject;
+  cadence?: CadenceValueObject;
+  resistance?: ResistanceValueObject;
   note?: string;
   /** Extension dimensions — any key with x_, app_, or reverse-DNS prefix */
   [key: `x_${string}`]: ValueObject | undefined;
@@ -168,7 +241,7 @@ export interface Workout {
   note?: string;
   library?: LibraryRef;
   level?: 'beginner' | 'intermediate' | 'advanced' | 'elite';
-  estimated_duration_min?: number;
+  duration?: { value: number; unit: DurationUnit };
   /** Declared extension namespaces used in this document */
   x_extensions?: string[];
   /** Optional tags for filtering and discovery */
@@ -198,7 +271,7 @@ export interface Program {
   name: string;
   description?: string;
   sports?: string[];
-  duration_weeks?: number;
+  duration?: { value: number; unit: DurationUnit };
   /** Declared extension namespaces used in this document */
   x_extensions?: string[];
   phases: Phase[];
@@ -391,7 +464,7 @@ export interface WorkoutDefinition {
   description?: string;
   tags?: string[];
   level?: 'beginner' | 'intermediate' | 'advanced' | 'elite';
-  estimated_duration_min?: number;
+  duration?: { value: number; unit: DurationUnit };
   sports?: string[];
   note?: string;
   library?: LibraryRef;

@@ -13,7 +13,7 @@
       "description": "Horizontal and vertical pressing with triceps accessories",
       "tags": ["upper_body", "push", "strength"],
       "level": "intermediate",
-      "estimated_duration_min": 60,
+      "duration": { "value": 60, "unit": "min" },
       "sports": ["strength"],
       "library": { "id": "openset-default", "version": "1.0.0" },
       "media": {
@@ -88,7 +88,7 @@
       "description": "High-intensity interval training on assault bike and rower",
       "tags": ["cardio", "hiit", "conditioning"],
       "level": "intermediate",
-      "estimated_duration_min": 30,
+      "duration": { "value": 30, "unit": "min" },
       "sports": ["crossfit"],
       "blocks": [
         {

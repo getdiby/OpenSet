@@ -1,12 +1,14 @@
 import type { Program as ProgramType, DocumentMetadata } from '@openset/types';
 import { PhaseBuilder } from './phase.js';
 
+type DurationUnit = 's' | 'min' | 'h' | 'day' | 'week';
+
 export class ProgramBuilder {
   private _id?: string;
   private _name: string;
   private _description?: string;
   private _sports?: string[];
-  private _duration_weeks?: number;
+  private _duration?: { value: number; unit: DurationUnit };
   private _metadata?: DocumentMetadata;
   private _x_extensions?: string[];
   private _phases: ReturnType<PhaseBuilder['build']>[] = [];
@@ -33,9 +35,15 @@ export class ProgramBuilder {
     return this;
   }
 
+  /** Set the total duration with an explicit unit */
+  duration(value: number, unit: DurationUnit): this {
+    this._duration = { value, unit };
+    return this;
+  }
+
   /** Set the total duration in weeks */
   durationWeeks(weeks: number): this {
-    this._duration_weeks = weeks;
+    this._duration = { value: weeks, unit: 'week' };
     return this;
   }
 
@@ -73,7 +81,7 @@ export class ProgramBuilder {
 
   /** Build the Program JSON object */
   build(): ProgramType {
-    const result: ProgramType = {
+    const result: Record<string, unknown> = {
       openset_version: '1.0',
       type: 'program',
       name: this._name,
@@ -82,10 +90,10 @@ export class ProgramBuilder {
     if (this._id !== undefined) result.id = this._id;
     if (this._description !== undefined) result.description = this._description;
     if (this._sports !== undefined) result.sports = this._sports;
-    if (this._duration_weeks !== undefined) result.duration_weeks = this._duration_weeks;
+    if (this._duration !== undefined) result.duration = this._duration;
     if (this._metadata !== undefined) result.metadata = this._metadata;
     if (this._x_extensions !== undefined) result.x_extensions = this._x_extensions;
-    return result;
+    return result as unknown as ProgramType;
   }
 
   /** Build and validate the Program using @openset/validator (async, throws on errors) */

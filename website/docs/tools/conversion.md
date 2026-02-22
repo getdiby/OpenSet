@@ -72,7 +72,7 @@ Bench press 5x5 at 100kg, then 3 sets of 10-12 dumbbell rows at RPE 8
 
 ## Online Converter
 
-An online version of the OpenSet converter is available at [getdiby.com](https://getdiby.com). Paste any unstructured workout description and get valid OpenSet JSON back — no setup required.
+An online version of the OpenSet converter is available at [getdiby.com/openset](https://getdiby.com/openset). Paste any unstructured workout description and get valid OpenSet JSON back — no setup required.
 
 ## Customization
 

@@ -112,7 +112,7 @@ const config: Config = {
             {label: 'TypeScript Types', to: '/docs/tools/typescript-types'},
             {label: 'Code Generator', to: '/docs/tools/codegen'},
             {label: 'Conversion Tool', to: '/docs/tools/conversion'},
-            {label: 'Online Converter', href: 'https://getdiby.com'},
+            {label: 'Online Converter', href: 'https://getdiby.com/openset'},
           ],
         },
         {

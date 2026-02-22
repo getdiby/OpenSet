@@ -35,13 +35,16 @@
   "units": {
     "weight": ["kg", "lb"],
     "relative_weight": ["%1RM", "%BW"],
-    "distance": ["m", "km", "mi", "yards"],
-    "time": ["s", "min", "hr"],
+    "distance": ["m", "km", "mi", "ft", "yd"],
+    "time": ["s", "min", "h"],
     "speed": ["km/h", "mph", "min/km", "min/mi"],
     "velocity": ["m/s"],
     "power": ["W", "%FTP"],
     "height": ["cm", "in"],
     "heart_rate": ["bpm"],
+    "resistance": ["level", "%"],
+    "calories": ["kcal"],
+    "metadata_duration": ["s", "min", "h", "day", "week"],
     "unitless": null
   }
 }

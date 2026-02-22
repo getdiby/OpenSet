@@ -1,6 +1,8 @@
 import type { Workout as WorkoutType, LibraryRef, DocumentMetadata } from '@openset/types';
 import { BlockBuilder } from './block.js';
 
+type DurationUnit = 's' | 'min' | 'h' | 'day' | 'week';
+
 export class WorkoutBuilder {
   private _id?: string;
   private _name?: string;
@@ -8,6 +10,7 @@ export class WorkoutBuilder {
   private _sports?: string[];
   private _note?: string;
   private _library?: LibraryRef;
+  private _duration?: { value: number; unit: DurationUnit };
   private _x_extensions?: string[];
   private _metadata?: DocumentMetadata;
   private _blocks: ReturnType<BlockBuilder['build']>[] = [];
@@ -52,6 +55,12 @@ export class WorkoutBuilder {
     return this;
   }
 
+  /** Set the estimated workout duration with an explicit unit */
+  duration(value: number, unit: DurationUnit): this {
+    this._duration = { value, unit };
+    return this;
+  }
+
   /** Declare extension namespaces used in this document */
   extensions(exts: string[]): this {
     this._x_extensions = exts;
@@ -83,7 +92,7 @@ export class WorkoutBuilder {
 
   /** Build the Workout JSON object */
   build(): WorkoutType {
-    const result: WorkoutType = {
+    const result: Record<string, unknown> = {
       openset_version: '1.0',
       type: 'workout',
       blocks: this._blocks,
@@ -94,9 +103,10 @@ export class WorkoutBuilder {
     if (this._sports !== undefined) result.sports = this._sports;
     if (this._note !== undefined) result.note = this._note;
     if (this._library !== undefined) result.library = this._library;
+    if (this._duration !== undefined) result.duration = this._duration;
     if (this._x_extensions !== undefined) result.x_extensions = this._x_extensions;
     if (this._metadata !== undefined) result.metadata = this._metadata;
-    return result;
+    return result as unknown as WorkoutType;
   }
 
   /** Build and validate the Workout using @openset/validator (async, throws on errors) */

@@ -167,7 +167,7 @@ interface WorkoutTemplate {
   description?: string;
   tags?: string[];
   level?: string;
-  estimated_duration_min?: number;
+  duration?: { value: number; unit: 's' | 'min' | 'h' | 'day' | 'week' };
   sports?: string[];
   note?: string;
   library?: { id: string; version: string };

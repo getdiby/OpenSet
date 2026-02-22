@@ -103,7 +103,7 @@ Creates a `ProgramBuilder` for building multi-phase program documents.
 program('4-Week Strength')
   .description('Progressive overload program')
   .sports('strength')
-  .durationWeeks(4)
+  .duration(4, 'week') // or .durationWeeks(4)
   .author('Coach')
   .createdAt('2024-01-01')
   .phase('Base Building', p => p
@@ -198,7 +198,7 @@ import { program, set, fixed, range } from '@openset/codegen';
 
 const plan = program('4-Week Strength Foundation')
   .sports('strength')
-  .durationWeeks(4)
+  .duration(4, 'week')
   .author('Coach')
   .phase('Base Building', p => p
     .weeks(1, 2)

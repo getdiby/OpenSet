@@ -41,9 +41,9 @@ There are 21 known dimension names. By category: **count** (reps, sides, rounds)
 | `rounds` | fixed, amrap | (count) |
 | `load` | fixed, range, max | kg, lb, %1RM, %BW |
 | `duration` | fixed, range, min | s, min, h |
-| `duration_per_side` | fixed, range | s, min |
-| `rest_between_sides` | fixed | s, min |
-| `rest_after` | fixed, range | s, min |
+| `duration_per_side` | fixed, range | s, min, h |
+| `rest_between_sides` | fixed | s, min, h |
+| `rest_after` | fixed, range | s, min, h |
 | `tempo` | fixed | (string, e.g. "3-1-2-0") |
 | `distance` | fixed, range, min, amrap | m, km, mi, ft, yd |
 | `height` | fixed, range | cm, in |

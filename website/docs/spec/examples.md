@@ -637,7 +637,7 @@ Multi-phase program demonstrating progressive overload across two phases with **
   "name": "4-Week Strength Foundation",
   "description": "A beginner-friendly 4-week program focusing on compound movements with progressive overload.",
   "sports": ["strength"],
-  "duration_weeks": 4,
+  "duration": { "value": 4, "unit": "week" },
   "metadata": {
     "version": "1.0.0",
     "author": "OpenSet",
@@ -848,7 +848,7 @@ Reusable workout template collection demonstrating library metadata, media attac
       "description": "Horizontal and vertical pressing with triceps accessories",
       "tags": ["upper_body", "push", "strength"],
       "level": "intermediate",
-      "estimated_duration_min": 60,
+      "duration": { "value": 60, "unit": "min" },
       "sports": ["strength"],
       "library": { "id": "openset-default", "version": "1.0.0" },
       "media": {
@@ -923,7 +923,7 @@ Reusable workout template collection demonstrating library metadata, media attac
       "description": "High-intensity interval training on assault bike and rower",
       "tags": ["cardio", "hiit", "conditioning"],
       "level": "intermediate",
-      "estimated_duration_min": 30,
+      "duration": { "value": 30, "unit": "min" },
       "sports": ["crossfit"],
       "blocks": [
         {

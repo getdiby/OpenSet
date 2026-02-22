@@ -48,7 +48,7 @@ Each workout in the `workouts` array is a complete workout template:
   "description": "Horizontal and vertical pressing",
   "tags": ["upper_body", "push", "strength"],
   "level": "intermediate",
-  "estimated_duration_min": 60,
+  "duration": { "value": 60, "unit": "min" },
   "sports": ["strength"],
   "library": { "id": "openset-default", "version": "1.0.0" },
   "blocks": [...]
@@ -70,7 +70,7 @@ Each workout in the `workouts` array is a complete workout template:
 | `description` | string | Free-text description |
 | `tags` | string[] | Searchable tags |
 | `level` | string | One of: `beginner`, `intermediate`, `advanced`, `elite` |
-| `estimated_duration_min` | integer | Estimated duration in minutes |
+| `duration` | object | Estimated duration object with numeric `value` and `unit` from `s|min|h|day|week` |
 | `sports` | string[] | Target sports or activities |
 | `note` | string | General notes |
 | `library` | object | Reference to an exercise library (`{ id, version }`) |

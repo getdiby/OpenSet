@@ -4,7 +4,7 @@
   "name": "4-Week Strength Foundation",
   "description": "A beginner-friendly 4-week program focusing on compound movements with progressive overload.",
   "sports": ["strength"],
-  "duration_weeks": 4,
+  "duration": { "value": 4, "unit": "week" },
   "metadata": {
     "version": "1.0.0",
     "author": "OpenSet",

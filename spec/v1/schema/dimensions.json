@@ -11,22 +11,27 @@
       "allowedTypes": ["fixed", "amrap"]
     },
     "load": {
+      "allowedUnits": ["kg", "lb", "%1RM", "%BW"],
       "allowedTypes": ["fixed", "range", "max"]
     },
     "duration": {
       "unit": "s",
+      "allowedUnits": ["s", "min", "h"],
       "allowedTypes": ["fixed", "range", "min"]
     },
     "duration_per_side": {
       "unit": "s",
+      "allowedUnits": ["s", "min", "h"],
       "allowedTypes": ["fixed", "range"]
     },
     "rest_between_sides": {
       "unit": "s",
+      "allowedUnits": ["s", "min", "h"],
       "allowedTypes": ["fixed"]
     },
     "rest_after": {
       "unit": "s",
+      "allowedUnits": ["s", "min", "h"],
       "allowedTypes": ["fixed", "range"],
       "precedence": "SET overrides SERIES"
     },
@@ -35,30 +40,37 @@
       "allowedTypes": ["fixed"]
     },
     "distance": {
+      "allowedUnits": ["m", "km", "mi", "ft", "yd"],
       "allowedTypes": ["fixed", "range", "min", "amrap"]
     },
     "height": {
       "unit": "cm",
+      "allowedUnits": ["cm", "in"],
       "allowedTypes": ["fixed", "range"]
     },
     "incline": {
       "description": "Gradient as percentage (%) — treadmill, outdoor running, cycling",
       "unit": "%",
+      "allowedUnits": ["%"],
       "allowedTypes": ["fixed", "range"]
     },
     "pace": {
+      "allowedUnits": ["min/km", "min/mi"],
       "allowedTypes": ["fixed", "range"]
     },
     "speed": {
+      "allowedUnits": ["km/h", "mph"],
       "allowedTypes": ["fixed", "range"]
     },
     "power": {
       "description": "Absolute watts (W) or relative to athlete FTP (%FTP). Use %FTP for portable cycling/ERG workouts.",
       "unit": "W",
+      "allowedUnits": ["W", "%FTP"],
       "allowedTypes": ["fixed", "range"]
     },
     "heart_rate": {
       "unit": "bpm",
+      "allowedUnits": ["bpm"],
       "allowedTypes": ["fixed", "range", "max"]
     },
     "heart_rate_zone": {
@@ -71,17 +83,21 @@
     },
     "velocity": {
       "description": "Barbell/implement velocity (m/s) — for velocity-based training",
+      "allowedUnits": ["m/s"],
       "allowedTypes": ["fixed", "range"]
     },
     "calories": {
+      "allowedUnits": ["kcal"],
       "allowedTypes": ["fixed", "min", "amrap"]
     },
     "cadence": {
       "description": "Repetition rate — rpm, spm, strokes/min",
+      "allowedUnits": ["rpm", "spm"],
       "allowedTypes": ["fixed", "range"]
     },
     "resistance": {
       "description": "Machine resistance level or percentage",
+      "allowedUnits": ["level", "%"],
       "allowedTypes": ["fixed", "range"]
     }
   },

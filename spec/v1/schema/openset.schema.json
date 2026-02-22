@@ -22,7 +22,7 @@
         "note": { "type": "string" },
         "library": { "$ref": "#/$defs/LibraryRef" },
         "level": { "type": "string", "enum": ["beginner", "intermediate", "advanced", "elite"] },
-        "estimated_duration_min": { "type": "integer", "minimum": 1 },
+        "duration": { "$ref": "#/$defs/DurationValue" },
         "tags": {
           "type": "array",
           "items": { "type": "string" },
@@ -72,7 +72,7 @@
         "name": { "type": "string" },
         "description": { "type": "string" },
         "sports": { "type": "array", "items": { "type": "string" } },
-        "duration_weeks": { "type": "integer", "minimum": 1 },
+        "duration": { "$ref": "#/$defs/DurationValue" },
         "x_extensions": {
           "type": "array",
           "items": { "type": "string" },
@@ -162,8 +162,8 @@
             "TABATA", "EMOM", "LADDER", "CLUSTER"
           ]
         },
-        "rounds": { "$ref": "#/$defs/ValueObject" },
-        "rest_after": { "$ref": "#/$defs/ValueObject" },
+        "rounds": { "$ref": "#/$defs/RoundsValueObject" },
+        "rest_after": { "$ref": "#/$defs/RestAfterValueObject" },
         "note": { "type": "string" },
         "exercises": {
           "type": "array",
@@ -214,28 +214,28 @@
           "minItems": 1,
           "uniqueItems": true
         },
-        "reps": { "$ref": "#/$defs/ValueObject" },
-        "sides": { "$ref": "#/$defs/ValueObject" },
-        "rounds": { "$ref": "#/$defs/ValueObject" },
-        "load": { "$ref": "#/$defs/ValueObject" },
-        "duration": { "$ref": "#/$defs/ValueObject" },
-        "duration_per_side": { "$ref": "#/$defs/ValueObject" },
-        "rest_between_sides": { "$ref": "#/$defs/ValueObject" },
-        "rest_after": { "$ref": "#/$defs/ValueObject" },
-        "tempo": { "$ref": "#/$defs/ValueObject" },
-        "distance": { "$ref": "#/$defs/ValueObject" },
-        "height": { "$ref": "#/$defs/ValueObject" },
-        "incline": { "$ref": "#/$defs/ValueObject" },
-        "pace": { "$ref": "#/$defs/ValueObject" },
-        "speed": { "$ref": "#/$defs/ValueObject" },
-        "power": { "$ref": "#/$defs/ValueObject" },
-        "heart_rate": { "$ref": "#/$defs/ValueObject" },
-        "heart_rate_zone": { "$ref": "#/$defs/ValueObject" },
-        "rpe": { "$ref": "#/$defs/ValueObject" },
-        "velocity": { "$ref": "#/$defs/ValueObject" },
-        "calories": { "$ref": "#/$defs/ValueObject" },
-        "cadence": { "$ref": "#/$defs/ValueObject" },
-        "resistance": { "$ref": "#/$defs/ValueObject" },
+        "reps": { "$ref": "#/$defs/RepsValueObject" },
+        "sides": { "$ref": "#/$defs/SidesValueObject" },
+        "rounds": { "$ref": "#/$defs/RoundsValueObject" },
+        "load": { "$ref": "#/$defs/LoadValueObject" },
+        "duration": { "$ref": "#/$defs/DurationValueObject" },
+        "duration_per_side": { "$ref": "#/$defs/DurationPerSideValueObject" },
+        "rest_between_sides": { "$ref": "#/$defs/RestBetweenSidesValueObject" },
+        "rest_after": { "$ref": "#/$defs/RestAfterValueObject" },
+        "tempo": { "$ref": "#/$defs/TempoValueObject" },
+        "distance": { "$ref": "#/$defs/DistanceValueObject" },
+        "height": { "$ref": "#/$defs/HeightValueObject" },
+        "incline": { "$ref": "#/$defs/InclineValueObject" },
+        "pace": { "$ref": "#/$defs/PaceValueObject" },
+        "speed": { "$ref": "#/$defs/SpeedValueObject" },
+        "power": { "$ref": "#/$defs/PowerValueObject" },
+        "heart_rate": { "$ref": "#/$defs/HeartRateValueObject" },
+        "heart_rate_zone": { "$ref": "#/$defs/HeartRateZoneValueObject" },
+        "rpe": { "$ref": "#/$defs/RpeValueObject" },
+        "velocity": { "$ref": "#/$defs/VelocityValueObject" },
+        "calories": { "$ref": "#/$defs/CaloriesValueObject" },
+        "cadence": { "$ref": "#/$defs/CadenceValueObject" },
+        "resistance": { "$ref": "#/$defs/ResistanceValueObject" },
         "note": { "type": "string" }
       },
       "patternProperties": {
@@ -245,6 +245,32 @@
       },
       "additionalProperties": true
     },
+
+    "DurationUnit": { "type": "string", "enum": ["s", "min", "h", "day", "week"] },
+
+    "DurationValue": {
+      "type": "object",
+      "required": ["value", "unit"],
+      "properties": {
+        "value": { "type": "integer", "minimum": 1 },
+        "unit": { "$ref": "#/$defs/DurationUnit" }
+      },
+      "additionalProperties": false
+    },
+
+    "LoadUnit": { "type": "string", "enum": ["kg", "lb", "%1RM", "%BW"] },
+    "TimeUnit": { "type": "string", "enum": ["s", "min", "h"] },
+    "DistanceUnit": { "type": "string", "enum": ["m", "km", "mi", "ft", "yd"] },
+    "HeightUnit": { "type": "string", "enum": ["cm", "in"] },
+    "InclineUnit": { "type": "string", "enum": ["%"] },
+    "PaceUnit": { "type": "string", "enum": ["min/km", "min/mi"] },
+    "SpeedUnit": { "type": "string", "enum": ["km/h", "mph"] },
+    "PowerUnit": { "type": "string", "enum": ["W", "%FTP"] },
+    "HeartRateUnit": { "type": "string", "enum": ["bpm"] },
+    "VelocityUnit": { "type": "string", "enum": ["m/s"] },
+    "CaloriesUnit": { "type": "string", "enum": ["kcal"] },
+    "CadenceUnit": { "type": "string", "enum": ["rpm", "spm"] },
+    "ResistanceUnit": { "type": "string", "enum": ["level", "%"] },
 
     "ValueObject": {
       "oneOf": [
@@ -289,6 +315,396 @@
         "unit": { "type": "string" }
       },
       "additionalProperties": false
+    },
+
+    "FixedNoUnitValue": {
+      "type": "object",
+      "required": ["type", "value"],
+      "properties": {
+        "type": { "type": "string", "const": "fixed" },
+        "value": { "type": "number" }
+      },
+      "additionalProperties": false
+    },
+
+    "RangeNoUnitValue": {
+      "type": "object",
+      "required": ["type", "min", "max"],
+      "properties": {
+        "type": { "type": "string", "const": "range" },
+        "min": { "type": "number" },
+        "max": { "type": "number" }
+      },
+      "additionalProperties": false
+    },
+
+    "MinNoUnitValue": {
+      "type": "object",
+      "required": ["type", "value"],
+      "properties": {
+        "type": { "type": "string", "const": "min" },
+        "value": { "type": "number" }
+      },
+      "additionalProperties": false
+    },
+
+    "FixedWithUnitValue": {
+      "type": "object",
+      "required": ["type", "value", "unit"],
+      "properties": {
+        "type": { "type": "string", "const": "fixed" },
+        "value": { "type": "number" },
+        "unit": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+
+    "RangeWithUnitValue": {
+      "type": "object",
+      "required": ["type", "min", "max", "unit"],
+      "properties": {
+        "type": { "type": "string", "const": "range" },
+        "min": { "type": "number" },
+        "max": { "type": "number" },
+        "unit": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+
+    "MinWithUnitValue": {
+      "type": "object",
+      "required": ["type", "value", "unit"],
+      "properties": {
+        "type": { "type": "string", "const": "min" },
+        "value": { "type": "number" },
+        "unit": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+
+    "RepsValueObject": {
+      "oneOf": [
+        { "$ref": "#/$defs/FixedNoUnitValue" },
+        { "$ref": "#/$defs/RangeNoUnitValue" },
+        { "$ref": "#/$defs/MinNoUnitValue" },
+        { "$ref": "#/$defs/AmrapValue" }
+      ]
+    },
+
+    "SidesValueObject": {
+      "oneOf": [
+        { "$ref": "#/$defs/FixedNoUnitValue" }
+      ]
+    },
+
+    "RoundsValueObject": {
+      "oneOf": [
+        { "$ref": "#/$defs/FixedNoUnitValue" },
+        { "$ref": "#/$defs/AmrapValue" }
+      ]
+    },
+
+    "LoadValueObject": {
+      "oneOf": [
+        {
+          "allOf": [
+            { "$ref": "#/$defs/FixedWithUnitValue" },
+            { "properties": { "unit": { "$ref": "#/$defs/LoadUnit" } } }
+          ]
+        },
+        {
+          "allOf": [
+            { "$ref": "#/$defs/RangeWithUnitValue" },
+            { "properties": { "unit": { "$ref": "#/$defs/LoadUnit" } } }
+          ]
+        },
+        { "$ref": "#/$defs/MaxValue" }
+      ]
+    },
+
+    "DurationValueObject": {
+      "oneOf": [
+        {
+          "allOf": [
+            { "$ref": "#/$defs/FixedWithUnitValue" },
+            { "properties": { "unit": { "$ref": "#/$defs/TimeUnit" } } }
+          ]
+        },
+        {
+          "allOf": [
+            { "$ref": "#/$defs/RangeWithUnitValue" },
+            { "properties": { "unit": { "$ref": "#/$defs/TimeUnit" } } }
+          ]
+        },
+        {
+          "allOf": [
+            { "$ref": "#/$defs/MinWithUnitValue" },
+            { "properties": { "unit": { "$ref": "#/$defs/TimeUnit" } } }
+          ]
+        }
+      ]
+    },
+
+    "DurationPerSideValueObject": {
+      "oneOf": [
+        {
+          "allOf": [
+            { "$ref": "#/$defs/FixedWithUnitValue" },
+            { "properties": { "unit": { "$ref": "#/$defs/TimeUnit" } } }
+          ]
+        },
+        {
+          "allOf": [
+            { "$ref": "#/$defs/RangeWithUnitValue" },
+            { "properties": { "unit": { "$ref": "#/$defs/TimeUnit" } } }
+          ]
+        }
+      ]
+    },
+
+    "RestBetweenSidesValueObject": {
+      "oneOf": [
+        {
+          "allOf": [
+            { "$ref": "#/$defs/FixedWithUnitValue" },
+            { "properties": { "unit": { "$ref": "#/$defs/TimeUnit" } } }
+          ]
+        }
+      ]
+    },
+
+    "RestAfterValueObject": {
+      "oneOf": [
+        {
+          "allOf": [
+            { "$ref": "#/$defs/FixedWithUnitValue" },
+            { "properties": { "unit": { "$ref": "#/$defs/TimeUnit" } } }
+          ]
+        },
+        {
+          "allOf": [
+            { "$ref": "#/$defs/RangeWithUnitValue" },
+            { "properties": { "unit": { "$ref": "#/$defs/TimeUnit" } } }
+          ]
+        }
+      ]
+    },
+
+    "TempoValueObject": {
+      "oneOf": [
+        { "$ref": "#/$defs/FixedNoUnitValue" }
+      ]
+    },
+
+    "DistanceValueObject": {
+      "oneOf": [
+        {
+          "allOf": [
+            { "$ref": "#/$defs/FixedWithUnitValue" },
+            { "properties": { "unit": { "$ref": "#/$defs/DistanceUnit" } } }
+          ]
+        },
+        {
+          "allOf": [
+            { "$ref": "#/$defs/RangeWithUnitValue" },
+            { "properties": { "unit": { "$ref": "#/$defs/DistanceUnit" } } }
+          ]
+        },
+        {
+          "allOf": [
+            { "$ref": "#/$defs/MinWithUnitValue" },
+            { "properties": { "unit": { "$ref": "#/$defs/DistanceUnit" } } }
+          ]
+        },
+        { "$ref": "#/$defs/AmrapValue" }
+      ]
+    },
+
+    "HeightValueObject": {
+      "oneOf": [
+        {
+          "allOf": [
+            { "$ref": "#/$defs/FixedWithUnitValue" },
+            { "properties": { "unit": { "$ref": "#/$defs/HeightUnit" } } }
+          ]
+        },
+        {
+          "allOf": [
+            { "$ref": "#/$defs/RangeWithUnitValue" },
+            { "properties": { "unit": { "$ref": "#/$defs/HeightUnit" } } }
+          ]
+        }
+      ]
+    },
+
+    "InclineValueObject": {
+      "oneOf": [
+        {
+          "allOf": [
+            { "$ref": "#/$defs/FixedWithUnitValue" },
+            { "properties": { "unit": { "$ref": "#/$defs/InclineUnit" } } }
+          ]
+        },
+        {
+          "allOf": [
+            { "$ref": "#/$defs/RangeWithUnitValue" },
+            { "properties": { "unit": { "$ref": "#/$defs/InclineUnit" } } }
+          ]
+        }
+      ]
+    },
+
+    "PaceValueObject": {
+      "oneOf": [
+        {
+          "allOf": [
+            { "$ref": "#/$defs/FixedWithUnitValue" },
+            { "properties": { "unit": { "$ref": "#/$defs/PaceUnit" } } }
+          ]
+        },
+        {
+          "allOf": [
+            { "$ref": "#/$defs/RangeWithUnitValue" },
+            { "properties": { "unit": { "$ref": "#/$defs/PaceUnit" } } }
+          ]
+        }
+      ]
+    },
+
+    "SpeedValueObject": {
+      "oneOf": [
+        {
+          "allOf": [
+            { "$ref": "#/$defs/FixedWithUnitValue" },
+            { "properties": { "unit": { "$ref": "#/$defs/SpeedUnit" } } }
+          ]
+        },
+        {
+          "allOf": [
+            { "$ref": "#/$defs/RangeWithUnitValue" },
+            { "properties": { "unit": { "$ref": "#/$defs/SpeedUnit" } } }
+          ]
+        }
+      ]
+    },
+
+    "PowerValueObject": {
+      "oneOf": [
+        {
+          "allOf": [
+            { "$ref": "#/$defs/FixedWithUnitValue" },
+            { "properties": { "unit": { "$ref": "#/$defs/PowerUnit" } } }
+          ]
+        },
+        {
+          "allOf": [
+            { "$ref": "#/$defs/RangeWithUnitValue" },
+            { "properties": { "unit": { "$ref": "#/$defs/PowerUnit" } } }
+          ]
+        }
+      ]
+    },
+
+    "HeartRateValueObject": {
+      "oneOf": [
+        {
+          "allOf": [
+            { "$ref": "#/$defs/FixedWithUnitValue" },
+            { "properties": { "unit": { "$ref": "#/$defs/HeartRateUnit" } } }
+          ]
+        },
+        {
+          "allOf": [
+            { "$ref": "#/$defs/RangeWithUnitValue" },
+            { "properties": { "unit": { "$ref": "#/$defs/HeartRateUnit" } } }
+          ]
+        },
+        { "$ref": "#/$defs/MaxValue" }
+      ]
+    },
+
+    "HeartRateZoneValueObject": {
+      "oneOf": [
+        { "$ref": "#/$defs/FixedNoUnitValue" },
+        { "$ref": "#/$defs/RangeNoUnitValue" }
+      ]
+    },
+
+    "RpeValueObject": {
+      "oneOf": [
+        { "$ref": "#/$defs/FixedNoUnitValue" },
+        { "$ref": "#/$defs/RangeNoUnitValue" },
+        { "$ref": "#/$defs/MaxValue" }
+      ]
+    },
+
+    "VelocityValueObject": {
+      "oneOf": [
+        {
+          "allOf": [
+            { "$ref": "#/$defs/FixedWithUnitValue" },
+            { "properties": { "unit": { "$ref": "#/$defs/VelocityUnit" } } }
+          ]
+        },
+        {
+          "allOf": [
+            { "$ref": "#/$defs/RangeWithUnitValue" },
+            { "properties": { "unit": { "$ref": "#/$defs/VelocityUnit" } } }
+          ]
+        }
+      ]
+    },
+
+    "CaloriesValueObject": {
+      "oneOf": [
+        {
+          "allOf": [
+            { "$ref": "#/$defs/FixedWithUnitValue" },
+            { "properties": { "unit": { "$ref": "#/$defs/CaloriesUnit" } } }
+          ]
+        },
+        {
+          "allOf": [
+            { "$ref": "#/$defs/MinWithUnitValue" },
+            { "properties": { "unit": { "$ref": "#/$defs/CaloriesUnit" } } }
+          ]
+        },
+        { "$ref": "#/$defs/AmrapValue" }
+      ]
+    },
+
+    "CadenceValueObject": {
+      "oneOf": [
+        {
+          "allOf": [
+            { "$ref": "#/$defs/FixedWithUnitValue" },
+            { "properties": { "unit": { "$ref": "#/$defs/CadenceUnit" } } }
+          ]
+        },
+        {
+          "allOf": [
+            { "$ref": "#/$defs/RangeWithUnitValue" },
+            { "properties": { "unit": { "$ref": "#/$defs/CadenceUnit" } } }
+          ]
+        }
+      ]
+    },
+
+    "ResistanceValueObject": {
+      "oneOf": [
+        {
+          "allOf": [
+            { "$ref": "#/$defs/FixedWithUnitValue" },
+            { "properties": { "unit": { "$ref": "#/$defs/ResistanceUnit" } } }
+          ]
+        },
+        {
+          "allOf": [
+            { "$ref": "#/$defs/RangeWithUnitValue" },
+            { "properties": { "unit": { "$ref": "#/$defs/ResistanceUnit" } } }
+          ]
+        }
+      ]
     },
 
     "AmrapValue": {

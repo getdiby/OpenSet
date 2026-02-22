@@ -62,7 +62,7 @@ Every prescribed dimension uses one of six types:
 | Type | Description | Example |
 |------|-------------|---------|
 | `fixed` | Exact target | `{ "type": "fixed", "value": 100, "unit": "kg" }` |
-| `range` | Min/max bounds | `{ "type": "range", "min": 8, "max": 12 }` |
+| `range` | Min/max bounds | `{ "type": "range", "min": 8, "max": 12, "unit": "kg" }` |
 | `min` | At least this value | `{ "type": "min", "value": 30, "unit": "s" }` |
 | `amrap` | As many as possible | `{ "type": "amrap" }` |
 | `max` | Maximum effort | `{ "type": "max" }` |
