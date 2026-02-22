@@ -21,12 +21,24 @@
   content: '';
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(
-    circle at 1px 1px,
-    rgba(135, 255, 0, 0.06) 1px,
-    transparent 0
-  );
-  background-size: 32px 32px;
+  background-image:
+    radial-gradient(
+      circle at 1px 1px,
+      rgba(135, 255, 0, 0.12) 1.5px,
+      transparent 0
+    );
+  background-size: 40px 40px;
+  pointer-events: none;
+}
+
+.heroBanner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(135, 255, 0, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(135, 255, 0, 0.06) 1px, transparent 1px);
+  background-size: 40px 40px;
   pointer-events: none;
 }
 

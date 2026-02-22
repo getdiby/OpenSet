@@ -19,6 +19,7 @@
   --ifm-global-shadow-tl: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
   --site-color-subtle-bg: #f0f5e6;
   --site-color-border: #d4e8b0;
+  --site-nav-active-color: #0f1c00;
 }
 
 [data-theme='dark'] {
@@ -34,6 +35,7 @@
   --ifm-background-surface-color: #1a2e00;
   --site-color-subtle-bg: #1a2e00;
   --site-color-border: #2d4d00;
+  --site-nav-active-color: #87ff00;
 }
 
 /* Navbar — frosted glass */
@@ -57,6 +59,31 @@
 
 .navbar__link {
   font-weight: 500;
+}
+
+/* Light mode: active nav/sidebar links use dark green for contrast on white */
+.navbar__link--active,
+.menu__link--active {
+  color: var(--site-nav-active-color) !important;
+  font-weight: 600;
+}
+
+[data-theme='dark'] .navbar__link--active,
+[data-theme='dark'] .menu__link--active {
+  color: var(--ifm-color-primary) !important;
+}
+
+/* Light mode: breadcrumb current page (pill) — dark green for contrast */
+.breadcrumbs__item--active,
+.breadcrumbs__item:last-child,
+.breadcrumbs__item:last-child .breadcrumbs__link {
+  color: var(--site-nav-active-color) !important;
+}
+
+[data-theme='dark'] .breadcrumbs__item--active,
+[data-theme='dark'] .breadcrumbs__item:last-child,
+[data-theme='dark'] .breadcrumbs__item:last-child .breadcrumbs__link {
+  color: var(--ifm-color-primary) !important;
 }
 
 /* Footer */
