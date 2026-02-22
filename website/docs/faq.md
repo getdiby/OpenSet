@@ -1,6 +1,8 @@
 ---
 title: FAQ
 sidebar_label: FAQ
+description: Frequently asked questions about OpenSet, format comparison with Zwift, ERG, FHIR, SWF, TCX/FIT, and interoperability.
+keywords: [OpenSet, FAQ, workout format, comparison, interoperability]
 ---
 
 # Frequently Asked Questions

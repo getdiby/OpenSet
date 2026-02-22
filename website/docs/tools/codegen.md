@@ -1,5 +1,7 @@
 ---
 title: Code Generator
+description: Fluent TypeScript builder for OpenSet documents. @openset/codegen with type safety, autocompletion, and optional validation.
+keywords: [OpenSet, codegen, TypeScript builder, openset codegen]
 ---
 
 # @openset/codegen

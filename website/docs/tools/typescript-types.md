@@ -1,5 +1,7 @@
 ---
 title: TypeScript Types
+description: TypeScript type definitions for OpenSet documents. Install @openset/types for type-safe workout and program types.
+keywords: [OpenSet, TypeScript, types, openset types, npm]
 ---
 
 # @openset/types

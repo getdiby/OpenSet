@@ -1,5 +1,7 @@
 ---
 title: Validator
+description: CLI and programmatic validator for OpenSet documents. Install via npm, validate JSON files and get errors and warnings.
+keywords: [OpenSet, validator, CLI, validation]
 ---
 
 # @openset/validator

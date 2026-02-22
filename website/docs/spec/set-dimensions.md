@@ -1,5 +1,7 @@
 ---
 title: Dimensions
+description: Set dimensions in OpenSet — reps, load, duration, distance, power, and other measurable axes. How to declare and use dimensions.
+keywords: [OpenSet, dimensions, reps, load, duration, power, set dimensions]
 ---
 
 # Dimensions

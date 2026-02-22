@@ -1,5 +1,7 @@
 ---
 title: Examples
+description: Full OpenSet workout and program examples in JSON — minimal workout, program with phases, execution modes, and library usage.
+keywords: [OpenSet, examples, workout JSON, program JSON]
 ---
 
 # Examples

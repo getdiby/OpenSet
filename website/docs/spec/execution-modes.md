@@ -1,5 +1,7 @@
 ---
 title: Execution Modes
+description: Series-level execution modes — SEQUENTIAL, SUPERSET, CIRCUIT, AMRAP, FOR_TIME, INTERVAL, TABATA, EMOM, LADDER, CLUSTER. When to use each.
+keywords: [OpenSet, execution modes, SUPERSET, AMRAP, CIRCUIT, EMOM, TABATA]
 ---
 
 # Execution Modes

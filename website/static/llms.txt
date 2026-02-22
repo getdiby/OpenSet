@@ -1,0 +1,29 @@
+# OpenSet
+
+> Open, sport-agnostic JSON standard for structured training workouts and programs. Defines workouts, programs, sets, dimensions, execution modes, and exercise libraries as JSON Schema–validated documents.
+
+## Specification
+
+- [Overview](https://openset.dev/docs/spec/overview): Philosophy, design goals, and quick example of the OpenSet specification
+- [Entities](https://openset.dev/docs/spec/entities): Program, Phase, Workout, Block, Series, Exercise, Set
+- [Set dimensions](https://openset.dev/docs/spec/set-dimensions): reps, load, duration, power, distance, and other measurable axes
+- [Value types](https://openset.dev/docs/spec/value-types): fixed, range, min, amrap, max, any
+- [Execution modes](https://openset.dev/docs/spec/execution-modes): SEQUENTIAL, SUPERSET, CIRCUIT, AMRAP, FOR_TIME, INTERVAL, TABATA, EMOM, LADDER, CLUSTER
+- [Exercise library](https://openset.dev/docs/spec/exercise-library): Canonical exercise library and how to reference exercises
+- [Workout library](https://openset.dev/docs/spec/workout-library): Reusable workout templates
+- [Extensions](https://openset.dev/docs/spec/extensions): Namespaced extension mechanism for custom dimensions and fields
+- [Examples](https://openset.dev/docs/spec/examples): Full workout and program examples in JSON
+
+## Tools
+
+- [Validator](https://openset.dev/docs/tools/validator): CLI and programmatic validator for OpenSet documents
+- [TypeScript types](https://openset.dev/docs/tools/typescript-types): @openset/types npm package
+- [Code generator](https://openset.dev/docs/tools/codegen): Fluent TypeScript builder for documents
+- [Conversion tool](https://openset.dev/docs/tools/conversion): LLM prompt to convert free-text workout descriptions to OpenSet JSON
+
+## Optional
+
+- [FAQ](https://openset.dev/docs/faq): Frequently asked questions and format comparison
+- [Contributors](https://openset.dev/docs/contributors): List of contributors
+- [GitHub](https://github.com/getdiby/openset): Source code and issue tracker
+- [npm org](https://www.npmjs.com/org/openset): @openset/types, @openset/validator, @openset/codegen

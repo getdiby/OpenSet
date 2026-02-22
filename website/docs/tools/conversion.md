@@ -1,5 +1,7 @@
 ---
 title: Conversion Tool
+description: LLM prompt to convert free-text workout descriptions into valid OpenSet JSON. Self-contained conversion tool and online version.
+keywords: [OpenSet, conversion, LLM, free text, workout description]
 ---
 
 # Conversion Tool

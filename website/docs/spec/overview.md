@@ -1,5 +1,7 @@
 ---
 title: Overview
+description: Philosophy, design goals, and quick example of the OpenSet specification. Sport-agnostic JSON standard for workouts and programs.
+keywords: [OpenSet, specification, workout format, JSON schema, training data]
 ---
 
 # OpenSet Specification v1.0

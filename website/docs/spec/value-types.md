@@ -1,5 +1,7 @@
 ---
 title: Value Types
+description: Prescription value types — fixed, range, min, amrap, max, any. How to specify targets for dimensions in OpenSet.
+keywords: [OpenSet, value types, fixed, range, amrap, prescription]
 ---
 
 # Value Types

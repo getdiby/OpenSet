@@ -1,6 +1,8 @@
 ---
 title: Exercises
 sidebar_label: Exercises
+description: OpenSet canonical exercise library (openset-default), exercise definitions, and how to reference exercises by ID in workouts.
+keywords: [OpenSet, exercise library, exercises, openset-default, exercise_id]
 ---
 
 # Exercise Library

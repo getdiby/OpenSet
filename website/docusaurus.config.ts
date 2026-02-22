@@ -48,6 +48,17 @@ const config: Config = {
   ],
 
   themeConfig: {
+    metadata: [
+      { name: 'description', content: 'Open, sport-agnostic JSON standard for structured training workouts and programs. Schema, validator, TypeScript types, and tools.' },
+      { name: 'keywords', content: 'workout format, training data, JSON schema, exercise prescription, open standard, sports data, validator, TypeScript' },
+      { property: 'og:type', content: 'website' },
+      { property: 'og:url', content: 'https://openset.dev' },
+      { property: 'og:title', content: 'OpenSet' },
+      { property: 'og:description', content: 'Open, sport-agnostic JSON standard for structured training workouts and programs. Schema, validator, TypeScript types, and tools.' },
+      { name: 'twitter:card', content: 'summary' },
+      { name: 'twitter:title', content: 'OpenSet' },
+      { name: 'twitter:description', content: 'Open, sport-agnostic JSON standard for structured training workouts and programs. Schema, validator, TypeScript types, and tools.' },
+    ],
     colorMode: {
       respectPrefersColorScheme: true,
     },

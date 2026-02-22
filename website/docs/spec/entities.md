@@ -1,5 +1,7 @@
 ---
 title: Entities
+description: OpenSet document hierarchy — Program, Phase, Workout, Block, Series, Exercise, Set. Metadata and structure rules.
+keywords: [OpenSet, entities, program, workout, block, series, set]
 ---
 
 # Entities

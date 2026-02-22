@@ -1,5 +1,7 @@
 ---
 title: Extensions
+description: OpenSet extension mechanism. Namespaced prefixes (x_, app_, reverse-DNS) for custom dimensions and fields.
+keywords: [OpenSet, extensions, custom dimensions, namespaced fields]
 ---
 
 # Extension Mechanism

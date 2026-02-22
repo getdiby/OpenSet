@@ -1,6 +1,8 @@
 ---
 title: Workouts
 sidebar_label: Workouts
+description: Workout library document type. Reusable workout templates, referencing and embedding workouts in programs.
+keywords: [OpenSet, workout library, workout_library, templates]
 ---
 
 # Workout Library

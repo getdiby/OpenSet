@@ -1,3 +1,9 @@
+---
+title: Contributors
+description: List of people who have contributed to the OpenSet specification and tools.
+keywords: [OpenSet, contributors]
+---
+
 # Contributors
 
 Thank you to everyone who has contributed to OpenSet.
