@@ -81,6 +81,10 @@
       "description": "1–10",
       "allowedTypes": ["fixed", "range", "max"]
     },
+    "rir": {
+      "description": "Reps in reserve at end of set (0–5 recommended)",
+      "allowedTypes": ["fixed", "range", "max"]
+    },
     "velocity": {
       "description": "Barbell/implement velocity (m/s) — for velocity-based training",
       "allowedUnits": ["m/s"],

@@ -112,6 +112,16 @@ When the prescribed exercise has an `exercise_id` (from a library), always copy 
 
 Include RPE only for sets where the client reported it.
 
+**RIR (Reps in Reserve)** — how many repetitions the athlete felt they had left at the end of the set. RIR is typically logged on a **0–5** scale:
+
+- `0` — failure (no reps left)
+- `1` — one rep left
+- `2` — two reps left
+
+You can capture RIR in execution via **`dimensions.rir`** whenever RIR was prescribed in the workout (e.g. `rir: { "type": "fixed", "value": 2 }` in the prescription). As with RPE, consumers should treat missing `rir` data as “not recorded”, not as zero.
+
+RPE and RIR are related but not identical (roughly `RIR ≈ 10 - RPE` for strength work). Implementations may choose to record one, both, or neither, depending on their coaching model.
+
 ## Source / provenance
 
 When execution data comes from a FIT file or another device (e.g. Garmin watch), you can store **provenance** at the session level so you know where it came from and can deduplicate or re-sync.

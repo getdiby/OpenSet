@@ -32,7 +32,7 @@ The `dimensions` array tells validators and consumers which fields are **require
 
 ## Known Dimensions
 
-There are 21 known dimension names. By category: **count** (reps, sides, rounds); **load**; **time** (duration, duration_per_side, rest_between_sides, rest_after); **tempo**; **distance and space** (distance, height, incline); **cardio and effort** (pace, speed, power, heart_rate, heart_rate_zone, rpe, velocity, calories, cadence, resistance).
+There are 22 known dimension names. By category: **count** (reps, sides, rounds); **load**; **time** (duration, duration_per_side, rest_between_sides, rest_after); **tempo**; **distance and space** (distance, height, incline); **cardio and effort** (pace, speed, power, heart_rate, heart_rate_zone, rpe, rir, velocity, calories, cadence, resistance).
 
 | Dimension | Allowed Types | Units |
 |-----------|---------------|-------|
@@ -53,7 +53,8 @@ There are 21 known dimension names. By category: **count** (reps, sides, rounds)
 | `power` | fixed, range | W, %FTP |
 | `heart_rate` | fixed, range, max | bpm |
 | `heart_rate_zone` | fixed, range | (zone number) |
-| `rpe` | fixed, range, max | (scale) |
+| `rpe` | fixed, range, max | (scale, typically 1–10) |
+| `rir` | fixed, range, max | (reps in reserve, typically 0–5) |
 | `velocity` | fixed, range | m/s |
 | `calories` | fixed, min, amrap | kcal |
 | `cadence` | fixed, range | rpm, spm |
@@ -75,6 +76,25 @@ There are 21 known dimension names. By category: **count** (reps, sides, rounds)
 ```
 
 Here `reps` and `load` are required (listed in `dimensions`), while `rpe` is optional.
+
+You can also use **RIR (reps in reserve)** as an effort cue alongside or instead of RPE:
+
+```json
+{
+  "dimensions": ["reps", "load", "rir"],
+  "reps": { "type": "fixed", "value": 5 },
+  "load": { "type": "fixed", "value": 100, "unit": "kg" },
+  "rir": { "type": "fixed", "value": 2 }
+}
+```
+
+RIR is typically logged on a **0–5** scale (0 = failure, 2 = two reps left). A rough mapping between RPE and RIR is:
+
+- RPE 10 ≈ RIR 0 (to failure)
+- RPE 9  ≈ RIR 1
+- RPE 8  ≈ RIR 2
+
+They are related but not interchangeable: RPE considers overall effort and context; RIR focuses on **how many reps remained** at the end of the set.
 
 ### Bodyweight set (reps only)
 
@@ -125,6 +145,48 @@ Portable cycling workout using %FTP (same file works for any rider):
   "load": { "type": "fixed", "value": 20, "unit": "kg" }
 }
 ```
+
+### Resistance machines and bands
+
+Use the `resistance` dimension for **machine resistance levels or percentages**, keeping values numeric:
+
+```json
+{
+  "dimensions": ["reps", "resistance"],
+  "reps": { "type": "fixed", "value": 12 },
+  "resistance": { "type": "fixed", "value": 8, "unit": "level" },
+  "note": "Leg press — level 8, green band assist"
+}
+```
+
+When you need to preserve the **exact band identity** (e.g. band color or model), keep `load`/`resistance` numeric and add an extension dimension such as `x_resistance_band`:
+
+```json
+{
+  "dimensions": ["reps", "resistance", "x_resistance_band"],
+  "reps": { "type": "fixed", "value": 10 },
+  "resistance": { "type": "fixed", "value": 6, "unit": "level" },
+  "x_resistance_band": { "type": "fixed", "value": "zelena_guma" }
+}
+```
+
+Core consumers can ignore `x_resistance_band` and still understand the numeric prescription; apps that care about band names can read the extension.
+
+### Compound loads (e.g. dumbbells + chains)
+
+For prescriptions like `"3kg ball + 15kg kettlebell"`, keep the core `load` dimension as the **total external load** and store the breakdown in a note or extension:
+
+```json
+{
+  "dimensions": ["reps", "load", "x_load_components"],
+  "reps": { "type": "fixed", "value": 8 },
+  "load": { "type": "fixed", "value": 18, "unit": "kg" },
+  "x_load_components": { "type": "fixed", "value": [3, 15] },
+  "note": "3kg medicine ball + 15kg kettlebell"
+}
+```
+
+This keeps the core data model simple and interoperable (everyone understands `load: 18kg`), while still allowing apps to reconstruct or display the detailed components if they know about `x_load_components`.
 
 ## Custom Dimensions
 

@@ -72,7 +72,7 @@ Every prescribed dimension uses one of six types:
 
 Measurable axes of a set. See `spec/v1/schema/dimensions.json` for the complete list with allowed value types per dimension.
 
-Key dimensions: `reps`, `load`, `duration`, `distance`, `height`, `pace`, `speed`, `power`, `heart_rate`, `heart_rate_zone`, `rpe`, `calories`, `tempo`, `velocity`, `incline`, `sides`, `rounds`, `cadence`, `resistance`, `rest_after`.
+Key dimensions: `reps`, `load`, `duration`, `distance`, `height`, `pace`, `speed`, `power`, `heart_rate`, `heart_rate_zone`, `rpe`, `rir`, `calories`, `tempo`, `velocity`, `incline`, `sides`, `rounds`, `cadence`, `resistance`, `rest_after`.
 
 ## Extension Mechanism
 
@@ -85,6 +85,14 @@ Custom dimensions and exercises are supported via namespacing:
 | reverse-DNS | Organization-specific |
 
 Unknown fields with a valid namespace prefix produce a warning (W009). Unknown fields without a prefix produce an error (E013).
+
+Recommended patterns:
+
+- Use **`x_*`** for generic extensions that could reasonably be shared across apps (e.g. `x_status`, `x_load_strategy`, `x_resistance_band`, `x_load_components`).
+- Use **`app_*`** for strictly app-specific fields that are unlikely to be reused elsewhere (e.g. `app_tracking_id`).
+- Use **reverse-DNS prefixes** for organization-specific contracts you control across multiple apps (e.g. `com_myapp_custom_field`).
+- Declare any namespaces you rely on in the document's `x_extensions` array so consumers can detect them up front and decide whether to interpret or ignore them.
+- Consumers should be free to ignore unknown namespaced fields, but **should preserve them** when re-serializing documents to avoid losing extension data.
 
 ## Exercise Library
 

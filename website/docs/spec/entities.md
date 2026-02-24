@@ -93,6 +93,15 @@ The minimum valid standalone document. Represents a single training workout.
 
 Groups related series within a workout (e.g., warm-up, main work, cooldown).
 
+Blocks are the recommended way to model **warm-ups, main work, and finishers**:
+
+- A typical strength workout might use:
+  - Block 0: `"Warm-up"` — ramp-up sets, mobility, activation work
+  - Block 1: `"Main work"` — primary lifts and accessories
+  - Block 2: `"Finisher"` or `"Cool-down"` — conditioning or recovery work
+- Warm-up sets are modeled as normal sets inside a `"Warm-up"` block; there is no special warm-up flag in the schema.
+- Consumers (apps, UIs) are free to present or aggregate warm-up vs main blocks differently (e.g., collapsed warm-up, separate volume stats) while using the same underlying structure.
+
 | Field | Required | Description |
 |-------|----------|-------------|
 | `name` | No | Block name |

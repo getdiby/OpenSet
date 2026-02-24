@@ -478,3 +478,29 @@ Start with the heaviest set first (when you're freshest), then reduce load and i
   ]
 }
 ```
+
+### Myo Set (Rest-Pause)
+
+A myo set (rest-pause set) is a cluster of short sets on the **same exercise**, separated by very short rests (e.g. 10–20 seconds). The athlete performs an initial near-failure set, rests briefly, then performs several mini-sets.
+
+Model this as a `SEQUENTIAL` series with small sets and short `rest_after` between them:
+
+```json
+{
+  "execution_mode": "SEQUENTIAL",
+  "exercises": [
+    {
+      "exercise_id": "bench_press",
+      "note": "Myo set — 1 main set, then short rest-pause clusters",
+      "sets": [
+        { "dimensions": ["reps", "load"], "reps": { "type": "fixed", "value": 12 }, "load": { "type": "fixed", "value": 60, "unit": "kg" }, "rest_after": { "type": "fixed", "value": 20, "unit": "s" } },
+        { "dimensions": ["reps", "load"], "reps": { "type": "fixed", "value": 4 },  "load": { "type": "fixed", "value": 60, "unit": "kg" }, "rest_after": { "type": "fixed", "value": 20, "unit": "s" } },
+        { "dimensions": ["reps", "load"], "reps": { "type": "fixed", "value": 4 },  "load": { "type": "fixed", "value": 60, "unit": "kg" }, "rest_after": { "type": "fixed", "value": 20, "unit": "s" } },
+        { "dimensions": ["reps", "load"], "reps": { "type": "fixed", "value": 4 },  "load": { "type": "fixed", "value": 60, "unit": "kg" } }
+      ]
+    }
+  ]
+}
+```
+
+No special execution mode is needed — the pattern comes from **per-set reps, load, and rest**, the same way as drop sets and pyramids.

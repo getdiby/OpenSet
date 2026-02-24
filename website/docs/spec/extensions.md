@@ -29,6 +29,21 @@ Custom dimensions can be added to sets using a namespaced key. Extension values 
 }
 ```
 
+### Common patterns: bands and compound loads
+
+Two patterns show up frequently across strength and conditioning apps:
+
+- **Resistance bands / machine levels** — keep core dimensions numeric; use extensions for labels.
+  - Use `resistance` for numeric machine levels or percentages (e.g. `level`, `%`).
+  - When you need to preserve a human-readable band identifier, add an extension such as:
+    - `x_resistance_band`: band identity (e.g. `"zelena_guma"`, `"green_medium"`).
+  - Declare the namespace via `x_extensions`, for example: `"x_extensions": ["x_resistance_band"]`.
+
+- **Compound loads** — total load in `load`, components in an extension.
+  - Keep `load.value` as the total external load (e.g. 18kg).
+  - Use `x_load_components` to store a structured breakdown when needed (e.g. `[3, 15]` for `3kg + 15kg`).
+  - This lets core consumers rely on a single scalar load, while apps that know about `x_load_components` can reconstruct the exact combination.
+
 ## Declaring Extensions
 
 Documents can optionally declare which extension namespaces they use via the `x_extensions` field:

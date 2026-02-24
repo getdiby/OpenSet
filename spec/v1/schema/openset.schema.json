@@ -207,7 +207,7 @@
               "reps", "sides", "rounds", "load", "duration",
               "duration_per_side", "rest_between_sides", "tempo",
               "distance", "height", "incline", "pace", "speed",
-              "power", "heart_rate", "heart_rate_zone", "rpe",
+              "power", "heart_rate", "heart_rate_zone", "rpe", "rir",
               "velocity", "calories", "cadence", "resistance"
             ]
           },
@@ -232,6 +232,7 @@
         "heart_rate": { "$ref": "#/$defs/HeartRateValueObject" },
         "heart_rate_zone": { "$ref": "#/$defs/HeartRateZoneValueObject" },
         "rpe": { "$ref": "#/$defs/RpeValueObject" },
+        "rir": { "$ref": "#/$defs/RirValueObject" },
         "velocity": { "$ref": "#/$defs/VelocityValueObject" },
         "calories": { "$ref": "#/$defs/CaloriesValueObject" },
         "cadence": { "$ref": "#/$defs/CadenceValueObject" },
@@ -631,6 +632,14 @@
     },
 
     "RpeValueObject": {
+      "oneOf": [
+        { "$ref": "#/$defs/FixedNoUnitValue" },
+        { "$ref": "#/$defs/RangeNoUnitValue" },
+        { "$ref": "#/$defs/MaxValue" }
+      ]
+    },
+
+    "RirValueObject": {
       "oneOf": [
         { "$ref": "#/$defs/FixedNoUnitValue" },
         { "$ref": "#/$defs/RangeNoUnitValue" },
