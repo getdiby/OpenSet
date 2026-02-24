@@ -87,3 +87,13 @@ No specific target. The dimension is acknowledged but unconstrained.
 ## Allowed Types per Dimension
 
 Not every value type is valid for every dimension. See [Dimensions](./set-dimensions) for the complete compatibility matrix.
+
+### Guideline-oriented usage (e.g., ACSM)
+
+When mirroring guideline prescriptions:
+
+- Use **`range`** for domains like *“moderate”* or *“vigorous”* by encoding the numeric bounds (e.g. `%HRR` 0.4–0.59, `%HRR` 0.6–0.89, RPE 4–6, etc.).
+- Use **`fixed`** when guidelines specify a clear target (e.g. “walk at 5 km/h” or “RPE 5”).
+- Use **`min`** for *“at least”* prescriptions (e.g. `duration` ≥ 30 min, or `calories` ≥ 300 kcal).
+- Use **`max`** for tests or ceiling-type efforts (e.g. `heart_rate` max test, 1RM).
+- Use **`any`** sparingly when a dimension is present but unconstrained (e.g. general “walk” blocks where speed is free and only time/volume is constrained at the program level).

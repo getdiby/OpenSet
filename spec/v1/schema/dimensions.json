@@ -70,7 +70,7 @@
     },
     "heart_rate": {
       "unit": "bpm",
-      "allowedUnits": ["bpm"],
+      "allowedUnits": ["bpm", "%HRR", "%HRmax"],
       "allowedTypes": ["fixed", "range", "max"]
     },
     "heart_rate_zone": {

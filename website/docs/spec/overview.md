@@ -72,3 +72,5 @@ OpenSet can represent the same prescription intent as other workout and prescrip
 - All documents carry an `openset_version` field
 - The JSON Schema accepts any `1.x` version via pattern matching, enabling forward compatibility
 - The validator checks versions at runtime: warns on newer minor, errors on different major
+
+OpenSet is compatible with guideline-driven frameworks (e.g., ACSM FITT-VP) but does not encode any specific guideline into the schema. For a concrete ACSM-style mapping and examples, see the [`ACSM` section](./acsm-mapping).

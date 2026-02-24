@@ -212,6 +212,28 @@ Some dimensions are mutually exclusive within a single set:
 
 The validator will emit **E012** if conflicting dimensions are found on the same set.
 
+## Intensity scales and guideline alignment
+
+OpenSet’s intensity-related dimensions are designed to mirror common guideline usage (including ACSM) without locking into a single standard:
+
+- **RPE (`rpe`)**
+  - Recommended scale is **1–10**, which aligns with ACSM’s use of Borg CR10-style ratings for light, moderate, and vigorous domains.
+  - Apps that prefer the original **6–20** Borg scale can still use `rpe` with `fixed`/`range` values and document the scale in app UI, but 1–10 is the shared baseline for interoperability.
+  - Typical mapping (approximate) for 1–10:
+    - Light: 2–3
+    - Moderate: 4–6
+    - Vigorous: 7–8
+    - Near-maximal to maximal: 9–10
+- **Heart rate (`heart_rate`, `heart_rate_zone`)**
+  - Use `heart_rate` when prescribing intensities relative to **absolute heart rate** (`bpm`) or guideline-style **relative markers**:
+    - Absolute: `unit: "bpm"` (e.g. 140–155 bpm).
+    - Relative to reserve or max: `unit: "%HRR"` or `unit: "%HRmax"` (e.g. 0.4–0.59 for moderate, 0.6–0.89 for vigorous when following ACSM domains).
+  - Use `heart_rate_zone` when you maintain your own zone model (e.g. 1–5) that maps to %HRR/%HRmax in app logic. OpenSet does not define the zone table; it only stores the zone index or range.
+- **Cardio pace/speed and effort (`pace`, `speed`, `power`)**
+  - Use `pace` (min/km or min/mi) or `speed` (km/h or mph) for running/walking prescriptions derived from guideline tables (e.g. ACSM MET-based walking speeds), optionally alongside:
+  - `power` (`W` or `%FTP`) for cycling/ERG prescriptions where guidelines are expressed as % of threshold or absolute watts.
+
+Guideline-specific rules (e.g. how %HRR, %HRmax, RPE, and METs combine to define “moderate” or “vigorous”) live in **app logic**. OpenSet provides the common intensity fields and units so those rules can be implemented consistently.
 ## Hold (isometric) exercises
 
 Exercises where the athlete holds a position for time (e.g. plank, wall sit, hollow hold) are prescribed using the **duration** dimension. There is no separate "hold" dimension — use `dimensions: ["duration"]` and set `duration` to the hold time (e.g. 30s, 60s).

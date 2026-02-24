@@ -32,10 +32,15 @@ const sidebars: SidebarsConfig = {
     'spec/examples',
     {
       type: 'category',
-      label: 'Execution',
+      label: 'Advanced',
       collapsed: false,
       items: [
         'spec/workout-execution',
+        {
+          type: 'doc',
+          id: 'spec/acsm-mapping',
+          label: 'ACSM',
+        },
       ],
     },
   ],

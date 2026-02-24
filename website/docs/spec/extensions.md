@@ -165,6 +165,41 @@ Example on an **execution** (e.g. form note or volume summary):
 
 This extension is optional. If adopters use it widely, it may be promoted to first-class in a future minor version.
 
+### Health / clinical profile extensions (ACSM-style, optional)
+
+Some applications apply clinical or guideline frameworks (e.g. ACSM) when deciding whether a workout or program is appropriate for a given person. OpenSet does **not** encode those algorithms, but you can standardize their **outputs** using extensions on workouts and programs:
+
+- **`x_risk_class`** (string)
+  - Optional risk/stratification bucket produced by your own screening logic.
+  - Examples: `"low"`, `"increased"`, `"known_disease"`, `"cardiac_rehab"`. The exact taxonomy is app-defined.
+- **`x_medical_clearance_required`** (string or boolean)
+  - Whether medical clearance is recommended or required before using this workout/program.
+  - Recommended values: `"not_required"`, `"recommended"`, `"required"` (or the boolean form if you only need yes/no).
+- **`x_supervision_level`** (string)
+  - Suggested supervision level when this prescription is used as written.
+  - Examples: `"independent"`, `"on_site_clinical"`, `"telemetry"`, `"group_class"`.
+- **`x_population_tags`** (array of strings)
+  - Target or tested population tags aligned with guideline “special populations”.
+  - Examples: `"older_adult"`, `"pregnancy"`, `"pediatrics"`, `"cardiac_rehab"`, `"diabetes"`, `"obesity"`.
+
+These extensions are **descriptive**, not prescriptive: validators do not enforce any particular clinical model. They make it easier for downstream tools to filter, surface, and audit guideline-driven content (e.g. “show only programs tagged `older_adult` that do not require medical clearance”).
+
+Example on a `program`:
+
+```json
+{
+  "openset_version": "1.0",
+  "type": "program",
+  "name": "Beginner Walking — General Health",
+  "x_extensions": ["x_risk_class", "x_medical_clearance_required", "x_supervision_level", "x_population_tags"],
+  "x_risk_class": "low",
+  "x_medical_clearance_required": "not_required",
+  "x_supervision_level": "independent",
+  "x_population_tags": ["older_adult"],
+  "phases": [...]
+}
+```
+
 ## Validation Behavior
 
 - Unknown fields **with** a valid namespace prefix: warning **W009** + structural check **E015** (must be a ValueObject)
