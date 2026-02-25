@@ -6,5 +6,6 @@ Thank you to everyone who has contributed to OpenSet.
 
 - **Stjepan Buljat**
 - **Mario Vidović**
+- **Andrija Škontra**
 
 To contribute, see [CONTRIBUTING.md](./CONTRIBUTING.md).
