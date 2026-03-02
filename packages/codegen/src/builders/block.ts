@@ -1,4 +1,4 @@
-import type { Block as BlockType, ExecutionMode } from '@openset/types';
+import type { Block as BlockType, ExecutionMode } from '@diby/openset-types';
 import { SeriesBuilder } from './series.js';
 
 export class BlockBuilder {

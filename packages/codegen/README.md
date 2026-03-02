@@ -11,7 +11,7 @@ npm install @openset/codegen
 For validated builds, also install the validator:
 
 ```bash
-npm install @openset/codegen @openset/validator
+npm install @openset/codegen @diby/openset-validator
 ```
 
 ## Quick Start
@@ -135,7 +135,7 @@ program → phase → workout → block → series → exercise → set
 
 ## Validated Builds
 
-The `.buildValidated()` method runs `@openset/validator` on the built document and throws a `ValidationError` if there are errors:
+The `.buildValidated()` method runs `@diby/openset-validator` on the built document and throws a `ValidationError` if there are errors:
 
 ```typescript
 import { workout, set, fixed, ValidationError } from '@openset/codegen';
@@ -157,7 +157,7 @@ try {
 }
 ```
 
-`buildValidated()` is async and requires `@openset/validator` as a peer dependency.
+`buildValidated()` is async and requires `@diby/openset-validator` as a peer dependency.
 
 ## License
 

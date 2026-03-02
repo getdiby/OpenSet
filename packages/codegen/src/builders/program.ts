@@ -1,4 +1,4 @@
-import type { Program as ProgramType, DocumentMetadata } from '@openset/types';
+import type { Program as ProgramType, DocumentMetadata } from '@diby/openset-types';
 import { PhaseBuilder } from './phase.js';
 
 type DurationUnit = 's' | 'min' | 'h' | 'day' | 'week';
@@ -96,7 +96,7 @@ export class ProgramBuilder {
     return result as unknown as ProgramType;
   }
 
-  /** Build and validate the Program using @openset/validator (async, throws on errors) */
+  /** Build and validate the Program using @diby/openset-validator (async, throws on errors) */
   async buildValidated(): Promise<ProgramType> {
     const doc = this.build();
     const { validateAndThrow } = await import('../validation.js');

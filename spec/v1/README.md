@@ -100,7 +100,7 @@ The canonical library (`openset-default`) ships with 42 exercises under MIT lice
 
 ## Validation
 
-The `@openset/validator` package enforces 13 error rules and 9 warning rules. Errors make a document invalid. Warnings are informational.
+The `@diby/openset-validator` package enforces 13 error rules and 9 warning rules. Errors make a document invalid. Warnings are informational.
 
 See the [validator README](../../packages/validator/README.md) for the full rule reference.
 

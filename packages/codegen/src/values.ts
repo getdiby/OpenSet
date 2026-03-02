@@ -1,4 +1,4 @@
-import type { FixedValue, RangeValue, MinValue, AmrapValue, MaxValue, AnyValue } from '@openset/types';
+import type { FixedValue, RangeValue, MinValue, AmrapValue, MaxValue, AnyValue } from '@diby/openset-types';
 
 /** Create a fixed value: `{ type: 'fixed', value, unit? }` */
 export function fixed(value: number, unit?: string): FixedValue {

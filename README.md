@@ -1,7 +1,7 @@
 # OpenSet
 
-[![npm @openset/types](https://img.shields.io/npm/v/@openset/types?label=%40openset%2Ftypes)](https://www.npmjs.com/package/@openset/types)
-[![npm @openset/validator](https://img.shields.io/npm/v/@openset/validator?label=%40openset%2Fvalidator)](https://www.npmjs.com/package/@openset/validator)
+[![npm @diby/openset-types](https://img.shields.io/npm/v/@diby/openset-types?label=%40diby%2Fopenset-types)](https://www.npmjs.com/package/@diby/openset-types)
+[![npm @diby/openset-validator](https://img.shields.io/npm/v/@diby/openset-validator?label=%40diby%2Fopenset-validator)](https://www.npmjs.com/package/@diby/openset-validator)
 [![npm @openset/codegen](https://img.shields.io/npm/v/@openset/codegen?label=%40openset%2Fcodegen)](https://www.npmjs.com/package/@openset/codegen)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
 
@@ -16,27 +16,27 @@ OpenSet is a JSON-based data standard for describing training workouts across an
 ### Validate a document
 
 ```bash
-npx @openset/validator validate ./my-workout.json --summary
+npx @diby/openset-validator validate ./my-workout.json --summary
 ```
 
 ### Use TypeScript types
 
 ```bash
-npm install @openset/types
+npm install @diby/openset-types
 ```
 
 ```typescript
-import type { Workout, Set, Exercise } from '@openset/types';
+import type { Workout, Set, Exercise } from '@diby/openset-types';
 ```
 
 ### Validate programmatically
 
 ```bash
-npm install @openset/validator
+npm install @diby/openset-validator
 ```
 
 ```typescript
-import { validate } from '@openset/validator';
+import { validate } from '@diby/openset-validator';
 
 const result = validate(myDocument);
 // { valid: true, errors: [], warnings: [] }
@@ -92,8 +92,8 @@ openset/
 │   ├── libraries/              # Canonical exercise library
 │   └── types/                  # TypeScript type definitions
 ├── packages/
-│   ├── typescript-types/       # @openset/types npm package
-│   └── validator/              # @openset/validator npm package
+│   ├── typescript-types/       # @diby/openset-types npm package
+│   └── validator/              # @diby/openset-validator npm package
 ├── examples/                   # Example OpenSet documents
 ├── tools/convert/              # LLM conversion prompt
 └── website/                    # Documentation website
@@ -117,8 +117,8 @@ openset/
 
 | Package | Description |
 |---------|-------------|
-| [`@openset/types`](./packages/typescript-types) | TypeScript type definitions |
-| [`@openset/validator`](./packages/validator) | CLI and programmatic validator |
+| [`@diby/openset-types`](./packages/typescript-types) | TypeScript type definitions |
+| [`@diby/openset-validator`](./packages/validator) | CLI and programmatic validator |
 | [`@openset/codegen`](./packages/codegen) | Fluent TypeScript builder for documents |
 
 ## Contributing

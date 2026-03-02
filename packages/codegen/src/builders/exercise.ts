@@ -1,4 +1,4 @@
-import type { Exercise as ExerciseType, Set } from '@openset/types';
+import type { Exercise as ExerciseType, Set } from '@diby/openset-types';
 
 export class ExerciseBuilder {
   private _exercise_id?: string;

@@ -1,11 +1,11 @@
-# @openset/types
+# @diby/openset-types
 
 TypeScript type definitions for the [OpenSet](https://github.com/getdiby/openset) training data standard.
 
 ## Installation
 
 ```bash
-npm install @openset/types
+npm install @diby/openset-types
 ```
 
 ## Usage
@@ -22,7 +22,7 @@ import type {
   ExecutionMode,
   Dimension,
   ValidationResult,
-} from '@openset/types';
+} from '@diby/openset-types';
 ```
 
 ## Types

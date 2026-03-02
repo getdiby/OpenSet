@@ -1,4 +1,4 @@
-import type { ValidationResult } from '@openset/types';
+import type { ValidationResult } from '@diby/openset-types';
 
 /** Error thrown when buildValidated() finds validation errors */
 export class ValidationError extends Error {
@@ -16,17 +16,17 @@ export class ValidationError extends Error {
 
 /**
  * Validate an OpenSet document and throw if invalid.
- * Uses dynamic import so @openset/validator is only loaded when needed.
+ * Uses dynamic import so @diby/openset-validator is only loaded when needed.
  */
 export async function validateAndThrow(document: unknown): Promise<void> {
   let validate: (doc: unknown) => ValidationResult;
   try {
-    const mod = await import('@openset/validator');
+    const mod = await import('@diby/openset-validator');
     validate = mod.validate;
   } catch {
     throw new Error(
-      'buildValidated() requires @openset/validator to be installed.\n' +
-      'Install it with: npm install @openset/validator'
+      'buildValidated() requires @diby/openset-validator to be installed.\n' +
+      'Install it with: npm install @diby/openset-validator'
     );
   }
 

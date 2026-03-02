@@ -97,7 +97,7 @@ Workout libraries can reference exercise libraries. Exercises within workout blo
 
 ## Validation
 
-The `@openset/validator` validates workout library documents:
+The `@diby/openset-validator` validates workout library documents:
 
 - The `workouts` array must be non-empty
 - Each workout must have `id`, `name`, and `blocks`

@@ -1,4 +1,4 @@
-import type { ValidationMessage } from '@openset/types';
+import type { ValidationMessage } from '@diby/openset-types';
 import { KNOWN_DIMENSIONS } from '../data.js';
 import { formatMessage } from '../messages.js';
 

@@ -1,4 +1,4 @@
-import type { Series as SeriesType, ExecutionMode, ValueObject } from '@openset/types';
+import type { Series as SeriesType, ExecutionMode, ValueObject } from '@diby/openset-types';
 import { ExerciseBuilder } from './exercise.js';
 
 export class SeriesBuilder {

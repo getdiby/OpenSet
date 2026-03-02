@@ -1,4 +1,4 @@
-import type { ValidationMessage } from '@openset/types';
+import type { ValidationMessage } from '@diby/openset-types';
 import { setStructureRules } from './set-structure.js';
 import { dimensionRules } from './dimensions.js';
 import { restPrecedenceRules } from './rest-precedence.js';

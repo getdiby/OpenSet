@@ -1,5 +1,5 @@
 {
-  "name": "@openset/types",
+  "name": "@diby/openset-types",
   "version": "1.0.0",
   "description": "TypeScript type definitions for the OpenSet training data standard",
   "license": "MIT",
@@ -25,6 +25,7 @@
   "files": ["dist"],
   "scripts": {
     "build": "tsup",
+    "test": "tsc -p ./tests/tsconfig.json",
     "lint": "tsc --noEmit"
   },
   "devDependencies": {
