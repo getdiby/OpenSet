@@ -17,8 +17,8 @@ npm test
 ## Project Structure
 
 - `spec/v1/` — Specification files (schemas, vocabulary, exercise library)
-- `packages/typescript-types/` — `@openset/types` npm package
-- `packages/validator/` — `@openset/validator` npm package
+- `packages/typescript-types/` — `@diby/openset-types` npm package
+- `packages/validator/` — `@diby/openset-validator` npm package
 - `examples/` — Example OpenSet documents
 - `tools/convert/` — LLM conversion prompt
 - `website/` — Documentation website (Docusaurus)
@@ -30,7 +30,7 @@ npm test
 npm test
 
 # Run validator tests in watch mode
-npm run test:watch -w @openset/validator
+npm run test:watch -w @diby/openset-validator
 
 # Validate example files
 node packages/validator/dist/cli.js validate examples/*.json --summary

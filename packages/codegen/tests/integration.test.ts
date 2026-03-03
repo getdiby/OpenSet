@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { validate } from '@openset/validator';
+import { validate } from '@diby/openset-validator';
 import { workout, program, set } from '../src/index.js';
 import { fixed, range, amrap, max } from '../src/values.js';
 

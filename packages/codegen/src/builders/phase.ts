@@ -1,4 +1,4 @@
-import type { Phase as PhaseType, Workout as WorkoutType } from '@openset/types';
+import type { Phase as PhaseType, Workout as WorkoutType } from '@diby/openset-types';
 import { WorkoutBuilder } from './workout.js';
 
 export class PhaseBuilder {

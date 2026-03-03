@@ -4,14 +4,14 @@ description: CLI and programmatic validator for OpenSet documents. Install via n
 keywords: [OpenSet, validator, CLI, validation]
 ---
 
-# @openset/validator
+# @diby/openset-validator
 
 A comprehensive validator for OpenSet documents, available as both a CLI tool and a programmatic API.
 
 ## Installation
 
 ```bash
-npm install @openset/validator
+npm install @diby/openset-validator
 ```
 
 ## CLI Usage
@@ -49,7 +49,7 @@ Result: INVALID
 ## Programmatic API
 
 ```typescript
-import { validate } from '@openset/validator';
+import { validate } from '@diby/openset-validator';
 
 const document = {
   openset_version: '1.0',

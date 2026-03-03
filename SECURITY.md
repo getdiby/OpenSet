@@ -18,8 +18,8 @@ We will acknowledge your report within 48 hours and aim to provide a fix or miti
 
 This policy covers:
 
-- The `@openset/types` npm package
-- The `@openset/validator` npm package
+- The `@diby/openset-types` npm package
+- The `@diby/openset-validator` npm package
 - The `@openset/codegen` npm package
 - The OpenSet JSON Schema files
 - The openset.dev documentation website

@@ -1,17 +1,17 @@
 ---
 title: TypeScript Types
-description: TypeScript type definitions for OpenSet documents. Install @openset/types for type-safe workout and program types.
+description: TypeScript type definitions for OpenSet documents. Install @diby/openset-types for type-safe workout and program types.
 keywords: [OpenSet, TypeScript, types, openset types, npm]
 ---
 
-# @openset/types
+# @diby/openset-types
 
 TypeScript type definitions for OpenSet documents.
 
 ## Installation
 
 ```bash
-npm install @openset/types
+npm install @diby/openset-types
 ```
 
 ## Usage
@@ -35,7 +35,7 @@ import type {
   SetRef,
   DimensionResult,
   WorkoutRef,
-} from '@openset/types';
+} from '@diby/openset-types';
 ```
 
 ## Core Types

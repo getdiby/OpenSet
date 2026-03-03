@@ -1,5 +1,5 @@
 {
-  "name": "@openset/validator",
+  "name": "@diby/openset-validator",
   "version": "1.0.0",
   "description": "Validator for OpenSet training workout and program documents",
   "license": "MIT",
@@ -41,7 +41,7 @@
     "commander": "^13.0.0"
   },
   "devDependencies": {
-    "@openset/types": "*",
+    "@diby/openset-types": "*",
     "@types/node": "^25.3.0",
     "tsup": "^8.0.0",
     "typescript": "^5.4.0",

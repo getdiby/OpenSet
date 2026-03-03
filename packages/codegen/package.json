@@ -30,18 +30,18 @@
     "lint": "tsc --noEmit"
   },
   "dependencies": {
-    "@openset/types": "*"
+    "@diby/openset-types": "*"
   },
   "peerDependencies": {
-    "@openset/validator": "^1.0.0"
+    "@diby/openset-validator": "^1.0.0"
   },
   "peerDependenciesMeta": {
-    "@openset/validator": {
+    "@diby/openset-validator": {
       "optional": true
     }
   },
   "devDependencies": {
-    "@openset/validator": "*",
+    "@diby/openset-validator": "*",
     "tsup": "^8.0.0",
     "typescript": "^5.4.0",
     "vitest": "^3.0.0"

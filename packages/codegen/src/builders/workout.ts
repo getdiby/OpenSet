@@ -1,4 +1,4 @@
-import type { Workout as WorkoutType, LibraryRef, DocumentMetadata } from '@openset/types';
+import type { Workout as WorkoutType, LibraryRef, DocumentMetadata } from '@diby/openset-types';
 import { BlockBuilder } from './block.js';
 
 type DurationUnit = 's' | 'min' | 'h' | 'day' | 'week';
@@ -109,7 +109,7 @@ export class WorkoutBuilder {
     return result as unknown as WorkoutType;
   }
 
-  /** Build and validate the Workout using @openset/validator (async, throws on errors) */
+  /** Build and validate the Workout using @diby/openset-validator (async, throws on errors) */
   async buildValidated(): Promise<WorkoutType> {
     const doc = this.build();
     const { validateAndThrow } = await import('../validation.js');

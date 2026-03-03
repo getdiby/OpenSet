@@ -17,7 +17,7 @@ npm install @openset/codegen
 For validated builds, also install the validator:
 
 ```bash
-npm install @openset/codegen @openset/validator
+npm install @openset/codegen @diby/openset-validator
 ```
 
 ## Quick Start
@@ -163,7 +163,7 @@ The `.sets(count, set)` method creates N shallow copies — useful for "3×8 at 
 
 ## Validated Builds
 
-The `.buildValidated()` method runs `@openset/validator` on the built document and throws a `ValidationError` if there are errors:
+The `.buildValidated()` method runs `@diby/openset-validator` on the built document and throws a `ValidationError` if there are errors:
 
 ```typescript
 import { workout, set, fixed, ValidationError } from '@openset/codegen';
@@ -188,7 +188,7 @@ try {
 ```
 
 :::note
-`buildValidated()` is async and requires `@openset/validator` to be installed. If the validator is not installed, it throws an error with installation instructions.
+`buildValidated()` is async and requires `@diby/openset-validator` to be installed. If the validator is not installed, it throws an error with installation instructions.
 :::
 
 ## Full Program Example

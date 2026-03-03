@@ -16,8 +16,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - JSON Schemas: `openset.schema.json`, `exercise-library.schema.json`, `workout-library.schema.json`
 - Vocabulary files: 21 dimensions, 6 value types
 - Canonical exercise library with 42 exercises (`openset-default.json`)
-- `@openset/types` — TypeScript type definitions
-- `@openset/validator` — CLI and programmatic validator
+- `@diby/openset-types` — TypeScript type definitions
+- `@diby/openset-validator` — CLI and programmatic validator
   - 15 error rules (E001–E015)
   - 10 warning rules (W001–W010)
 - `@openset/codegen` — Fluent TypeScript builder for documents

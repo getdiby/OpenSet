@@ -18,7 +18,7 @@
 ## Tools
 
 - [Validator](https://openset.dev/docs/tools/validator): CLI and programmatic validator for OpenSet documents
-- [TypeScript types](https://openset.dev/docs/tools/typescript-types): @openset/types npm package
+- [TypeScript types](https://openset.dev/docs/tools/typescript-types): @diby/openset-types npm package
 - [Code generator](https://openset.dev/docs/tools/codegen): Fluent TypeScript builder for documents
 - [Conversion tool](https://openset.dev/docs/tools/conversion): LLM prompt to convert free-text workout descriptions to OpenSet JSON
 
@@ -27,4 +27,4 @@
 - [FAQ](https://openset.dev/docs/faq): Frequently asked questions and format comparison
 - [Contributors](https://openset.dev/docs/contributors): List of contributors
 - [GitHub](https://github.com/getdiby/openset): Source code and issue tracker
-- [npm org](https://www.npmjs.com/org/diby): @openset/types, @openset/validator, @openset/codegen
+- [npm org](https://www.npmjs.com/org/diby): @diby/openset-types, @diby/openset-validator, @openset/codegen

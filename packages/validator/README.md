@@ -1,4 +1,4 @@
-# @openset/validator
+# @diby/openset-validator
 
 Validator for [OpenSet](https://github.com/getdiby/openset) training workout and program documents.
 
@@ -7,13 +7,13 @@ Validates documents against the OpenSet v1.0 specification, checking both struct
 ## Installation
 
 ```bash
-npm install @openset/validator
+npm install @diby/openset-validator
 ```
 
 ## Programmatic API
 
 ```typescript
-import { validate } from '@openset/validator';
+import { validate } from '@diby/openset-validator';
 
 const result = validate(document);
 

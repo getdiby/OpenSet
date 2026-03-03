@@ -1,4 +1,4 @@
-import type { Set as OpenSetSet, ValueObject, Dimension } from '@openset/types';
+import type { Set as OpenSetSet, ValueObject, Dimension } from '@diby/openset-types';
 
 /** Known dimension names that can be auto-detected from set params */
 const KNOWN_DIMENSION_NAMES: Set<string> = new Set([

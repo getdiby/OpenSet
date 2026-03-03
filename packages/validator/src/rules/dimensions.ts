@@ -1,4 +1,4 @@
-import type { ValidationMessage } from '@openset/types';
+import type { ValidationMessage } from '@diby/openset-types';
 import {
   VALID_VALUE_TYPES,
   DIMENSION_ALLOWED_TYPES,
