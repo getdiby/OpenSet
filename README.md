@@ -121,6 +121,26 @@ openset/
 | [`@diby/openset-validator`](./packages/validator) | CLI and programmatic validator |
 | [`@openset/codegen`](./packages/codegen) | Fluent TypeScript builder for documents |
 
+## Publishing packages
+
+These packages are published to npm under the `@diby` scope. You need npm publish access.
+
+### @diby/openset-types
+
+```bash
+# from repo root
+npm run test -w @diby/openset-types
+npm run build -w @diby/openset-types
+
+# bump version (choose patch/minor/major)
+npm version patch -w @diby/openset-types
+
+# publish
+npm publish -w @diby/openset-types --access public
+```
+
+If you are publishing a prerelease, use `npm version prerelease -w <package>` and add `--tag next` to `npm publish`.
+
 ## Contributing
 
 See [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines on adding exercises, proposing new dimensions, and contributing to the spec. A list of contributors is in [CONTRIBUTORS.md](./CONTRIBUTORS.md).
