@@ -1,0 +1,576 @@
+{
+  "openset_version": "1.0",
+  "type": "program",
+  "name": "12-Week Hypertrophy → Strength (PPL)",
+  "description": "Periodized 12-week strength program with hypertrophy and strength mesocycles using a push/pull/legs split.",
+  "sports": ["strength"],
+  "duration": { "value": 12, "unit": "week" },
+  "x_extensions": ["x_macrocycle_goal", "x_competition_date", "x_season_label"],
+  "x_macrocycle_goal": "Increase upper and lower body strength over 12 weeks using hypertrophy and strength blocks.",
+  "x_competition_date": "2026-06-01",
+  "x_season_label": "2026 off-season",
+  "phases": [
+    {
+      "name": "Hypertrophy 1",
+      "week_start": 1,
+      "week_end": 5,
+      "goal": "Increase muscle mass with moderate loads and higher volume.",
+      "x_mesocycle_index": 1,
+      "x_phase_type": "hypertrophy",
+      "x_primary_focus_muscle_groups": ["full_body"],
+      "x_intensity_trend": "ramping",
+      "workouts": [
+        {
+          "name": "Push — Week 1",
+          "x_extensions": ["x_week_in_phase", "x_day_in_microcycle", "x_microcycle_label", "x_split"],
+          "x_week_in_phase": 1,
+          "x_day_in_microcycle": 1,
+          "x_microcycle_label": "Hypertrophy Week 1",
+          "x_split": "push",
+          "blocks": [
+            {
+              "name": "Main Work",
+              "series": [
+                {
+                  "execution_mode": "SEQUENTIAL",
+                  "exercises": [
+                    {
+                      "exercise_id": "bench_press",
+                      "sets": [
+                        {
+                          "dimensions": ["reps", "load"],
+                          "reps": { "type": "fixed", "value": 10 },
+                          "load": { "type": "fixed", "value": 70, "unit": "kg" }
+                        },
+                        {
+                          "dimensions": ["reps", "load"],
+                          "reps": { "type": "fixed", "value": 10 },
+                          "load": { "type": "fixed", "value": 70, "unit": "kg" }
+                        },
+                        {
+                          "dimensions": ["reps", "load"],
+                          "reps": { "type": "fixed", "value": 10 },
+                          "load": { "type": "fixed", "value": 70, "unit": "kg" }
+                        },
+                        {
+                          "dimensions": ["reps", "load"],
+                          "reps": { "type": "fixed", "value": 10 },
+                          "load": { "type": "fixed", "value": 70, "unit": "kg" }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Push — Week 2",
+          "x_extensions": ["x_week_in_phase", "x_day_in_microcycle", "x_microcycle_label", "x_split"],
+          "x_week_in_phase": 2,
+          "x_day_in_microcycle": 1,
+          "x_microcycle_label": "Hypertrophy Week 2",
+          "x_split": "push",
+          "blocks": [
+            {
+              "name": "Main Work",
+              "series": [
+                {
+                  "execution_mode": "SEQUENTIAL",
+                  "exercises": [
+                    {
+                      "exercise_id": "bench_press",
+                      "sets": [
+                        {
+                          "dimensions": ["reps", "load"],
+                          "reps": { "type": "fixed", "value": 9 },
+                          "load": { "type": "fixed", "value": 72.5, "unit": "kg" }
+                        },
+                        {
+                          "dimensions": ["reps", "load"],
+                          "reps": { "type": "fixed", "value": 9 },
+                          "load": { "type": "fixed", "value": 72.5, "unit": "kg" }
+                        },
+                        {
+                          "dimensions": ["reps", "load"],
+                          "reps": { "type": "fixed", "value": 9 },
+                          "load": { "type": "fixed", "value": 72.5, "unit": "kg" }
+                        },
+                        {
+                          "dimensions": ["reps", "load"],
+                          "reps": { "type": "fixed", "value": 9 },
+                          "load": { "type": "fixed", "value": 72.5, "unit": "kg" }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Push — Week 3",
+          "x_extensions": ["x_week_in_phase", "x_day_in_microcycle", "x_microcycle_label", "x_split"],
+          "x_week_in_phase": 3,
+          "x_day_in_microcycle": 1,
+          "x_microcycle_label": "Hypertrophy Week 3",
+          "x_split": "push",
+          "blocks": [
+            {
+              "name": "Main Work",
+              "series": [
+                {
+                  "execution_mode": "SEQUENTIAL",
+                  "exercises": [
+                    {
+                      "exercise_id": "bench_press",
+                      "sets": [
+                        {
+                          "dimensions": ["reps", "load"],
+                          "reps": { "type": "fixed", "value": 8 },
+                          "load": { "type": "fixed", "value": 75, "unit": "kg" }
+                        },
+                        {
+                          "dimensions": ["reps", "load"],
+                          "reps": { "type": "fixed", "value": 8 },
+                          "load": { "type": "fixed", "value": 75, "unit": "kg" }
+                        },
+                        {
+                          "dimensions": ["reps", "load"],
+                          "reps": { "type": "fixed", "value": 8 },
+                          "load": { "type": "fixed", "value": 75, "unit": "kg" }
+                        },
+                        {
+                          "dimensions": ["reps", "load"],
+                          "reps": { "type": "fixed", "value": 8 },
+                          "load": { "type": "fixed", "value": 75, "unit": "kg" }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Push — Week 4",
+          "x_extensions": ["x_week_in_phase", "x_day_in_microcycle", "x_microcycle_label", "x_split"],
+          "x_week_in_phase": 4,
+          "x_day_in_microcycle": 1,
+          "x_microcycle_label": "Hypertrophy Week 4",
+          "x_split": "push",
+          "blocks": [
+            {
+              "name": "Main Work",
+              "series": [
+                {
+                  "execution_mode": "SEQUENTIAL",
+                  "exercises": [
+                    {
+                      "exercise_id": "bench_press",
+                      "sets": [
+                        {
+                          "dimensions": ["reps", "load"],
+                          "reps": { "type": "fixed", "value": 6 },
+                          "load": { "type": "fixed", "value": 80, "unit": "kg" }
+                        },
+                        {
+                          "dimensions": ["reps", "load"],
+                          "reps": { "type": "fixed", "value": 6 },
+                          "load": { "type": "fixed", "value": 80, "unit": "kg" }
+                        },
+                        {
+                          "dimensions": ["reps", "load"],
+                          "reps": { "type": "fixed", "value": 6 },
+                          "load": { "type": "fixed", "value": 80, "unit": "kg" }
+                        },
+                        {
+                          "dimensions": ["reps", "load"],
+                          "reps": { "type": "fixed", "value": 6 },
+                          "load": { "type": "fixed", "value": 80, "unit": "kg" }
+                        },
+                        {
+                          "dimensions": ["reps", "load"],
+                          "reps": { "type": "fixed", "value": 6 },
+                          "load": { "type": "fixed", "value": 80, "unit": "kg" }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Push — Week 5 (Deload within block)",
+          "x_extensions": ["x_week_in_phase", "x_day_in_microcycle", "x_microcycle_label", "x_split"],
+          "x_week_in_phase": 5,
+          "x_day_in_microcycle": 1,
+          "x_microcycle_label": "Hypertrophy Week 5 (Deload)",
+          "x_split": "push",
+          "blocks": [
+            {
+              "name": "Main Work",
+              "series": [
+                {
+                  "execution_mode": "SEQUENTIAL",
+                  "exercises": [
+                    {
+                      "exercise_id": "bench_press",
+                      "sets": [
+                        {
+                          "dimensions": ["reps", "load"],
+                          "reps": { "type": "fixed", "value": 8 },
+                          "load": { "type": "fixed", "value": 70, "unit": "kg" }
+                        },
+                        {
+                          "dimensions": ["reps", "load"],
+                          "reps": { "type": "fixed", "value": 8 },
+                          "load": { "type": "fixed", "value": 70, "unit": "kg" }
+                        },
+                        {
+                          "dimensions": ["reps", "load"],
+                          "reps": { "type": "fixed", "value": 8 },
+                          "load": { "type": "fixed", "value": 70, "unit": "kg" }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Strength 1",
+      "week_start": 6,
+      "week_end": 9,
+      "goal": "Increase maximal strength with heavier loads and lower rep ranges.",
+      "x_mesocycle_index": 2,
+      "x_phase_type": "strength",
+      "x_primary_focus_muscle_groups": ["full_body"],
+      "x_intensity_trend": "ramping",
+      "workouts": [
+        {
+          "name": "Push — Week 6",
+          "x_extensions": ["x_week_in_phase", "x_day_in_microcycle", "x_microcycle_label", "x_split"],
+          "x_week_in_phase": 1,
+          "x_day_in_microcycle": 1,
+          "x_microcycle_label": "Strength Week 1",
+          "x_split": "push",
+          "blocks": [
+            {
+              "name": "Main Work",
+              "series": [
+                {
+                  "execution_mode": "SEQUENTIAL",
+                  "exercises": [
+                    {
+                      "exercise_id": "bench_press",
+                      "sets": [
+                        {
+                          "dimensions": ["reps", "load"],
+                          "reps": { "type": "fixed", "value": 5 },
+                          "load": { "type": "fixed", "value": 82.5, "unit": "kg" }
+                        },
+                        {
+                          "dimensions": ["reps", "load"],
+                          "reps": { "type": "fixed", "value": 5 },
+                          "load": { "type": "fixed", "value": 82.5, "unit": "kg" }
+                        },
+                        {
+                          "dimensions": ["reps", "load"],
+                          "reps": { "type": "fixed", "value": 5 },
+                          "load": { "type": "fixed", "value": 82.5, "unit": "kg" }
+                        },
+                        {
+                          "dimensions": ["reps", "load"],
+                          "reps": { "type": "fixed", "value": 5 },
+                          "load": { "type": "fixed", "value": 82.5, "unit": "kg" }
+                        },
+                        {
+                          "dimensions": ["reps", "load"],
+                          "reps": { "type": "fixed", "value": 5 },
+                          "load": { "type": "fixed", "value": 82.5, "unit": "kg" }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Push — Week 7",
+          "x_extensions": ["x_week_in_phase", "x_day_in_microcycle", "x_microcycle_label", "x_split"],
+          "x_week_in_phase": 2,
+          "x_day_in_microcycle": 1,
+          "x_microcycle_label": "Strength Week 2",
+          "x_split": "push",
+          "blocks": [
+            {
+              "name": "Main Work",
+              "series": [
+                {
+                  "execution_mode": "SEQUENTIAL",
+                  "exercises": [
+                    {
+                      "exercise_id": "bench_press",
+                      "sets": [
+                        {
+                          "dimensions": ["reps", "load"],
+                          "reps": { "type": "fixed", "value": 4 },
+                          "load": { "type": "fixed", "value": 85, "unit": "kg" }
+                        },
+                        {
+                          "dimensions": ["reps", "load"],
+                          "reps": { "type": "fixed", "value": 4 },
+                          "load": { "type": "fixed", "value": 85, "unit": "kg" }
+                        },
+                        {
+                          "dimensions": ["reps", "load"],
+                          "reps": { "type": "fixed", "value": 4 },
+                          "load": { "type": "fixed", "value": 85, "unit": "kg" }
+                        },
+                        {
+                          "dimensions": ["reps", "load"],
+                          "reps": { "type": "fixed", "value": 4 },
+                          "load": { "type": "fixed", "value": 85, "unit": "kg" }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Push — Week 8",
+          "x_extensions": ["x_week_in_phase", "x_day_in_microcycle", "x_microcycle_label", "x_split"],
+          "x_week_in_phase": 3,
+          "x_day_in_microcycle": 1,
+          "x_microcycle_label": "Strength Week 3",
+          "x_split": "push",
+          "blocks": [
+            {
+              "name": "Main Work",
+              "series": [
+                {
+                  "execution_mode": "SEQUENTIAL",
+                  "exercises": [
+                    {
+                      "exercise_id": "bench_press",
+                      "sets": [
+                        {
+                          "dimensions": ["reps", "load"],
+                          "reps": { "type": "fixed", "value": 3 },
+                          "load": { "type": "fixed", "value": 87.5, "unit": "kg" }
+                        },
+                        {
+                          "dimensions": ["reps", "load"],
+                          "reps": { "type": "fixed", "value": 3 },
+                          "load": { "type": "fixed", "value": 87.5, "unit": "kg" }
+                        },
+                        {
+                          "dimensions": ["reps", "load"],
+                          "reps": { "type": "fixed", "value": 3 },
+                          "load": { "type": "fixed", "value": 87.5, "unit": "kg" }
+                        },
+                        {
+                          "dimensions": ["reps", "load"],
+                          "reps": { "type": "fixed", "value": 3 },
+                          "load": { "type": "fixed", "value": 87.5, "unit": "kg" }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Push — Week 9 (Deload)",
+          "x_extensions": ["x_week_in_phase", "x_day_in_microcycle", "x_microcycle_label", "x_split"],
+          "x_week_in_phase": 4,
+          "x_day_in_microcycle": 1,
+          "x_microcycle_label": "Strength Week 4 (Deload)",
+          "x_split": "push",
+          "blocks": [
+            {
+              "name": "Main Work",
+              "series": [
+                {
+                  "execution_mode": "SEQUENTIAL",
+                  "exercises": [
+                    {
+                      "exercise_id": "bench_press",
+                      "sets": [
+                        {
+                          "dimensions": ["reps", "load"],
+                          "reps": { "type": "fixed", "value": 5 },
+                          "load": { "type": "fixed", "value": 75, "unit": "kg" }
+                        },
+                        {
+                          "dimensions": ["reps", "load"],
+                          "reps": { "type": "fixed", "value": 5 },
+                          "load": { "type": "fixed", "value": 75, "unit": "kg" }
+                        },
+                        {
+                          "dimensions": ["reps", "load"],
+                          "reps": { "type": "fixed", "value": 5 },
+                          "load": { "type": "fixed", "value": 75, "unit": "kg" }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Strength 2 / Peaking",
+      "week_start": 10,
+      "week_end": 12,
+      "goal": "Peak strength with very heavy loads and low reps.",
+      "x_mesocycle_index": 3,
+      "x_phase_type": "peaking",
+      "x_primary_focus_muscle_groups": ["full_body"],
+      "x_intensity_trend": "ramping",
+      "workouts": [
+        {
+          "name": "Push — Week 10",
+          "x_extensions": ["x_week_in_phase", "x_day_in_microcycle", "x_microcycle_label", "x_split"],
+          "x_week_in_phase": 1,
+          "x_day_in_microcycle": 1,
+          "x_microcycle_label": "Peaking Week 1",
+          "x_split": "push",
+          "blocks": [
+            {
+              "name": "Main Work",
+              "series": [
+                {
+                  "execution_mode": "SEQUENTIAL",
+                  "exercises": [
+                    {
+                      "exercise_id": "bench_press",
+                      "sets": [
+                        {
+                          "dimensions": ["reps", "load"],
+                          "reps": { "type": "fixed", "value": 3 },
+                          "load": { "type": "fixed", "value": 90, "unit": "kg" }
+                        },
+                        {
+                          "dimensions": ["reps", "load"],
+                          "reps": { "type": "fixed", "value": 3 },
+                          "load": { "type": "fixed", "value": 90, "unit": "kg" }
+                        },
+                        {
+                          "dimensions": ["reps", "load"],
+                          "reps": { "type": "fixed", "value": 3 },
+                          "load": { "type": "fixed", "value": 90, "unit": "kg" }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Push — Week 11",
+          "x_extensions": ["x_week_in_phase", "x_day_in_microcycle", "x_microcycle_label", "x_split"],
+          "x_week_in_phase": 2,
+          "x_day_in_microcycle": 1,
+          "x_microcycle_label": "Peaking Week 2",
+          "x_split": "push",
+          "blocks": [
+            {
+              "name": "Main Work",
+              "series": [
+                {
+                  "execution_mode": "SEQUENTIAL",
+                  "exercises": [
+                    {
+                      "exercise_id": "bench_press",
+                      "sets": [
+                        {
+                          "dimensions": ["reps", "load"],
+                          "reps": { "type": "fixed", "value": 2 },
+                          "load": { "type": "fixed", "value": 92.5, "unit": "kg" }
+                        },
+                        {
+                          "dimensions": ["reps", "load"],
+                          "reps": { "type": "fixed", "value": 2 },
+                          "load": { "type": "fixed", "value": 92.5, "unit": "kg" }
+                        },
+                        {
+                          "dimensions": ["reps", "load"],
+                          "reps": { "type": "fixed", "value": 2 },
+                          "load": { "type": "fixed", "value": 92.5, "unit": "kg" }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Push — Week 12 (Test / Peak)",
+          "x_extensions": ["x_week_in_phase", "x_day_in_microcycle", "x_microcycle_label", "x_split"],
+          "x_week_in_phase": 3,
+          "x_day_in_microcycle": 1,
+          "x_microcycle_label": "Peaking Week 3 (Test)",
+          "x_split": "push",
+          "blocks": [
+            {
+              "name": "Main Work",
+              "series": [
+                {
+                  "execution_mode": "SEQUENTIAL",
+                  "exercises": [
+                    {
+                      "exercise_id": "bench_press",
+                      "sets": [
+                        {
+                          "dimensions": ["reps", "load"],
+                          "reps": { "type": "fixed", "value": 1 },
+                          "load": { "type": "fixed", "value": 95, "unit": "kg" }
+                        },
+                        {
+                          "dimensions": ["reps", "load"],
+                          "reps": { "type": "fixed", "value": 1 },
+                          "load": { "type": "fixed", "value": 97.5, "unit": "kg" }
+                        },
+                        {
+                          "dimensions": ["reps", "load"],
+                          "reps": { "type": "fixed", "value": 1 },
+                          "load": { "type": "max" }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+

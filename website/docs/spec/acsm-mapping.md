@@ -275,3 +275,117 @@ This workout:
 
 These examples are intentionally compact; real programs may add more exercises, phases, and population-specific extensions (see [Extensions](./extensions)) while keeping the same structural pattern.
 
+## Periodization and macro/meso/micro cycles
+
+ACSM’s **progression** principle assumes that training changes over **weeks and months**, not just inside one workout. OpenSet represents this progression using the existing document hierarchy:
+
+- **Macrocycle** — A `Program` document describing the overall season or long-term plan (e.g. 12-week or 12-month plan).
+- **Mesocycle** — `Phase` objects within a program (often 4–8 weeks each) with their own `goal`, `week_start`, and `week_end` fields (e.g. hypertrophy, strength, deload).
+- **Microcycle** — Weekly patterns of `Workout`s inside a phase; each workout holds the detailed set prescriptions.
+
+### Mapping ACSM-style progression to OpenSet
+
+For resistance training, ACSM often describes progression across weeks, for example:
+
+- Start with higher reps and moderate loads.
+- Gradually increase load and reduce reps.
+- Insert deload weeks when needed.
+
+In OpenSet, this looks like:
+
+- **Macrocycle** — A program-level goal (e.g. “increase strength over 12 weeks”) plus overall `duration`.
+- **Mesocycle** — Phases such as `"Hypertrophy 1"`, `"Strength 1"`, `"Peaking"` with:
+  - `goal`: phase focus.
+  - `week_start` / `week_end`: the weeks this block covers.
+  - Optional periodization extensions like `x_mesocycle_index`, `x_phase_type`, and `x_intensity_trend`.
+- **Microcycle** — Individual workouts (e.g. `Push — Week 3`) with:
+  - Optional extensions like `x_week_in_phase`, `x_day_in_microcycle`, and `x_split`.
+  - Set-level changes over time (e.g. load and reps changing from week to week).
+
+See the **Advanced Example — Periodized Strength Program** in [Examples](./examples) (`program-hypertrophy-strength-periodized.json`) for a complete JSON document that encodes multiple mesocycles and weekly progression.
+
+### Example — Bench press mesocycle progression
+
+The table below is a classic strength mesocycle (similar to what many coaches use):
+
+| Week | Sets × Reps | Load |
+|------|-------------|------|
+| 1 | 4×10 | 70 kg |
+| 2 | 4×9 | 72.5 kg |
+| 3 | 4×8 | 75 kg |
+| 4 | 5×6 | 80 kg |
+| 5 | 5×5 | 85 kg |
+
+Here is how you might encode those five weeks of bench press in a single `Phase` using five separate push-day workouts, each tagged with its week in the phase:
+
+```json
+{
+  "name": "Hypertrophy → Strength Bench Mesocycle",
+  "week_start": 1,
+  "week_end": 5,
+  "x_mesocycle_index": 1,
+  "x_phase_type": "hypertrophy",
+  "workouts": [
+    {
+      "name": "Push — Week 1",
+      "x_week_in_phase": 1,
+      "x_day_in_microcycle": 1,
+      "x_split": "push",
+      "blocks": [
+        {
+          "name": "Main Work",
+          "series": [
+            {
+              "execution_mode": "SEQUENTIAL",
+              "exercises": [
+                {
+                  "exercise_id": "bench_press",
+                  "sets": [
+                    { "dimensions": ["reps", "load"], "reps": { "type": "fixed", "value": 10 }, "load": { "type": "fixed", "value": 70, "unit": "kg" } },
+                    { "dimensions": ["reps", "load"], "reps": { "type": "fixed", "value": 10 }, "load": { "type": "fixed", "value": 70, "unit": "kg" } },
+                    { "dimensions": ["reps", "load"], "reps": { "type": "fixed", "value": 10 }, "load": { "type": "fixed", "value": 70, "unit": "kg" } },
+                    { "dimensions": ["reps", "load"], "reps": { "type": "fixed", "value": 10 }, "load": { "type": "fixed", "value": 70, "unit": "kg" } }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Push — Week 2",
+      "x_week_in_phase": 2,
+      "x_day_in_microcycle": 1,
+      "x_split": "push",
+      "blocks": [
+        {
+          "name": "Main Work",
+          "series": [
+            {
+              "execution_mode": "SEQUENTIAL",
+              "exercises": [
+                {
+                  "exercise_id": "bench_press",
+                  "sets": [
+                    { "dimensions": ["reps", "load"], "reps": { "type": "fixed", "value": 9 }, "load": { "type": "fixed", "value": 72.5, "unit": "kg" } },
+                    { "dimensions": ["reps", "load"], "reps": { "type": "fixed", "value": 9 }, "load": { "type": "fixed", "value": 72.5, "unit": "kg" } },
+                    { "dimensions": ["reps", "load"], "reps": { "type": "fixed", "value": 9 }, "load": { "type": "fixed", "value": 72.5, "unit": "kg" } },
+                    { "dimensions": ["reps", "load"], "reps": { "type": "fixed", "value": 9 }, "load": { "type": "fixed", "value": 72.5, "unit": "kg" } }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+
+Subsequent weeks (3–5) follow the same pattern, with updated `reps` and `load` to reflect the mesocycle progression. Apps can use:
+
+- `x_week_in_phase` and `x_day_in_microcycle` to group workouts into microcycles.
+- `week_start` / `week_end`, `x_phase_type`, and `x_intensity_trend` to visualize mesocycles across the macrocycle.
+

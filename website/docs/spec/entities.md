@@ -6,7 +6,7 @@ keywords: [OpenSet, entities, program, workout, block, series, set]
 
 # Entities
 
-OpenSet documents follow a strict hierarchical structure.
+OpenSet documents follow a strict hierarchical structure. This hierarchy is also how macro/meso/micro training cycles are represented (see [Program, phases, and training cycles](#program-phases-and-training-cycles) and [ACSM-style Mapping](./acsm-mapping)).
 
 ```
 PROGRAM
@@ -59,6 +59,38 @@ Top-level container for a multi-workout training plan.
 | `duration` | No | Program duration object with numeric `value` and `unit` from `s|min|h|day|week` |
 | `phases` | Yes | Array of Phase objects |
 | `metadata` | No | Document metadata (see [Metadata](#metadata)) |
+
+### Program, phases, and training cycles
+
+Coaches and apps can represent classic **macro/meso/micro** cycles using the existing hierarchy:
+
+- **Macrocycle** — The overall plan (e.g. multi‑month or year‑long season) is modeled as a single `Program` document.
+- **Mesocycle** — Each `Phase` within `program.phases` typically represents a focused block of several weeks (e.g. hypertrophy, strength, peaking, deload).
+- **Microcycle** — Weekly patterns of `Workout`s within a phase (e.g. push/pull/legs over one week) form a microcycle; progression comes from how workouts and set targets evolve week to week.
+
+Phases already support time-bounded blocks via `week_start` and `week_end`, so a periodized program is usually:
+
+```text
+Program (macrocycle)
+  Phase 1 — e.g. "Hypertrophy 1" (weeks 1–4)
+  Phase 2 — e.g. "Strength 1" (weeks 5–8)
+  Phase 3 — e.g. "Deload" (week 9)
+  Phase 4 — e.g. "Strength 2" (weeks 10–12)
+```
+
+Within each phase, individual workouts encode microcycle structure (e.g. PPL, upper/lower, full‑body) and progression using set‑level dimensions such as `reps`, `load`, `rpe`, `duration`, and `rest_after`. See [Extensions](./extensions) for optional metadata fields that can label mesocycles and microcycles more explicitly.
+
+```mermaid
+flowchart TD
+  macro["Program (macrocycle)"] --> meso1["Phase (mesocycle)"]
+  macro --> meso2["Phase (mesocycle)"]
+  meso1 --> micro1["Workouts (microcycle week)"]
+  meso1 --> micro2["Workouts (microcycle week)"]
+  micro1 --> block["Block"]
+  block --> series["Series"]
+  series --> exercise["Exercise"]
+  exercise --> set["Set"]
+```
 
 ### Phase
 

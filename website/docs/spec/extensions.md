@@ -200,6 +200,99 @@ Example on a `program`:
 }
 ```
 
+### Periodization & cycle metadata (optional)
+
+Many strength and conditioning programs use **macro/meso/micro** cycles (season → 4–8 week blocks → weekly microcycles). OpenSet already models this structurally via **Program → Phase → Workout** (see [Entities](./entities) and [ACSM-style Mapping](./acsm-mapping)); you can standardize **metadata about those cycles** using extensions.
+
+These fields are optional but recommended when you want different tools to agree on how a program is periodized.
+
+#### Program-level (macrocycle) extensions
+
+On `Program` documents:
+
+- **`x_macrocycle_goal`** (string)
+  - High-level objective for the whole program.
+  - Examples: `"increase powerlifting total in 12 months"`, `"off-season hypertrophy for field sport athletes"`.
+- **`x_competition_date`** (string, ISO 8601 date)
+  - Optional target event date (e.g. `"2026-11-12"`).
+- **`x_season_label`** (string)
+  - Season or cycle label, e.g. `"2026 season"`, `"Off-season"`, `"In-season"`.
+
+Example:
+
+```json
+{
+  "openset_version": "1.0",
+  "type": "program",
+  "name": "Hypertrophy → Strength Macrocycle",
+  "x_extensions": ["x_macrocycle_goal", "x_competition_date", "x_season_label"],
+  "x_macrocycle_goal": "Increase total strength across a 12-week macrocycle",
+  "x_competition_date": "2026-06-15",
+  "x_season_label": "2026 season",
+  "phases": [...]
+}
+```
+
+#### Phase-level (mesocycle) extensions
+
+On `Phase` objects inside `program.phases`:
+
+- **`x_mesocycle_index`** (number)
+  - 1-based index of the mesocycle within the macrocycle (e.g. `1` for the first block).
+- **`x_phase_type`** (string)
+  - Suggested values include: `"hypertrophy"`, `"strength"`, `"power"`, `"peaking"`, `"deload"`, `"recovery"`.
+- **`x_primary_focus_muscle_groups`** (array of strings)
+  - Broad focus areas such as `"upper_body"`, `"lower_body"`, `"full_body"`, `"push"`, `"pull"`.
+- **`x_intensity_trend`** (string)
+  - Optional description of how intensity behaves in this block (e.g. `"linear"`, `"ramping"`, `"undulating"`).
+
+Example:
+
+```json
+{
+  "name": "Hypertrophy 1",
+  "week_start": 1,
+  "week_end": 4,
+  "goal": "Increase muscle mass with moderate loads and higher volume",
+  "x_mesocycle_index": 1,
+  "x_phase_type": "hypertrophy",
+  "x_primary_focus_muscle_groups": ["full_body"],
+  "x_intensity_trend": "ramping",
+  "workouts": [...]
+}
+```
+
+#### Workout-level (microcycle/session) extensions
+
+On `Workout` objects (standalone or inside `Phase.workouts`):
+
+- **`x_week_in_phase`** (number)
+  - 1-based week index of this workout within its phase (e.g. `1`..`4` for a 4-week mesocycle).
+- **`x_day_in_microcycle`** (number)
+  - 1-based index for the training day within the weekly microcycle (e.g. `1`..`7`).
+- **`x_microcycle_label`** (string)
+  - Optional human-readable label such as `"PPL Week 1"`, `"Deload week"`.
+- **`x_split`** (string)
+  - Simple split label such as `"push"`, `"pull"`, `"legs"`, `"upper"`, `"lower"`, `"full_body"`.
+
+Example:
+
+```json
+{
+  "openset_version": "1.0",
+  "type": "workout",
+  "name": "Push — Bench Focus",
+  "x_extensions": ["x_week_in_phase", "x_day_in_microcycle", "x_microcycle_label", "x_split"],
+  "x_week_in_phase": 3,
+  "x_day_in_microcycle": 1,
+  "x_microcycle_label": "Hypertrophy Week 3",
+  "x_split": "push",
+  "blocks": [...]
+}
+```
+
+These extensions do not change how sets are executed; they add enough structure that periodized programs (e.g. hypertrophy → strength → peaking) can be analyzed and visualized consistently across tools.
+
 ## Validation Behavior
 
 - Unknown fields **with** a valid namespace prefix: warning **W009** + structural check **E015** (must be a ValueObject)

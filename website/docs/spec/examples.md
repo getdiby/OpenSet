@@ -621,7 +621,7 @@ Combination workout demonstrating **EMOM**, **LADDER**, 1RM testing with `"load"
 
 ---
 
-## Program Example
+## Program Examples
 
 ### 4-Week Strength Foundation
 
@@ -805,6 +805,63 @@ Multi-phase program demonstrating progressive overload across two phases with **
                         { "dimensions": ["reps", "load"], "reps": { "type": "fixed", "value": 5 }, "load": { "type": "fixed", "value": 120, "unit": "kg" }, "rpe": { "type": "fixed", "value": 8 }, "rest_after": { "type": "fixed", "value": 180, "unit": "s" } },
                         { "dimensions": ["reps", "load"], "reps": { "type": "fixed", "value": 5 }, "load": { "type": "fixed", "value": 120, "unit": "kg" }, "rpe": { "type": "fixed", "value": 8 }, "rest_after": { "type": "fixed", "value": 180, "unit": "s" } },
                         { "dimensions": ["reps", "load"], "reps": { "type": "fixed", "value": 5 }, "load": { "type": "fixed", "value": 120, "unit": "kg" }, "rpe": { "type": "fixed", "value": 8 } }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+
+</details>
+
+### Advanced Example — Periodized Strength Program
+
+Multi-phase program demonstrating macro/meso/micro structure with explicit hypertrophy, strength, and peaking blocks, plus week-by-week bench press progression. See also [ACSM-style Mapping](./acsm-mapping) for how this aligns with ACSM progression.
+
+<details>
+<summary><code>program-hypertrophy-strength-periodized.json</code></summary>
+
+```json
+{
+  "openset_version": "1.0",
+  "type": "program",
+  "name": "12-Week Hypertrophy → Strength (PPL)",
+  "duration": { "value": 12, "unit": "week" },
+  "x_macrocycle_goal": "Increase upper and lower body strength over 12 weeks using hypertrophy and strength blocks.",
+  "phases": [
+    {
+      "name": "Hypertrophy 1",
+      "week_start": 1,
+      "week_end": 5,
+      "x_mesocycle_index": 1,
+      "x_phase_type": "hypertrophy",
+      "workouts": [
+        {
+          "name": "Push — Week 1",
+          "x_week_in_phase": 1,
+          "x_day_in_microcycle": 1,
+          "x_split": "push",
+          "blocks": [
+            {
+              "name": "Main Work",
+              "series": [
+                {
+                  "execution_mode": "SEQUENTIAL",
+                  "exercises": [
+                    {
+                      "exercise_id": "bench_press",
+                      "sets": [
+                        { "dimensions": ["reps", "load"], "reps": { "type": "fixed", "value": 10 }, "load": { "type": "fixed", "value": 70, "unit": "kg" } },
+                        { "dimensions": ["reps", "load"], "reps": { "type": "fixed", "value": 10 }, "load": { "type": "fixed", "value": 70, "unit": "kg" } },
+                        { "dimensions": ["reps", "load"], "reps": { "type": "fixed", "value": 10 }, "load": { "type": "fixed", "value": 70, "unit": "kg" } },
+                        { "dimensions": ["reps", "load"], "reps": { "type": "fixed", "value": 10 }, "load": { "type": "fixed", "value": 70, "unit": "kg" } }
                       ]
                     }
                   ]
