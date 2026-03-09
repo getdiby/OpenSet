@@ -12,6 +12,28 @@ const config: Config = {
     { tagName: 'link', attributes: { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/img/favicon-16x16.png' } },
     { tagName: 'link', attributes: { rel: 'apple-touch-icon', href: '/img/apple-touch-icon.png' } },
     { tagName: 'link', attributes: { rel: 'manifest', href: '/img/site.webmanifest' } },
+    {
+      tagName: 'script',
+      attributes: { type: 'application/ld+json' },
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Organization',
+        name: 'OpenSet',
+        url: 'https://openset.dev',
+        logo: 'https://openset.dev/img/openset-og.png',
+        sameAs: ['https://github.com/getdiby/openset'],
+      }),
+    },
+    {
+      tagName: 'script',
+      attributes: { type: 'application/ld+json' },
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        name: 'OpenSet',
+        url: 'https://openset.dev',
+      }),
+    },
   ],
 
   future: {
@@ -60,9 +82,10 @@ const config: Config = {
       { property: 'og:url', content: 'https://openset.dev' },
       { property: 'og:title', content: 'OpenSet' },
       { property: 'og:description', content: 'Open, sport-agnostic JSON standard for structured training workouts and programs. Schema, validator, TypeScript types, and tools.' },
-      { name: 'twitter:card', content: 'summary' },
-      { name: 'twitter:title', content: 'OpenSet' },
-      { name: 'twitter:description', content: 'Open, sport-agnostic JSON standard for structured training workouts and programs. Schema, validator, TypeScript types, and tools.' },
+      { property: 'og:image', content: 'https://openset.dev/img/openset-og.png' },
+      { property: 'og:image:width', content: '1200' },
+      { property: 'og:image:height', content: '630' },
+      { property: 'og:image:alt', content: 'OpenSet - Open JSON Standard for Workouts and Training Programs' },
     ],
     colorMode: {
       respectPrefersColorScheme: true,

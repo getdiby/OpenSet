@@ -22,14 +22,15 @@
   "publishConfig": {
     "access": "public"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsup",
     "test": "tsc -p ./tests/tsconfig.json",
     "lint": "tsc --noEmit"
   },
   "devDependencies": {
-    "tsup": "^8.0.0",
     "typescript": "^5.4.0"
   }
 }

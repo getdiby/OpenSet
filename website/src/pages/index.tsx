@@ -65,7 +65,10 @@ function HomepageHeader() {
 
 export default function Home(): ReactNode {
   return (
-    <Layout description="An open, sport-agnostic JSON standard for structured training">
+    <Layout
+      title="Open JSON Standard for Workouts and Training Programs"
+      description="OpenSet is an open, sport-agnostic JSON standard for structured workouts and training programs with JSON Schema, validation tools, and TypeScript support."
+    >
       <HomepageHeader />
       <main>
         <HomepageFeatures />
