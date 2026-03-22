@@ -59,6 +59,7 @@ Top-level container for a multi-workout training plan.
 | `duration` | No | Program duration object with numeric `value` and `unit` from `s|min|h|day|week` |
 | `phases` | Yes | Array of Phase objects |
 | `metadata` | No | Document metadata (see [Metadata](#metadata)) |
+| `media` | No | Optional instructional or marketing videos and photos — same shape as [Exercise library](./exercise-library#media) (`videos`, `photos` with `url` and `label`; videos may include `language`) |
 
 ### Program, phases, and training cycles
 
@@ -119,6 +120,7 @@ The minimum valid standalone document. Represents a single training workout.
 | `duration` | No | Estimated workout duration object with numeric `value` and `unit` from `s|min|h|day|week` |
 | `tags` | No | Optional tags for filtering and discovery |
 | `metadata` | No | Document metadata (see [Metadata](#metadata)) |
+| `media` | No | Optional instructional or marketing videos and photos — same shape as [Exercise library](./exercise-library#media) (`videos`, `photos` with `url` and `label`; videos may include `language`). Applies to standalone workouts and to each workout embedded under a program phase. |
 | `blocks` | Yes | Array of Block objects |
 
 ### Block

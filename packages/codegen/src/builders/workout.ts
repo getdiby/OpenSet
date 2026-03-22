@@ -1,4 +1,9 @@
-import type { Workout as WorkoutType, LibraryRef, DocumentMetadata } from '@diby/openset-types';
+import type {
+  Workout as WorkoutType,
+  LibraryRef,
+  DocumentMetadata,
+  Media,
+} from '@diby/openset-types';
 import { BlockBuilder } from './block.js';
 
 type DurationUnit = 's' | 'min' | 'h' | 'day' | 'week';
@@ -13,6 +18,7 @@ export class WorkoutBuilder {
   private _duration?: { value: number; unit: DurationUnit };
   private _x_extensions?: string[];
   private _metadata?: DocumentMetadata;
+  private _media?: Media;
   private _blocks: ReturnType<BlockBuilder['build']>[] = [];
 
   constructor(name?: string) {
@@ -73,6 +79,12 @@ export class WorkoutBuilder {
     return this;
   }
 
+  /** Set optional instructional or marketing media (videos / photos) */
+  media(media: Media): this {
+    this._media = media;
+    return this;
+  }
+
   /** Add a named block */
   block(name: string, configure: (b: BlockBuilder) => void): this;
   /** Add an unnamed block */
@@ -106,6 +118,7 @@ export class WorkoutBuilder {
     if (this._duration !== undefined) result.duration = this._duration;
     if (this._x_extensions !== undefined) result.x_extensions = this._x_extensions;
     if (this._metadata !== undefined) result.metadata = this._metadata;
+    if (this._media !== undefined) result.media = this._media;
     return result as unknown as WorkoutType;
   }
 

@@ -1,6 +1,6 @@
 {
   "name": "@diby/openset-types",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "TypeScript type definitions for the OpenSet training data standard",
   "license": "MIT",
   "type": "module",

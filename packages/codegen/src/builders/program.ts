@@ -1,4 +1,4 @@
-import type { Program as ProgramType, DocumentMetadata } from '@diby/openset-types';
+import type { Program as ProgramType, DocumentMetadata, Media } from '@diby/openset-types';
 import { PhaseBuilder } from './phase.js';
 
 type DurationUnit = 's' | 'min' | 'h' | 'day' | 'week';
@@ -10,6 +10,7 @@ export class ProgramBuilder {
   private _sports?: string[];
   private _duration?: { value: number; unit: DurationUnit };
   private _metadata?: DocumentMetadata;
+  private _media?: Media;
   private _x_extensions?: string[];
   private _phases: ReturnType<PhaseBuilder['build']>[] = [];
 
@@ -65,6 +66,12 @@ export class ProgramBuilder {
     return this;
   }
 
+  /** Set optional instructional or marketing media (videos / photos) */
+  media(media: Media): this {
+    this._media = media;
+    return this;
+  }
+
   /** Declare extension namespaces used in this document */
   extensions(exts: string[]): this {
     this._x_extensions = exts;
@@ -92,6 +99,7 @@ export class ProgramBuilder {
     if (this._sports !== undefined) result.sports = this._sports;
     if (this._duration !== undefined) result.duration = this._duration;
     if (this._metadata !== undefined) result.metadata = this._metadata;
+    if (this._media !== undefined) result.media = this._media;
     if (this._x_extensions !== undefined) result.x_extensions = this._x_extensions;
     return result as unknown as ProgramType;
   }

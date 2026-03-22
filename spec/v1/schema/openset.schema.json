@@ -29,6 +29,7 @@
           "description": "Optional tags for filtering and discovery"
         },
         "metadata": { "$ref": "#/$defs/DocumentMetadata" },
+        "media": { "$ref": "#/$defs/Media" },
         "blocks": {
           "type": "array",
           "items": { "$ref": "#/$defs/Block" },
@@ -83,7 +84,8 @@
           "items": { "$ref": "#/$defs/Phase" },
           "minItems": 1
         },
-        "metadata": { "$ref": "#/$defs/DocumentMetadata" }
+        "metadata": { "$ref": "#/$defs/DocumentMetadata" },
+        "media": { "$ref": "#/$defs/Media" }
       },
       "patternProperties": {
         "^x_": {},
@@ -129,6 +131,38 @@
         "license": { "type": "string" },
         "created_at": { "type": "string", "format": "date-time" },
         "updated_at": { "type": "string", "format": "date-time" }
+      },
+      "additionalProperties": false
+    },
+
+    "Media": {
+      "type": "object",
+      "properties": {
+        "videos": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["url", "label"],
+            "properties": {
+              "url": { "type": "string", "format": "uri" },
+              "label": { "type": "string" },
+              "language": { "type": "string" }
+            },
+            "additionalProperties": false
+          }
+        },
+        "photos": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["url", "label"],
+            "properties": {
+              "url": { "type": "string", "format": "uri" },
+              "label": { "type": "string" }
+            },
+            "additionalProperties": false
+          }
+        }
       },
       "additionalProperties": false
     },

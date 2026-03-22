@@ -203,6 +203,24 @@ describe('WorkoutBuilder', () => {
     expect(doc.note).toBeUndefined();
     expect(doc.id).toBeUndefined();
     expect(doc.x_extensions).toBeUndefined();
+    expect(doc.media).toBeUndefined();
+  });
+
+  it('includes media when set', () => {
+    const media = {
+      photos: [{ url: 'https://example.com/cover.jpg', label: 'Cover' }],
+      videos: [{ url: 'https://example.com/intro.mp4', label: 'Intro', language: 'en' }],
+    };
+    const doc = workout()
+      .media(media)
+      .block('A', b => b
+        .series('SEQUENTIAL', s => s
+          .exercise('push_up', e => e.set(set({ reps: fixed(10) })))
+        )
+      )
+      .build();
+
+    expect(doc.media).toEqual(media);
   });
 });
 
@@ -281,5 +299,25 @@ describe('ProgramBuilder', () => {
     expect(innerWorkout.type).toBeUndefined();
     expect(innerWorkout.name).toBe('S1');
     expect(innerWorkout.blocks).toBeDefined();
+  });
+
+  it('includes media when set', () => {
+    const media = {
+      photos: [{ url: 'https://example.com/program.jpg', label: 'Program cover' }],
+    };
+    const doc = program('P')
+      .media(media)
+      .phase('Phase 1', p => p
+        .workout('Day 1', s => s
+          .block('A', b => b
+            .series('SEQUENTIAL', ser => ser
+              .exercise('push_up', e => e.set(set({ reps: fixed(10) })))
+            )
+          )
+        )
+      )
+      .build();
+
+    expect(doc.media).toEqual(media);
   });
 });

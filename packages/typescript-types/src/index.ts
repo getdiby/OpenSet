@@ -248,6 +248,8 @@ export interface Workout {
   tags?: string[];
   /** Document metadata (version, author, provider, license, timestamps) */
   metadata?: DocumentMetadata;
+  /** Optional instructional or marketing videos and photos (same shape as exercise / workout-library) */
+  media?: Media;
   blocks: Block[];
 }
 
@@ -277,6 +279,8 @@ export interface Program {
   phases: Phase[];
   /** Document metadata (version, author, provider, license, timestamps) */
   metadata?: DocumentMetadata;
+  /** Optional instructional or marketing videos and photos (same shape as exercise / workout-library) */
+  media?: Media;
 }
 
 // === Library Reference ===

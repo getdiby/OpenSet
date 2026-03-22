@@ -1,29 +1,29 @@
 ---
 title: Code Generator
-description: Fluent TypeScript builder for OpenSet documents. @openset/codegen with type safety, autocompletion, and optional validation.
+description: Fluent TypeScript builder for OpenSet documents. @diby/openset-codegen with type safety, autocompletion, and optional validation.
 keywords: [OpenSet, codegen, TypeScript builder, openset codegen]
 ---
 
-# @openset/codegen
+# @diby/openset-codegen
 
 A fluent TypeScript builder for constructing valid OpenSet documents with full type safety, autocompletion, and optional runtime validation.
 
 ## Installation
 
 ```bash
-npm install @openset/codegen
+npm install @diby/openset-codegen
 ```
 
 For validated builds, also install the validator:
 
 ```bash
-npm install @openset/codegen @diby/openset-validator
+npm install @diby/openset-codegen @diby/openset-validator
 ```
 
 ## Quick Start
 
 ```typescript
-import { workout, set, fixed, range, amrap } from '@openset/codegen';
+import { workout, set, fixed, range, amrap } from '@diby/openset-codegen';
 
 const doc = workout('Upper Body Push')
   .date('2024-01-15')
@@ -166,7 +166,7 @@ The `.sets(count, set)` method creates N shallow copies — useful for "3×8 at 
 The `.buildValidated()` method runs `@diby/openset-validator` on the built document and throws a `ValidationError` if there are errors:
 
 ```typescript
-import { workout, set, fixed, ValidationError } from '@openset/codegen';
+import { workout, set, fixed, ValidationError } from '@diby/openset-codegen';
 
 try {
   const doc = await workout('Test')
@@ -194,7 +194,7 @@ try {
 ## Full Program Example
 
 ```typescript
-import { program, set, fixed, range } from '@openset/codegen';
+import { program, set, fixed, range } from '@diby/openset-codegen';
 
 const plan = program('4-Week Strength Foundation')
   .sports('strength')

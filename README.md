@@ -2,7 +2,7 @@
 
 [![npm @diby/openset-types](https://img.shields.io/npm/v/@diby/openset-types?label=%40diby%2Fopenset-types)](https://www.npmjs.com/package/@diby/openset-types)
 [![npm @diby/openset-validator](https://img.shields.io/npm/v/@diby/openset-validator?label=%40diby%2Fopenset-validator)](https://www.npmjs.com/package/@diby/openset-validator)
-[![npm @openset/codegen](https://img.shields.io/npm/v/@openset/codegen?label=%40openset%2Fcodegen)](https://www.npmjs.com/package/@openset/codegen)
+[![npm @diby/openset-codegen](https://img.shields.io/npm/v/@diby/openset-codegen?label=%40diby%2Fopenset-codegen)](https://www.npmjs.com/package/@diby/openset-codegen)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
 
 An open, sport-agnostic standard for representing structured training workouts and programs as machine-readable data.
@@ -119,7 +119,7 @@ openset/
 |---------|-------------|
 | [`@diby/openset-types`](./packages/typescript-types) | TypeScript type definitions |
 | [`@diby/openset-validator`](./packages/validator) | CLI and programmatic validator |
-| [`@openset/codegen`](./packages/codegen) | Fluent TypeScript builder for documents |
+| [`@diby/openset-codegen`](./packages/codegen) | Fluent TypeScript builder for documents |
 
 ## Publishing packages
 
@@ -140,6 +140,10 @@ npm publish -w @diby/openset-types --access public
 ```
 
 If you are publishing a prerelease, use `npm version prerelease -w <package>` and add `--tag next` to `npm publish`.
+
+### @diby/openset-codegen
+
+Same pattern: use `-w @diby/openset-codegen` for `test`, `build`, `version`, and `publish`.
 
 ## Contributing
 
