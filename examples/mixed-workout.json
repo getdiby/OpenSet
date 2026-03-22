@@ -32,7 +32,7 @@
           "note": "Alternating minutes — odd = work, even = recovery",
           "exercises": [
             {
-              "exercise_id": "row_ergometer",
+              "exercise_id": "rowing_machine",
               "note": "Odd minutes — row hard",
               "sets": [
                 { "dimensions": ["distance"], "distance": { "type": "fixed", "value": 200, "unit": "m" } },

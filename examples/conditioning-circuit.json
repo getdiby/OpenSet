@@ -27,7 +27,7 @@
               ]
             },
             {
-              "exercise_id": "row_ergometer",
+              "exercise_id": "rowing_machine",
               "sets": [
                 { "dimensions": ["calories"], "calories": { "type": "fixed", "value": 15 } }
               ]
@@ -80,7 +80,7 @@
                   "rounds": { "type": "fixed", "value": 8 },
                   "exercises": [
                     {
-                      "exercise_id": "assault_bike",
+                      "exercise_id": "stationary_bike",
                       "sets": [
                         { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 20, "unit": "s" }, "rest_after": { "type": "fixed", "value": 10, "unit": "s" }, "rpe": { "type": "max" } },
                         { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 20, "unit": "s" }, "rest_after": { "type": "fixed", "value": 10, "unit": "s" }, "rpe": { "type": "max" } },

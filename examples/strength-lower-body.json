@@ -85,7 +85,7 @@
           "execution_mode": "SEQUENTIAL",
           "exercises": [
             {
-              "exercise_id": "single_leg_calf_raise_elevated",
+              "exercise_id": "calf_raise",
               "sets": [
                 { "dimensions": ["reps", "sides"], "reps": { "type": "fixed", "value": 15 }, "sides": { "type": "fixed", "value": 2 }, "rest_after": { "type": "fixed", "value": 60, "unit": "s" } },
                 { "dimensions": ["reps", "sides"], "reps": { "type": "fixed", "value": 15 }, "sides": { "type": "fixed", "value": 2 }, "rest_after": { "type": "fixed", "value": 60, "unit": "s" } },

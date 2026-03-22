@@ -69,7 +69,7 @@
                   ]
                 },
                 {
-                  "exercise_id": "triceps_cable_pushdown",
+                  "exercise_id": "tricep_pushdown",
                   "sets": [
                     { "dimensions": ["reps"], "reps": { "type": "range", "min": 12, "max": 15 } },
                     { "dimensions": ["reps"], "reps": { "type": "range", "min": 12, "max": 15 } },
@@ -99,7 +99,7 @@
               "rounds": { "type": "fixed", "value": 8 },
               "exercises": [
                 {
-                  "exercise_id": "assault_bike",
+                  "exercise_id": "stationary_bike",
                   "sets": [
                     { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 30, "unit": "s" } },
                     { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 30, "unit": "s" } },

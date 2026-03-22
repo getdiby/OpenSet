@@ -31,7 +31,7 @@ describe('Integration: build documents and validate', () => {
             .set(set({ reps: fixed(12) }))
             .set(set({ reps: fixed(8) }))
           )
-          .exercise('decline_push_up', e => e
+          .exercise('push_up', e => e
             .group('pair_a')
             .set(set({ reps: fixed(32), rest_after: fixed(30, 's') }))
             .set(set({ reps: fixed(26), rest_after: fixed(30, 's') }))
@@ -43,7 +43,7 @@ describe('Integration: build documents and validate', () => {
             .set(set({ reps: fixed(7) }))
             .set(set({ reps: fixed(5) }))
           )
-          .exercise('decline_push_up', e => e
+          .exercise('push_up', e => e
             .group('pair_b')
             .set(set({ reps: fixed(14), rest_after: fixed(120, 's') }))
             .set(set({ reps: fixed(14), rest_after: fixed(120, 's') }))
@@ -108,7 +108,7 @@ describe('Integration: build documents and validate', () => {
           )
         )
         .series('SEQUENTIAL', s => s
-          .exercise('single_leg_calf_raise_elevated', e => e
+          .exercise('calf_raise', e => e
             .set(set({ reps: fixed(15), sides: fixed(2), rest_after: fixed(60, 's') }))
             .set(set({ reps: fixed(15), sides: fixed(2), rest_after: fixed(60, 's') }))
             .set(set({ reps: fixed(15), sides: fixed(2) }))
@@ -135,7 +135,7 @@ describe('Integration: build documents and validate', () => {
             .note('Use empty barbell or light load')
             .set(set({ reps: fixed(15), load: fixed(20, 'kg') }))
           )
-          .exercise('row_ergometer', e => e.set(set({ calories: fixed(15) })))
+          .exercise('rowing_machine', e => e.set(set({ calories: fixed(15) })))
         )
       )
       .block('For Time', b => b
@@ -156,7 +156,7 @@ describe('Integration: build documents and validate', () => {
       .block('Tabata Finisher', b => b
         .series('TABATA', s => s
           .rounds(fixed(8))
-          .exercise('assault_bike', e => e
+          .exercise('stationary_bike', e => e
             .sets(8, set({ duration: fixed(20, 's'), rpe: max() }))
           )
         )
@@ -185,7 +185,7 @@ describe('Integration: build documents and validate', () => {
         .series('EMOM', s => s
           .rounds(fixed(10))
           .note('Alternating minutes — odd = work, even = recovery')
-          .exercise('row_ergometer', e => e
+          .exercise('rowing_machine', e => e
             .note('Odd minutes — row hard')
             .sets(5, set({ distance: fixed(200, 'm') }))
           )
@@ -294,7 +294,7 @@ describe('Integration: build documents and validate', () => {
             .series('SUPERSET', ser => ser
               .rounds(fixed(3))
               .restAfter(fixed(60, 's'))
-              .exercise('triceps_cable_pushdown', e => e
+              .exercise('tricep_pushdown', e => e
                 .sets(3, set({ reps: range(12, 15), load: fixed(20, 'kg') }))
               )
               .exercise('bicep_curl', e => e

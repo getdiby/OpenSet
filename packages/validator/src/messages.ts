@@ -23,7 +23,7 @@ export const MESSAGES: Record<string, MessageTemplate> = {
   W010: { level: 'warn', template: 'Document version "{0}" is newer than this validator\'s version "{1}" — some features may not be validated' },
   W001: { level: 'warn', template: 'rest_after present at both SET and SERIES level — SET takes precedence, SERIES value is ignored' },
   W002: { level: 'warn', template: 'rest_after present inside a group on a non-last exercise — rest fires after the last exercise in the group, not here' },
-  W003: { level: 'warn', template: 'exercise_id "{0}" not found in canonical library — treated as custom exercise' },
+  W003: { level: 'warn', template: 'exercise_id "{0}" not found in the provided library — treated as a custom exercise' },
   W004: { level: 'warn', template: 'Exercise has no exercise_id and no name — technically valid but not useful' },
   W005: { level: 'warn', template: 'Series has execution_mode CLUSTER but no exercises have a "group" field' },
   W006: { level: 'warn', template: 'Workout has no "date" field' },

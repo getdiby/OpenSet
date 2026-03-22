@@ -56,7 +56,7 @@
                   "rest_after": { "type": "fixed", "value": 60, "unit": "s" },
                   "exercises": [
                     {
-                      "exercise_id": "triceps_cable_pushdown",
+                      "exercise_id": "tricep_pushdown",
                       "sets": [
                         { "dimensions": ["reps", "load"], "reps": { "type": "range", "min": 12, "max": 15 }, "load": { "type": "fixed", "value": 20, "unit": "kg" } },
                         { "dimensions": ["reps", "load"], "reps": { "type": "range", "min": 12, "max": 15 }, "load": { "type": "fixed", "value": 20, "unit": "kg" } },

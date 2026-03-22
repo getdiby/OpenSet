@@ -148,7 +148,7 @@ As many rounds as possible within a time cap. The athlete cycles through the exe
       ]
     },
     {
-      "exercise_id": "row_ergometer",
+      "exercise_id": "rowing_machine",
       "sets": [
         { "dimensions": ["calories"], "calories": { "type": "fixed", "value": 15 } }
       ]
@@ -236,7 +236,7 @@ Repeating work/rest structure. Each exercise represents one interval, and `round
   "rounds": { "type": "fixed", "value": 8 },
   "exercises": [
     {
-      "exercise_id": "assault_bike",
+      "exercise_id": "stationary_bike",
       "sets": [
         { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 20, "unit": "s" }, "rest_after": { "type": "fixed", "value": 10, "unit": "s" }, "rpe": { "type": "max" } },
         { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 20, "unit": "s" }, "rest_after": { "type": "fixed", "value": 10, "unit": "s" }, "rpe": { "type": "max" } },
@@ -267,7 +267,7 @@ Every Minute On the Minute. At the start of each minute, perform the prescribed 
   "note": "Alternating minutes — odd = row, even = jump rope",
   "exercises": [
     {
-      "exercise_id": "row_ergometer",
+      "exercise_id": "rowing_machine",
       "note": "Odd minutes — row hard",
       "sets": [
         { "dimensions": ["distance"], "distance": { "type": "fixed", "value": 200, "unit": "m" } },
@@ -342,7 +342,7 @@ Sub-groups of exercises using the `group` field. Exercises within the same group
       ]
     },
     {
-      "exercise_id": "decline_push_up",
+      "exercise_id": "push_up",
       "group": "pair_a",
       "sets": [
         { "dimensions": ["reps"], "reps": { "type": "fixed", "value": 20 }, "rest_after": { "type": "fixed", "value": 30, "unit": "s" } },
@@ -360,7 +360,7 @@ Sub-groups of exercises using the `group` field. Exercises within the same group
       ]
     },
     {
-      "exercise_id": "triceps_cable_pushdown",
+      "exercise_id": "tricep_pushdown",
       "group": "pair_b",
       "sets": [
         { "dimensions": ["reps", "load"], "reps": { "type": "fixed", "value": 15 }, "load": { "type": "fixed", "value": 20, "unit": "kg" }, "rest_after": { "type": "fixed", "value": 120, "unit": "s" } },

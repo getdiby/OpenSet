@@ -92,7 +92,7 @@ describe('SeriesBuilder', () => {
   it('supports note and id', () => {
     const builder = new SeriesBuilder('EMOM');
     builder.id('emom-1').note('Alternating minutes');
-    builder.exercise('row_ergometer', e => e.set(set({ distance: fixed(200, 'm') })));
+    builder.exercise('rowing_machine', e => e.set(set({ distance: fixed(200, 'm') })));
     const ser = builder.build();
     expect(ser.id).toBe('emom-1');
     expect(ser.note).toBe('Alternating minutes');

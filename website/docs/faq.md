@@ -54,7 +54,7 @@ The same document structure (workout → blocks → series → exercises → set
 
 ## Where do I get exercise definitions?
 
-OpenSet ships a default **exercise library** (`openset-default`) with 42 exercises. Workouts can reference exercises by `exercise_id` from that library or from [custom libraries](/docs/spec/exercise-library). For ad-hoc exercises you can use freeform `name` instead of `exercise_id`. See [Exercise library](/docs/spec/exercise-library) and [Workout library](/docs/spec/workout-library).
+OpenSet ships a default **exercise library** (`openset-default`) with 50 broadly recognized exercises. Workouts can reference exercises by `exercise_id` from that library or from [custom libraries](/docs/spec/exercise-library). For ad-hoc exercises you can use freeform `name` instead of `exercise_id`. See [Exercise library](/docs/spec/exercise-library) and [Workout library](/docs/spec/workout-library).
 
 ---
 

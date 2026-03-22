@@ -41,7 +41,7 @@ ERRORS (1):
 
 WARNINGS (2):
   W003  blocks[1].series[0].exercises[2]
-        exercise_id "chest_pass" not found in canonical library
+        exercise_id "chest_press" not found in the provided library
 
 Result: INVALID
 ```
@@ -64,11 +64,13 @@ console.log(result.errors);   // ValidationMessage[]
 console.log(result.warnings); // ValidationMessage[]
 ```
 
+By default, the validator checks structure and semantics only. If you also want `exercise_id` membership checks, pass a library explicitly.
+
 ### Options
 
 ```typescript
 const result = validate(document, {
-  library: customExerciseLibrary  // Override default exercise library
+  library: customExerciseLibrary  // Enable exercise_id membership checks for this library
 });
 ```
 
@@ -100,7 +102,7 @@ const result = validate(document, {
 |------|-------------|
 | W001 | Set rest_after overrides series rest |
 | W002 | rest_after on non-last exercise in a CLUSTER group |
-| W003 | exercise_id not found in library |
+| W003 | exercise_id not found in provided library |
 | W004 | Exercise has no exercise_id and no name |
 | W005 | CLUSTER mode but no group fields |
 | W006 | Workout has no date field |

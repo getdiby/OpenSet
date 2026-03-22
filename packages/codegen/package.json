@@ -1,6 +1,6 @@
 {
   "name": "@diby/openset-codegen",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Fluent TypeScript builder for constructing valid OpenSet documents",
   "license": "MIT",
   "type": "module",

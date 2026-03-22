@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Rebuilt the canonical `openset-default` exercise library around 50 broadly recognized starter exercises and updated example documents, docs, and codegen fixtures to match.
+- Validator `W003` library-membership warnings now run only when a library is explicitly provided via `validate(document, { library })`.
+
 ## [1.1.0] - 2025-03-22
 
 ### Added
@@ -31,7 +36,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Document types: `workout`, `program`, `workout_library`
 - JSON Schemas: `openset.schema.json`, `exercise-library.schema.json`, `workout-library.schema.json`
 - Vocabulary files: 21 dimensions, 6 value types
-- Canonical exercise library with 42 exercises (`openset-default.json`)
+- Canonical exercise library with 50 exercises (`openset-default.json`)
 - `@diby/openset-types` — TypeScript type definitions
 - `@diby/openset-validator` — CLI and programmatic validator
   - 15 error rules (E001–E015)

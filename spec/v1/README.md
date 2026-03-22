@@ -96,7 +96,7 @@ Recommended patterns:
 
 ## Exercise Library
 
-The canonical library (`openset-default`) ships with 42 exercises under MIT license. The library format is defined by `exercise-library.schema.json`. Third-party libraries must validate against this schema to claim OpenSet compatibility.
+The canonical library (`openset-default`) ships with 50 broadly recognized exercises under MIT license. The library format is defined by `exercise-library.schema.json`. Third-party libraries must validate against this schema to claim OpenSet compatibility.
 
 ## Validation
 

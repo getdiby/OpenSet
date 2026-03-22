@@ -33,6 +33,14 @@ const result = validate(document);
 // }
 ```
 
+To enable `exercise_id` membership checks, pass a library explicitly:
+
+```typescript
+const result = validate(document, {
+  library: myExerciseLibrary,
+});
+```
+
 ## CLI
 
 ```bash
@@ -75,7 +83,7 @@ npx openset validate ./my-workout.json --json
 |------|------|
 | W001 | rest_after at both SET and SERIES level |
 | W002 | rest_after in group on non-last exercise |
-| W003 | exercise_id not in canonical library |
+| W003 | exercise_id not in provided library |
 | W004 | No exercise_id and no name |
 | W005 | CLUSTER mode but no group fields |
 | W006 | No date field on workout |

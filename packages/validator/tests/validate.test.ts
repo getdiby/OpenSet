@@ -299,12 +299,37 @@ describe('W001 — rest at SET and SERIES', () => {
 
 // === W003: Unknown exercise_id ===
 describe('W003 — unknown exercise_id', () => {
-  it('should warn on unknown exercise_id', () => {
+  it('should warn on unknown exercise_id when a library is provided', () => {
+    const doc = workout([block([series('SEQUENTIAL', [
+      exercise('made_up_exercise', [{ dimensions: ['reps'], reps: { type: 'fixed', value: 5 } }]),
+    ])])]);
+    const result = validate(doc, {
+      library: {
+        openset_version: '1.0',
+        type: 'exercise_library',
+        id: 'test-library',
+        name: 'Test Library',
+        version: '1.0.0',
+        provider: 'test',
+        license: 'MIT',
+        exercises: [
+          {
+            id: 'back_squat',
+            name: 'Back Squat',
+            common_dimensions: [['reps', 'load'], ['reps']],
+          },
+        ],
+      },
+    });
+    expect(result.warnings.some(w => w.code === 'W003')).toBe(true);
+  });
+
+  it('should not warn on unknown exercise_id without a library', () => {
     const doc = workout([block([series('SEQUENTIAL', [
       exercise('made_up_exercise', [{ dimensions: ['reps'], reps: { type: 'fixed', value: 5 } }]),
     ])])]);
     const result = validate(doc);
-    expect(result.warnings.some(w => w.code === 'W003')).toBe(true);
+    expect(result.warnings.some(w => w.code === 'W003')).toBe(false);
   });
 });
 

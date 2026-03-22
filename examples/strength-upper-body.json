@@ -69,7 +69,7 @@
               ]
             },
             {
-              "exercise_id": "decline_push_up",
+              "exercise_id": "push_up",
               "group": "pair_a",
               "sets": [
                 { "dimensions": ["reps"], "reps": { "type": "fixed", "value": 32 }, "rest_after": { "type": "fixed", "value": 30, "unit": "s" } },
@@ -87,7 +87,7 @@
               ]
             },
             {
-              "exercise_id": "decline_push_up",
+              "exercise_id": "push_up",
               "group": "pair_b",
               "sets": [
                 { "dimensions": ["reps"], "reps": { "type": "fixed", "value": 14 }, "rest_after": { "type": "fixed", "value": 120, "unit": "s" } },

@@ -118,7 +118,7 @@ Push/pull upper body workout demonstrating **CIRCUIT** and **CLUSTER** execution
               ]
             },
             {
-              "exercise_id": "decline_push_up",
+              "exercise_id": "push_up",
               "group": "pair_a",
               "sets": [
                 { "dimensions": ["reps"], "reps": { "type": "fixed", "value": 32 }, "rest_after": { "type": "fixed", "value": 30, "unit": "s" } },
@@ -136,7 +136,7 @@ Push/pull upper body workout demonstrating **CIRCUIT** and **CLUSTER** execution
               ]
             },
             {
-              "exercise_id": "decline_push_up",
+              "exercise_id": "push_up",
               "group": "pair_b",
               "sets": [
                 { "dimensions": ["reps"], "reps": { "type": "fixed", "value": 14 }, "rest_after": { "type": "fixed", "value": 120, "unit": "s" } },
@@ -272,7 +272,7 @@ Squat and hinge focused workout demonstrating **SEQUENTIAL**, **SUPERSET**, RPE 
           "execution_mode": "SEQUENTIAL",
           "exercises": [
             {
-              "exercise_id": "single_leg_calf_raise_elevated",
+              "exercise_id": "calf_raise",
               "sets": [
                 { "dimensions": ["reps", "sides"], "reps": { "type": "fixed", "value": 15 }, "sides": { "type": "fixed", "value": 2 }, "rest_after": { "type": "fixed", "value": 60, "unit": "s" } },
                 { "dimensions": ["reps", "sides"], "reps": { "type": "fixed", "value": 15 }, "sides": { "type": "fixed", "value": 2 }, "rest_after": { "type": "fixed", "value": 60, "unit": "s" } },
@@ -326,7 +326,7 @@ Full body conditioning demonstrating **AMRAP**, **FOR_TIME**, **TABATA**, and ca
               ]
             },
             {
-              "exercise_id": "row_ergometer",
+              "exercise_id": "rowing_machine",
               "sets": [
                 { "dimensions": ["calories"], "calories": { "type": "fixed", "value": 15 } }
               ]
@@ -379,7 +379,7 @@ Full body conditioning demonstrating **AMRAP**, **FOR_TIME**, **TABATA**, and ca
           "rounds": { "type": "fixed", "value": 8 },
           "exercises": [
             {
-              "exercise_id": "assault_bike",
+              "exercise_id": "stationary_bike",
               "sets": [
                 { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 20, "unit": "s" }, "rest_after": { "type": "fixed", "value": 10, "unit": "s" }, "rpe": { "type": "max" } },
                 { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 20, "unit": "s" }, "rest_after": { "type": "fixed", "value": 10, "unit": "s" }, "rpe": { "type": "max" } },
@@ -564,7 +564,7 @@ Combination workout demonstrating **EMOM**, **LADDER**, 1RM testing with `"load"
           "note": "Alternating minutes — odd = work, even = recovery",
           "exercises": [
             {
-              "exercise_id": "row_ergometer",
+              "exercise_id": "rowing_machine",
               "note": "Odd minutes — row hard",
               "sets": [
                 { "dimensions": ["distance"], "distance": { "type": "fixed", "value": 200, "unit": "m" } },
@@ -689,7 +689,7 @@ Multi-phase program demonstrating progressive overload across two phases with **
                   "rest_after": { "type": "fixed", "value": 60, "unit": "s" },
                   "exercises": [
                     {
-                      "exercise_id": "triceps_cable_pushdown",
+                      "exercise_id": "tricep_pushdown",
                       "sets": [
                         { "dimensions": ["reps", "load"], "reps": { "type": "range", "min": 12, "max": 15 }, "load": { "type": "fixed", "value": 20, "unit": "kg" } },
                         { "dimensions": ["reps", "load"], "reps": { "type": "range", "min": 12, "max": 15 }, "load": { "type": "fixed", "value": 20, "unit": "kg" } },
@@ -961,7 +961,7 @@ Reusable workout template collection demonstrating library metadata, media attac
                   ]
                 },
                 {
-                  "exercise_id": "triceps_cable_pushdown",
+                  "exercise_id": "tricep_pushdown",
                   "sets": [
                     { "dimensions": ["reps"], "reps": { "type": "range", "min": 12, "max": 15 } },
                     { "dimensions": ["reps"], "reps": { "type": "range", "min": 12, "max": 15 } },
@@ -977,7 +977,7 @@ Reusable workout template collection demonstrating library metadata, media attac
     {
       "id": "cardio_intervals",
       "name": "Cardio Intervals",
-      "description": "High-intensity interval training on assault bike and rower",
+      "description": "High-intensity interval training on stationary bike and rower",
       "tags": ["cardio", "hiit", "conditioning"],
       "level": "intermediate",
       "duration": { "value": 30, "unit": "min" },
@@ -991,7 +991,7 @@ Reusable workout template collection demonstrating library metadata, media attac
               "rounds": { "type": "fixed", "value": 8 },
               "exercises": [
                 {
-                  "exercise_id": "assault_bike",
+                  "exercise_id": "stationary_bike",
                   "sets": [
                     { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 30, "unit": "s" } },
                     { "dimensions": ["duration"], "duration": { "type": "fixed", "value": 30, "unit": "s" } },

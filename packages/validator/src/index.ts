@@ -9,34 +9,8 @@ import { versionRules } from './rules/version.js';
 export type { ValidationMessage, ValidationResult };
 
 export interface ValidateOptions {
-  /** Custom exercise library to validate against. Defaults to the canonical openset-default library. */
+  /** Optional exercise library to validate exercise_id membership against. */
   library?: ExerciseLibrary;
-}
-
-// Embedded canonical library exercise IDs.
-// Used for W003 (unknown exercise_id) checks.
-let defaultExerciseIds: Set<string> | null = null;
-
-function getDefaultExerciseIds(): Set<string> {
-  if (!defaultExerciseIds) {
-    defaultExerciseIds = new Set([
-      'back_squat', 'front_squat', 'trap_bar_squat',
-      'deadlift', 'romanian_deadlift',
-      'bench_press', 'incline_bench_press', 'overhead_press',
-      'hip_thrust', 'dip', 'pull_up', 'chin_up', 'australian_pull_up',
-      'push_up', 'decline_push_up',
-      'lunge', 'bulgarian_split_squat', 'step_up', 'box_jump',
-      'wall_sit', 'plank', 'copenhagen_plank',
-      'single_leg_calf_raise_elevated',
-      'leg_curl', 'leg_extension', 'lat_pulldown', 'seated_row',
-      'chest_pass', 'triceps_cable_pushdown', 'bicep_curl',
-      'leg_raise', 'crunch', 'sit_up',
-      'sprint', 'run', 'row_ergometer', 'assault_bike', 'cycling',
-      'sled_push', 'farmer_carry', 'jump_rope', 'swimming',
-      'trx_inverted_row',
-    ]);
-  }
-  return defaultExerciseIds;
 }
 
 function buildExerciseIdSet(library: ExerciseLibrary): Set<string> {
@@ -71,10 +45,10 @@ export function validate(document: unknown, options?: ValidateOptions): Validati
     return { valid: false, errors, warnings };
   }
 
-  // Build exercise ID set for library checks
+  // Build exercise ID set only when a library is provided.
   const exerciseIds = options?.library
     ? buildExerciseIdSet(options.library)
-    : getDefaultExerciseIds();
+    : null;
 
   // Workout library documents have their own validation path
   if (doc.type === 'workout_library') {

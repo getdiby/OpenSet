@@ -150,21 +150,23 @@ Every dimension value is a **ValueType** object. Choose the appropriate shape:
 Use these IDs when the exercise matches. Matching is case-insensitive and should tolerate common abbreviations and synonyms (e.g., "bench" = `bench_press`, "RDL" = `romanian_deadlift`, "pullup" = `pull_up`, "OHP" = `overhead_press`).
 
 ```
-back_squat          front_squat           trap_bar_squat
-deadlift            romanian_deadlift     bench_press
-incline_bench_press overhead_press        hip_thrust
-dip                 pull_up               chin_up
-australian_pull_up  push_up               decline_push_up
-lunge               bulgarian_split_squat step_up
-box_jump            wall_sit              plank
-copenhagen_plank    single_leg_calf_raise_elevated
-leg_curl            leg_extension         lat_pulldown
-seated_row          chest_pass            triceps_cable_pushdown
-bicep_curl          leg_raise             crunch
-sit_up              sprint                run
-row_ergometer       assault_bike          cycling
-sled_push           farmer_carry          jump_rope
-swimming            trx_inverted_row
+back_squat          front_squat           goblet_squat
+bodyweight_squat    leg_press             wall_sit
+deadlift            romanian_deadlift     hip_thrust
+kettlebell_swing    lunge                 bulgarian_split_squat
+step_up             calf_raise            bench_press
+incline_bench_press dumbbell_bench_press  push_up
+dip                 overhead_press        lateral_raise
+pull_up             chin_up               lat_pulldown
+barbell_row         dumbbell_row          seated_row
+inverted_row        bicep_curl            tricep_pushdown
+tricep_extension    leg_curl              leg_extension
+plank               side_plank            crunch
+sit_up              leg_raise             farmer_carry
+sled_push           box_jump              burpee
+run                 sprint                treadmill
+rowing_machine      stationary_bike       jump_rope
+swimming            elliptical
 ```
 
 ---
@@ -242,8 +244,7 @@ Tricep Pushdowns 3x12-15
               ]
             },
             {
-              "name": "Dumbbell Lateral Raise",
-              "note": "Exercise not in canonical library.",
+              "exercise_id": "lateral_raise",
               "sets": [
                 { "dimensions": ["reps", "load"], "reps": { "type": "fixed", "value": 15, "unit": "reps" }, "load": { "type": "fixed", "value": 10, "unit": "kg" } }
               ]
@@ -261,7 +262,7 @@ Tricep Pushdowns 3x12-15
           "rest_after": null,
           "exercises": [
             {
-              "exercise_id": "triceps_cable_pushdown",
+              "exercise_id": "tricep_pushdown",
               "sets": [
                 { "dimensions": ["reps"], "reps": { "type": "range", "min": 12, "max": 15, "unit": "reps" } },
                 { "dimensions": ["reps"], "reps": { "type": "range", "min": 12, "max": 15, "unit": "reps" } },
@@ -304,14 +305,13 @@ EMOM 20 min
           "rest_after": null,
           "exercises": [
             {
-              "exercise_id": "assault_bike",
+              "exercise_id": "stationary_bike",
               "sets": [
                 { "dimensions": ["calories"], "calories": { "type": "fixed", "value": 10, "unit": "kcal" } }
               ]
             },
             {
-              "name": "Kettlebell Swing",
-              "note": "Exercise not in canonical library. Interpreted 'KB swings' as Kettlebell Swing.",
+              "exercise_id": "kettlebell_swing",
               "sets": [
                 { "dimensions": ["reps", "load"], "reps": { "type": "fixed", "value": 12, "unit": "reps" }, "load": { "type": "fixed", "value": 24, "unit": "kg" } }
               ]

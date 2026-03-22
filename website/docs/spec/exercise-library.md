@@ -7,7 +7,7 @@ keywords: [OpenSet, exercise library, exercises, openset-default, exercise_id]
 
 # Exercise Library
 
-OpenSet includes a canonical exercise library (`openset-default`) with 42 exercises under the MIT license. Exercise libraries are separate JSON documents that workouts and programs reference by ID.
+OpenSet includes a canonical exercise library (`openset-default`) with 50 broadly recognized exercises under the MIT license. Exercise libraries are separate JSON documents that workouts and programs reference by ID.
 
 ## Library Document
 
@@ -142,8 +142,8 @@ A complete exercise definition from the canonical library:
   "target_muscles": ["quadriceps", "glutes"],
   "synergist_muscles": ["hamstrings", "adductors", "spinal_erectors", "core"],
   "progressions": ["front_squat"],
-  "regressions": ["trap_bar_squat"],
-  "variations": ["front_squat", "trap_bar_squat"],
+  "regressions": ["goblet_squat", "bodyweight_squat"],
+  "variations": ["front_squat", "goblet_squat", "leg_press"],
   "sport_relevance": ["strength", "powerlifting", "football", "rugby"],
   "common_dimensions": [["reps", "load"], ["reps"]],
   "note": "Keep chest tall and knees tracking over toes throughout the movement."
@@ -184,52 +184,60 @@ When no library is referenced, exercises use the `name` field instead of `exerci
 
 ## Canonical Library
 
-The `openset-default` library ships with 42 exercises covering strength, conditioning, and endurance:
+The `openset-default` library ships with 50 exercises covering strength, conditioning, endurance, and general fitness:
 
 | ID | Name | Body Part | Category |
 |----|------|-----------|----------|
 | `back_squat` | Back Squat | lower_body | squat |
 | `front_squat` | Front Squat | lower_body | squat |
-| `trap_bar_squat` | Trap Bar Squat | lower_body | squat |
+| `goblet_squat` | Goblet Squat | lower_body | squat |
+| `bodyweight_squat` | Bodyweight Squat | lower_body | squat |
+| `leg_press` | Leg Press | lower_body | squat |
+| `wall_sit` | Wall Sit | lower_body | squat |
 | `deadlift` | Deadlift | lower_body | hinge |
 | `romanian_deadlift` | Romanian Deadlift | lower_body | hinge |
-| `bench_press` | Bench Press | upper_body | push |
-| `incline_bench_press` | Incline Bench Press | upper_body | push |
-| `overhead_press` | Overhead Press | upper_body | push |
 | `hip_thrust` | Hip Thrust | lower_body | hinge |
-| `dip` | Dip | upper_body | push |
-| `pull_up` | Pull Up | upper_body | pull |
-| `chin_up` | Chin Up | upper_body | pull |
-| `australian_pull_up` | Australian Pull Up | upper_body | pull |
-| `push_up` | Push Up | upper_body | push |
-| `decline_push_up` | Decline Push Up | upper_body | push |
+| `kettlebell_swing` | Kettlebell Swing | full_body | hinge |
 | `lunge` | Lunge | lower_body | squat |
 | `bulgarian_split_squat` | Bulgarian Split Squat | lower_body | squat |
 | `step_up` | Step Up | lower_body | squat |
-| `box_jump` | Box Jump | lower_body | gait |
-| `wall_sit` | Wall Sit | lower_body | squat |
-| `plank` | Plank | core | carry |
-| `copenhagen_plank` | Copenhagen Plank | core | rotation |
-| `single_leg_calf_raise_elevated` | Single Leg Calf Raise (Elevated) | lower_body | push |
+| `calf_raise` | Calf Raise | lower_body | push |
+| `bench_press` | Bench Press | upper_body | push |
+| `incline_bench_press` | Incline Bench Press | upper_body | push |
+| `dumbbell_bench_press` | Dumbbell Bench Press | upper_body | push |
+| `push_up` | Push Up | upper_body | push |
+| `dip` | Dip | upper_body | push |
+| `overhead_press` | Overhead Press | upper_body | push |
+| `lateral_raise` | Lateral Raise | upper_body | push |
+| `pull_up` | Pull Up | upper_body | pull |
+| `chin_up` | Chin Up | upper_body | pull |
+| `lat_pulldown` | Lat Pulldown | upper_body | pull |
+| `barbell_row` | Barbell Row | upper_body | pull |
+| `dumbbell_row` | Dumbbell Row | upper_body | pull |
+| `seated_row` | Seated Row | upper_body | pull |
+| `inverted_row` | Inverted Row | upper_body | pull |
+| `bicep_curl` | Bicep Curl | upper_body | pull |
+| `tricep_pushdown` | Tricep Pushdown | upper_body | push |
+| `tricep_extension` | Tricep Extension | upper_body | push |
 | `leg_curl` | Leg Curl | lower_body | hinge |
 | `leg_extension` | Leg Extension | lower_body | squat |
-| `lat_pulldown` | Lat Pulldown | upper_body | pull |
-| `seated_row` | Seated Row | upper_body | pull |
-| `chest_pass` | Chest Pass | upper_body | push |
-| `triceps_cable_pushdown` | Triceps Cable Pushdown | upper_body | push |
-| `bicep_curl` | Bicep Curl | upper_body | pull |
-| `leg_raise` | Leg Raise | core | rotation |
+| `plank` | Plank | core | carry |
+| `side_plank` | Side Plank | core | rotation |
 | `crunch` | Crunch | core | rotation |
 | `sit_up` | Sit Up | core | rotation |
-| `sprint` | Sprint | full_body | gait |
-| `run` | Run | full_body | gait |
-| `row_ergometer` | Rowing (Ergometer) | full_body | pull |
-| `assault_bike` | Assault Bike | full_body | carry |
-| `cycling` | Cycling | lower_body | gait |
-| `sled_push` | Sled Push | full_body | carry |
+| `leg_raise` | Leg Raise | core | rotation |
 | `farmer_carry` | Farmer Carry | full_body | carry |
-| `jump_rope` | Jump Rope | full_body | gait |
-| `swimming` | Swimming | full_body | pull |
+| `sled_push` | Sled Push | full_body | carry |
+| `box_jump` | Box Jump | lower_body | gait |
+| `burpee` | Burpee | full_body | gait |
+| `run` | Run | cardio | gait |
+| `sprint` | Sprint | cardio | gait |
+| `treadmill` | Treadmill | cardio | gait |
+| `rowing_machine` | Rowing Machine | cardio | pull |
+| `stationary_bike` | Stationary Bike | cardio | gait |
+| `jump_rope` | Jump Rope | cardio | gait |
+| `swimming` | Swimming | cardio | pull |
+| `elliptical` | Elliptical | cardio | gait |
 
 ## Third-Party Libraries
 
