@@ -17,7 +17,6 @@ export const DIMENSION_ALLOWED_TYPES: Record<string, string[]> = {
   duration: ['fixed', 'range', 'min'],
   duration_per_side: ['fixed', 'range'],
   rest_between_sides: ['fixed'],
-  rest_after: ['fixed', 'range'],
   tempo: ['fixed'],
   distance: ['fixed', 'range', 'min', 'amrap'],
   height: ['fixed', 'range'],
@@ -28,6 +27,7 @@ export const DIMENSION_ALLOWED_TYPES: Record<string, string[]> = {
   heart_rate: ['fixed', 'range', 'max'],
   heart_rate_zone: ['fixed', 'range'],
   rpe: ['fixed', 'range', 'max'],
+  rir: ['fixed', 'range', 'max'],
   velocity: ['fixed', 'range'],
   calories: ['fixed', 'min', 'amrap'],
   cadence: ['fixed', 'range'],
@@ -43,6 +43,11 @@ export const DIMENSION_CONFLICTS: [string, string][] = [
 
 // Dimensions that are always allowed on any set (not part of declared dimensions)
 export const UNIVERSAL_SET_DIMENSIONS = new Set(['rest_after', 'note']);
+
+// Universal set fields that still use ValueObject shapes.
+export const UNIVERSAL_SET_DIMENSION_ALLOWED_TYPES: Record<string, string[]> = {
+  rest_after: ['fixed', 'range'],
+};
 
 // Extension prefix patterns — aligned with JSON Schema patternProperties
 export const EXTENSION_PREFIXES = [/^x_/, /^app_/, /^[a-z]+_[a-z]+_/];

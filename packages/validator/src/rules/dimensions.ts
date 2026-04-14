@@ -2,6 +2,7 @@ import type { ValidationMessage } from '@diby/openset-types';
 import {
   VALID_VALUE_TYPES,
   DIMENSION_ALLOWED_TYPES,
+  UNIVERSAL_SET_DIMENSION_ALLOWED_TYPES,
   KNOWN_DIMENSIONS,
   DIMENSION_CONFLICTS,
   SET_NON_DIMENSION_FIELDS,
@@ -95,7 +96,7 @@ export function dimensionRules(
             }
 
             // E007: Dimension must use allowed value types
-            const allowedTypes = DIMENSION_ALLOWED_TYPES[dim];
+            const allowedTypes = DIMENSION_ALLOWED_TYPES[dim] ?? UNIVERSAL_SET_DIMENSION_ALLOWED_TYPES[dim];
             if (allowedTypes && val.type && !allowedTypes.includes(val.type)) {
               errors.push({
                 code: 'E007',

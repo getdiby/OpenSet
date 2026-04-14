@@ -31,9 +31,26 @@ describe('E001 — unknown dimension name', () => {
     expect(result.errors.some(e => e.code === 'E001')).toBe(true);
   });
 
+  it('should error when rest_after is listed in dimensions array', () => {
+    const doc = workout([block([series('SEQUENTIAL', [
+      exercise('back_squat', [{
+        dimensions: ['reps', 'rest_after'],
+        reps: { type: 'fixed', value: 5 },
+        rest_after: { type: 'fixed', value: 60, unit: 's' },
+      }]),
+    ])])]);
+    const result = validate(doc);
+    expect(result.errors.some(e => e.code === 'E001')).toBe(true);
+  });
+
   it('should pass on valid dimensions', () => {
     const doc = workout([block([series('SEQUENTIAL', [
-      exercise('back_squat', [{ dimensions: ['reps', 'load'], reps: { type: 'fixed', value: 5 }, load: { type: 'fixed', value: 100, unit: 'kg' } }]),
+      exercise('back_squat', [{
+        dimensions: ['reps', 'load', 'rir'],
+        reps: { type: 'fixed', value: 5 },
+        load: { type: 'fixed', value: 100, unit: 'kg' },
+        rir: { type: 'fixed', value: 2 },
+      }]),
     ])])]);
     const result = validate(doc);
     expect(result.errors.some(e => e.code === 'E001')).toBe(false);
