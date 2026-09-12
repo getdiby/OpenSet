@@ -422,16 +422,61 @@ export interface MediaPhoto {
   label: string;
 }
 
+/** A looping figure animation demonstrating the movement (1.2). */
+export interface MediaAnimation {
+  url: string;
+  label: string;
+  /** Container of the loop, e.g. apng, webp, gif, webm. */
+  format?: string;
+  fps?: number;
+  loop?: boolean;
+}
+
 export interface Media {
   videos?: MediaVideo[];
   photos?: MediaPhoto[];
+  animations?: MediaAnimation[];
+}
+
+/**
+ * Free text, plain or keyed by locale code (1.2). Both forms stay valid, so a 1.0
+ * or 1.1 document needs no change; read one with `resolveText`.
+ */
+export type LocalizedText = string | Record<string, string>;
+
+/** A list of strings, plain or keyed by locale code (1.2). Read one with `resolveTextList`. */
+export type LocalizedTextList = string[] | Record<string, string[]>;
+
+/**
+ * The text for a locale: the exact match, then the language before the region
+ * (`pt-BR` falls back to `pt`), then `en`, then whatever the map lists first.
+ */
+export function resolveText(value: LocalizedText | undefined, locale = 'en'): string | undefined {
+  if (value === undefined) return undefined;
+  if (typeof value === 'string') return value;
+  return pickLocale(value, locale);
+}
+
+export function resolveTextList(value: LocalizedTextList | undefined, locale = 'en'): string[] | undefined {
+  if (value === undefined) return undefined;
+  if (Array.isArray(value)) return value;
+  return pickLocale(value, locale);
+}
+
+function pickLocale<T>(map: Record<string, T>, locale: string): T | undefined {
+  if (map[locale] !== undefined) return map[locale];
+  const base = locale.split('-')[0];
+  if (base && map[base] !== undefined) return map[base];
+  if (map.en !== undefined) return map.en;
+  const first = Object.keys(map)[0];
+  return first === undefined ? undefined : map[first];
 }
 
 export interface ExerciseDefinition {
   id: string;
-  name: string;
-  aliases?: string[];
-  description?: string;
+  name: LocalizedText;
+  aliases?: LocalizedTextList;
+  description?: LocalizedText;
   body_part?: BodyPart;
   category?: ExerciseCategory;
   mechanic?: Mechanic;
@@ -453,7 +498,7 @@ export interface ExerciseLibrary {
   openset_version: string;
   type: 'exercise_library';
   id: string;
-  name: string;
+  name: LocalizedText;
   version: string;
   provider: string;
   license: string;
@@ -464,8 +509,8 @@ export interface ExerciseLibrary {
 
 export interface WorkoutDefinition {
   id: string;
-  name: string;
-  description?: string;
+  name: LocalizedText;
+  description?: LocalizedText;
   tags?: string[];
   level?: 'beginner' | 'intermediate' | 'advanced' | 'elite';
   duration?: { value: number; unit: DurationUnit };

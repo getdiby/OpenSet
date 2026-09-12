@@ -57,8 +57,8 @@ export function isExtensionField(name: string): boolean {
 }
 
 // Supported spec versions — the validator knows how to handle these
-export const SUPPORTED_VERSIONS = new Set(['1.0']);
-export const CURRENT_VERSION = '1.0';
+export const SUPPORTED_VERSIONS = new Set(['1.0', '1.1', '1.2']);
+export const CURRENT_VERSION = '1.2';
 
 // Check if a value looks like a valid ValueObject structure
 export function isValueObjectShape(val: unknown): boolean {

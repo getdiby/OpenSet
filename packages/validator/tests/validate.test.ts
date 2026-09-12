@@ -478,9 +478,9 @@ describe('E014 — unsupported major version', () => {
 
 // === W010: Newer minor version ===
 describe('W010 — newer minor version', () => {
-  it('should warn on version 1.1', () => {
+  it('should warn on a version newer than this validator', () => {
     const doc = {
-      openset_version: '1.1',
+      openset_version: '1.9',
       type: 'workout',
       name: 'Test',
       date: '2026-01-01',
@@ -500,6 +500,23 @@ describe('W010 — newer minor version', () => {
     ])])]);
     const result = validate(doc);
     expect(result.warnings.some(w => w.code === 'W010')).toBe(false);
+  });
+
+  it('should not warn on 1.1 or 1.2 — both are versions this validator knows', () => {
+    for (const version of ['1.1', '1.2']) {
+      const doc = {
+        openset_version: version,
+        type: 'workout',
+        name: 'Test',
+        date: '2026-01-01',
+        blocks: [block([series('SEQUENTIAL', [
+          exercise('back_squat', [{ dimensions: ['reps'], reps: { type: 'fixed', value: 5 } }]),
+        ])])],
+      };
+      const result = validate(doc);
+      expect(result.warnings.some(w => w.code === 'W010')).toBe(false);
+      expect(result.valid).toBe(true);
+    }
   });
 });
 
@@ -758,5 +775,87 @@ describe('Workout Library validation', () => {
     // Library workouts are templates and should not get "no date" warnings
     const result = validate(workoutLibrary([validWorkout]));
     expect(result.warnings.every(w => w.code !== 'W006')).toBe(true);
+  });
+});
+
+
+// === 1.2: exercise_library documents ===
+function library(exercises: any[], extra: any = {}) {
+  return {
+    openset_version: '1.2',
+    type: 'exercise_library',
+    id: 'test_library',
+    name: 'Test Library',
+    version: '1.0.0',
+    provider: 'test',
+    license: 'MIT',
+    exercises,
+    ...extra,
+  };
+}
+
+function libExercise(id: string, extra: any = {}) {
+  return { id, name: 'Back Squat', common_dimensions: [['reps', 'load']], ...extra };
+}
+
+describe('exercise_library — a document type validate() used to reject outright', () => {
+  it('accepts a plain 1.0-shaped library', () => {
+    const result = validate(library([libExercise('back_squat')], { openset_version: '1.0' }));
+    expect(result.valid).toBe(true);
+    expect(result.errors).toHaveLength(0);
+  });
+
+  it('errors on an empty exercises array', () => {
+    const result = validate(library([]));
+    expect(result.valid).toBe(false);
+  });
+
+  it('errors on a duplicate id and on an id that is not snake_case', () => {
+    const dup = validate(library([libExercise('back_squat'), libExercise('back_squat')]));
+    expect(dup.errors.some(e => e.message.includes('Duplicate exercise id'))).toBe(true);
+    const bad = validate(library([libExercise('Back Squat')]));
+    expect(bad.errors.some(e => e.message.includes('not snake_case'))).toBe(true);
+  });
+
+  it('warns when an easier / harder / similar link leaves the library', () => {
+    const result = validate(library([libExercise('back_squat', { regressions: ['goblet_squat'] })]));
+    expect(result.warnings.some(w => w.code === 'W012')).toBe(true);
+    expect(result.valid).toBe(true);
+  });
+});
+
+// === 1.2: localized text ===
+describe('localized name, description and aliases', () => {
+  it('accepts a locale map on name, description and aliases', () => {
+    const result = validate(library([libExercise('back_squat', {
+      name: { en: 'Back Squat', hr: 'Stražnji čučanj', 'pt-BR': 'Agachamento' },
+      description: { en: 'A squat with the barbell on the upper back.' },
+      aliases: { en: ['Squat', 'Barbell Back Squat'], hr: ['Čučanj'] },
+    })]));
+    expect(result.valid).toBe(true);
+    expect(result.warnings.some(w => w.code === 'W011')).toBe(false);
+  });
+
+  it('errors on an empty locale map', () => {
+    const result = validate(library([libExercise('back_squat', { name: {} })]));
+    expect(result.errors.some(e => e.code === 'E017')).toBe(true);
+  });
+
+  it('errors when a locale key is not a language tag', () => {
+    const result = validate(library([libExercise('back_squat', { name: { english: 'Back Squat' } })]));
+    expect(result.errors.some(e => e.code === 'E018')).toBe(true);
+  });
+
+  it('errors when a locale entry is the wrong shape', () => {
+    const name = validate(library([libExercise('back_squat', { name: { en: 42 } })]));
+    expect(name.errors.some(e => e.code === 'E016')).toBe(true);
+    const aliases = validate(library([libExercise('back_squat', { aliases: { en: 'Squat' } })]));
+    expect(aliases.errors.some(e => e.code === 'E016')).toBe(true);
+  });
+
+  it('warns when a locale map has no en entry', () => {
+    const result = validate(library([libExercise('back_squat', { name: { hr: 'Stražnji čučanj' } })]));
+    expect(result.warnings.some(w => w.code === 'W011')).toBe(true);
+    expect(result.valid).toBe(true);
   });
 });

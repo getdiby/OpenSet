@@ -4,6 +4,7 @@ import { dimensionRules } from './rules/dimensions.js';
 import { restPrecedenceRules } from './rules/rest-precedence.js';
 import { exerciseLibraryRules } from './rules/exercise-library.js';
 import { workoutLibraryRules } from './rules/workout-library.js';
+import { exerciseLibraryDocumentRules } from './rules/exercise-library-document.js';
 import { versionRules } from './rules/version.js';
 
 export type { ValidationMessage, ValidationResult };
@@ -49,6 +50,12 @@ export function validate(document: unknown, options?: ValidateOptions): Validati
   const exerciseIds = options?.library
     ? buildExerciseIdSet(options.library)
     : null;
+
+  // Exercise library documents describe exercises, not prescriptions — no blocks, no phases.
+  if (doc.type === 'exercise_library') {
+    exerciseLibraryDocumentRules(doc, errors, warnings);
+    return { valid: errors.length === 0, errors, warnings };
+  }
 
   // Workout library documents have their own validation path
   if (doc.type === 'workout_library') {

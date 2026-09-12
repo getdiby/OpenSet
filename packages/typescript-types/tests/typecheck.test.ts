@@ -1,4 +1,9 @@
+import { resolveText, resolveTextList } from '../src/index.js';
 import type {
+  ExerciseDefinition,
+  LocalizedText,
+  LocalizedTextList,
+  MediaAnimation,
   Workout,
   Program,
   ExecutionMode,
@@ -68,3 +73,42 @@ void workout;
 void program;
 void value;
 void result;
+
+
+// === 1.2: localized text and animations compile in both forms ===
+
+const plainName: LocalizedText = 'Back Squat';
+const mappedName: LocalizedText = { en: 'Back Squat', hr: 'Stražnji čučanj', 'pt-BR': 'Agachamento' };
+const plainAliases: LocalizedTextList = ['Squat', 'Barbell Back Squat'];
+const mappedAliases: LocalizedTextList = { en: ['Squat'], hr: ['Čučanj'] };
+
+const loop: MediaAnimation = {
+  url: 'https://cdn.example.com/back_squat/loop.png',
+  label: 'loop',
+  format: 'apng',
+  fps: 12,
+  loop: true,
+};
+
+// A 1.0-shaped exercise still satisfies the type.
+const plainExercise: ExerciseDefinition = {
+  id: 'goblet_squat',
+  name: plainName,
+  aliases: plainAliases,
+  description: 'Squat holding one dumbbell at the chest.',
+  common_dimensions: [['reps', 'load']],
+};
+
+const localizedExercise: ExerciseDefinition = {
+  id: 'back_squat',
+  name: mappedName,
+  aliases: mappedAliases,
+  description: { en: 'Squat with the barbell across the upper back.' },
+  common_dimensions: [['reps', 'load']],
+  media: { animations: [loop] },
+};
+
+const resolved: string | undefined = resolveText(localizedExercise.name, 'hr');
+const resolvedList: string[] | undefined = resolveTextList(localizedExercise.aliases, 'en');
+
+export { plainExercise, localizedExercise, resolved, resolvedList };

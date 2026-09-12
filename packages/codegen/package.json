@@ -1,6 +1,6 @@
 {
   "name": "@diby/openset-codegen",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "Fluent TypeScript builder for constructing valid OpenSet documents",
   "license": "MIT",
   "type": "module",
@@ -35,7 +35,7 @@
     "@diby/openset-types": "*"
   },
   "peerDependencies": {
-    "@diby/openset-validator": "^1.0.0"
+    "@diby/openset-validator": "^1.2.0"
   },
   "peerDependenciesMeta": {
     "@diby/openset-validator": {
