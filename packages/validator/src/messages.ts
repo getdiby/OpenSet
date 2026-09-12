@@ -18,6 +18,9 @@ export const MESSAGES: Record<string, MessageTemplate> = {
   E013: { level: 'error', template: 'Unknown dimension "{0}" without a valid namespace prefix (x_, app_, or reverse-DNS)' },
   E014: { level: 'error', template: 'Unsupported major version "{0}" — this validator supports version(s): {1}' },
   E015: { level: 'error', template: 'Extension field "{0}" has an invalid value — extension dimensions must be ValueObjects with a valid "type" field' },
+  E016: { level: 'error', template: '"{0}" must be {1}, or a map of locale code to that' },
+  E017: { level: 'error', template: '"{0}" is a locale map with no entries — give it at least one locale' },
+  E018: { level: 'error', template: '"{0}" is not a locale code (in "{1}") — use a BCP 47 tag such as en, hr or pt-BR' },
 
   // Warnings
   W010: { level: 'warn', template: 'Document version "{0}" is newer than this validator\'s version "{1}" — some features may not be validated' },
@@ -30,6 +33,8 @@ export const MESSAGES: Record<string, MessageTemplate> = {
   W007: { level: 'warn', template: '"load" is a range type but "rpe" is absent — consider adding RPE guidance' },
   W008: { level: 'warn', template: 'Exercises in a non-SEQUENTIAL series have uneven set counts — later cycles will skip missing exercises' },
   W009: { level: 'warn', template: 'Unknown namespaced extension field "{0}" present — valid but not part of the OpenSet standard' },
+  W011: { level: 'warn', template: '"{0}" is a locale map without an "en" entry — readers that do not speak a listed locale have nothing to fall back to' },
+  W012: { level: 'warn', template: '"{0}" in {1} is not an exercise in this library — the link resolves to nothing' },
 };
 
 export function formatMessage(code: string, ...args: (string | number)[]): string {

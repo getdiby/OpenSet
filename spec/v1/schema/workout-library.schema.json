@@ -6,10 +6,10 @@
   "type": "object",
   "required": ["openset_version", "type", "id", "name", "version", "provider", "license", "workouts"],
   "properties": {
-    "openset_version": { "type": "string", "const": "1.0" },
+    "openset_version": { "type": "string", "pattern": "^1\\.[0-9]+$", "description": "OpenSet spec version" },
     "type": { "type": "string", "const": "workout_library" },
     "id": { "type": "string" },
-    "name": { "type": "string" },
+    "name": { "$ref": "#/$defs/LocalizedText" },
     "version": { "type": "string" },
     "provider": { "type": "string" },
     "license": { "type": "string" },
@@ -20,6 +20,30 @@
   },
   "additionalProperties": false,
   "$defs": {
+    "LocalizedText": {
+      "description": "Free text, plain or keyed by BCP 47 locale code. Both forms are valid.",
+      "oneOf": [
+        { "type": "string" },
+        {
+          "type": "object",
+          "minProperties": 1,
+          "propertyNames": { "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{2,8})*$" },
+          "additionalProperties": { "type": "string" }
+        }
+      ]
+    },
+    "LocalizedTextList": {
+      "description": "A list of strings, plain or keyed by BCP 47 locale code. Both forms are valid.",
+      "oneOf": [
+        { "type": "array", "items": { "type": "string" } },
+        {
+          "type": "object",
+          "minProperties": 1,
+          "propertyNames": { "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{2,8})*$" },
+          "additionalProperties": { "type": "array", "items": { "type": "string" } }
+        }
+      ]
+    },
     "WorkoutDefinition": {
       "type": "object",
       "required": ["id", "name", "blocks"],
@@ -29,8 +53,8 @@
           "pattern": "^[a-z][a-z0-9]*(_[a-z0-9]+)*$",
           "description": "Unique snake_case identifier within the library"
         },
-        "name": { "type": "string" },
-        "description": { "type": "string" },
+        "name": { "$ref": "#/$defs/LocalizedText" },
+        "description": { "$ref": "#/$defs/LocalizedText" },
         "tags": {
           "type": "array",
           "items": { "type": "string" }
@@ -86,6 +110,22 @@
             "properties": {
               "url": { "type": "string", "format": "uri" },
               "label": { "type": "string" }
+            },
+            "additionalProperties": false
+          }
+        },
+        "animations": {
+          "type": "array",
+          "description": "Looping figure animations demonstrating the movement",
+          "items": {
+            "type": "object",
+            "required": ["url", "label"],
+            "properties": {
+              "url": { "type": "string", "format": "uri" },
+              "label": { "type": "string" },
+              "format": { "type": "string", "description": "Container of the loop, e.g. apng, webp, gif, webm" },
+              "fps": { "type": "number", "exclusiveMinimum": 0 },
+              "loop": { "type": "boolean" }
             },
             "additionalProperties": false
           }

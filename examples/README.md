@@ -24,6 +24,12 @@ This directory contains example OpenSet documents demonstrating different use ca
 |------|-------------|--------------|
 | `workout-library.json` | Reusable workout collection | workout_library type, tags, levels, library reference |
 
+## Exercise Library Example
+
+| File | Description | Key Features |
+|------|-------------|--------------|
+| `exercise-library-localized.json` | Two exercises, one in four languages | exercise_library type, `media.animations[]`, locale maps on `name` / `description` / `aliases` (1.2) |
+
 ## Validating Examples
 
 ```bash

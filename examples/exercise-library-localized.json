@@ -1,0 +1,109 @@
+{
+  "openset_version": "1.2",
+  "type": "exercise_library",
+  "id": "localized_animated_sample",
+  "name": {
+    "en": "Localized & Animated Sample",
+    "hr": "Lokalizirani primjer s animacijom"
+  },
+  "version": "1.0.0",
+  "provider": "openset",
+  "license": "MIT",
+  "exercises": [
+    {
+      "id": "back_squat",
+      "name": {
+        "en": "Back Squat",
+        "hr": "Stražnji čučanj sa šipkom",
+        "de": "Kniebeuge mit Langhantel",
+        "pt-BR": "Agachamento com barra nas costas"
+      },
+      "aliases": {
+        "en": [
+          "Squat",
+          "Barbell Back Squat"
+        ],
+        "hr": [
+          "Čučanj",
+          "Čučanj sa šipkom"
+        ]
+      },
+      "description": {
+        "en": "Squat with the barbell across the upper back.",
+        "hr": "Čučanj sa šipkom na gornjem dijelu leđa."
+      },
+      "body_part": "lower_body",
+      "category": "squat",
+      "mechanic": "compound",
+      "laterality": "bilateral",
+      "level": "intermediate",
+      "equipment": [
+        "barbell",
+        "squat_rack"
+      ],
+      "target_muscles": [
+        "quadriceps",
+        "gluteus_maximus"
+      ],
+      "synergist_muscles": [
+        "hamstrings",
+        "erector_spinae"
+      ],
+      "regressions": [
+        "goblet_squat"
+      ],
+      "common_dimensions": [
+        [
+          "reps",
+          "load"
+        ]
+      ],
+      "media": {
+        "animations": [
+          {
+            "url": "https://cdn.example.com/back_squat/loop.png",
+            "label": "loop",
+            "format": "apng",
+            "fps": 12,
+            "loop": true
+          }
+        ],
+        "photos": [
+          {
+            "url": "https://cdn.example.com/back_squat/still.jpg",
+            "label": "start"
+          }
+        ]
+      }
+    },
+    {
+      "id": "goblet_squat",
+      "name": "Goblet Squat",
+      "aliases": [
+        "Dumbbell Goblet Squat"
+      ],
+      "description": "Squat holding one dumbbell at the chest.",
+      "body_part": "lower_body",
+      "category": "squat",
+      "mechanic": "compound",
+      "laterality": "bilateral",
+      "level": "beginner",
+      "equipment": [
+        "dumbbell"
+      ],
+      "target_muscles": [
+        "quadriceps",
+        "gluteus_maximus"
+      ],
+      "progressions": [
+        "back_squat"
+      ],
+      "common_dimensions": [
+        [
+          "reps",
+          "load"
+        ]
+      ]
+    }
+  ]
+}

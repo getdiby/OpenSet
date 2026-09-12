@@ -1,4 +1,4 @@
-# OpenSet Specification v1.0
+# OpenSet Specification v1.2
 
 This document provides a narrative overview of the OpenSet v1.0 specification.
 
@@ -98,9 +98,94 @@ Recommended patterns:
 
 The canonical library (`openset-default`) ships with 50 broadly recognized exercises under MIT license. The library format is defined by `exercise-library.schema.json`. Third-party libraries must validate against this schema to claim OpenSet compatibility.
 
+## Localized text
+
+`name`, `description` and `aliases` each accept two forms. A plain string (or, for `aliases`, a plain
+array) means one language and is what every 1.0 and 1.1 document uses. A map keyed by
+[BCP 47](https://www.rfc-editor.org/info/bcp47) locale code carries several:
+
+```json
+"name": "Back Squat"
+"name": { "en": "Back Squat", "hr": "Stražnji čučanj", "pt-BR": "Agachamento" }
+
+"aliases": ["Squat", "Barbell Back Squat"]
+"aliases": { "en": ["Squat", "Barbell Back Squat"], "hr": ["Čučanj"] }
+```
+
+Both forms stay valid, so nothing written before 1.2 needs changing. A map must carry at least one
+locale; `en` is recommended, not required, and its absence is a warning. `@diby/openset-types`
+exports `resolveText` and `resolveTextList`, which read either form: the exact locale, then the
+language before the region (`pt-BR` falls back to `pt`), then `en`, then the first entry.
+
+## Animations
+
+`media` carries `animations[]` beside `photos[]` and `videos[]`. An animation is a looping
+demonstration of the movement — a figure, not a filmed athlete — so it needs no language:
+
+```json
+"media": {
+  "animations": [
+    { "url": "https://…/back_squat/loop.png", "label": "loop", "format": "apng", "fps": 12, "loop": true }
+  ]
+}
+```
+
+`url` and `label` are required; `format`, `fps` and `loop` are optional hints for the player.
+
+## Recommended muscle vocabulary
+
+`target_muscles` and `synergist_muscles` are free text and stay that way — nothing here is enforced.
+This is a shared vocabulary so two libraries that mean the same muscle write it the same way, in three
+layers with one job each.
+
+**Body part — 5.** `upper_body`, `lower_body`, `core`, `full_body`, `cardio`. Unchanged since 1.0.
+
+**Muscle — 28.** What goes in `target_muscles` and `synergist_muscles`. The plain word is what an app
+may show a reader; the group is the filter it belongs under.
+
+| Term | Plain word | Group | Older words it covers |
+| --- | --- | --- | --- |
+| `pectoralis_major` | Chest | Chest | `chest`, `pectorals` |
+| `pectoralis_clavicular` | Upper chest | Chest | `upper_chest`, `upper_pectorals` |
+| `serratus_anterior` | Serratus | Chest | — |
+| `latissimus_dorsi` | Lats | Back | `lats`, `back` |
+| `rhomboids` | Upper back | Back | `rhomboids`, `upper_back`, `back` |
+| `trapezius_mid` | Upper back | Back | `upper_back` |
+| `trapezius_upper` | Traps | Back | `traps`, `upper_traps` |
+| `deltoid_anterior` | Front delts | Shoulders | `anterior_deltoids`, `shoulders` |
+| `deltoid_lateral` | Side delts | Shoulders | `lateral_deltoids`, `shoulders` |
+| `deltoid_posterior` | Rear delts | Shoulders | `rear_deltoids`, `shoulders` |
+| `biceps_brachii` | Biceps | Biceps | `biceps` |
+| `brachialis` | Biceps | Biceps | — |
+| `triceps_brachii` | Triceps | Triceps | `triceps` |
+| `forearm_flexors` | Forearms | Forearms | `forearms` |
+| `forearm_extensors` | Forearms | Forearms | `forearms` |
+| `rectus_abdominis` | Abs | Core | `abs` |
+| `obliques` | Obliques | Core | `obliques` |
+| `transverse_abdominis` | Deep core | Core | `core` |
+| `erector_spinae` | Lower back | Core | `lower_back`, `spinal_erectors` |
+| `gluteus_maximus` | Glutes | Glutes | `glutes` |
+| `gluteus_medius` | Glutes (side) | Glutes | — |
+| `quadriceps` | Quads | Quads | `quads` |
+| `hamstrings` | Hamstrings | Hamstrings | — |
+| `gastrocnemius` | Calves | Calves | `calves` |
+| `soleus` | Calves | Calves | `calves` |
+| `adductors` | Inner thigh | Hips | `adductors` |
+| `hip_flexors` | Hip flexors | Hips | — |
+| `cardiovascular` | Cardio | Cardio | — |
+
+An older word that named a region rather than a muscle — `shoulders`, `back`, `calves`, `forearms`,
+`upper_back` — becomes every term on its row.
+
+**Filter group — 13**, in display order: Chest · Back · Shoulders · Biceps · Triceps · Forearms ·
+Core · Glutes · Quads · Hamstrings · Calves · Hips · Cardio. An exercise belongs to a group when any
+of its muscles does.
+
+`openset-default` keeps the words it already ships; the table says what each one maps to.
+
 ## Validation
 
-The `@diby/openset-validator` package enforces 13 error rules and 9 warning rules. Errors make a document invalid. Warnings are informational.
+The `@diby/openset-validator` package enforces 16 error rules and 11 warning rules. Errors make a document invalid. Warnings are informational.
 
 See the [validator README](../../packages/validator/README.md) for the full rule reference.
 
@@ -122,3 +207,12 @@ OpenSet can represent the same prescription intent as other workout and prescrip
 - Minor bumps: additive, backward compatible
 - Major bumps: breaking, with migration guides
 - All documents carry `openset_version`
+
+| Version | Added |
+| --- | --- |
+| 1.0 | The specification |
+| 1.1 | `media` on prescription documents |
+| 1.2 | `media.animations[]`; `name` / `description` / `aliases` accept a locale map; recommended muscle vocabulary |
+
+A validator accepts any minor version it knows and warns on one newer than itself, so a 1.0 document
+keeps validating under a 1.2 validator, unchanged.

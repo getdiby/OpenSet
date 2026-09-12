@@ -162,6 +162,22 @@
             },
             "additionalProperties": false
           }
+        },
+        "animations": {
+          "type": "array",
+          "description": "Looping figure animations demonstrating the movement",
+          "items": {
+            "type": "object",
+            "required": ["url", "label"],
+            "properties": {
+              "url": { "type": "string", "format": "uri" },
+              "label": { "type": "string" },
+              "format": { "type": "string", "description": "Container of the loop, e.g. apng, webp, gif, webm" },
+              "fps": { "type": "number", "exclusiveMinimum": 0 },
+              "loop": { "type": "boolean" }
+            },
+            "additionalProperties": false
+          }
         }
       },
       "additionalProperties": false
